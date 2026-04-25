@@ -3,7 +3,52 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>dot/matrix — a library of 28 quiet loaders</title>
+    <title>dot/matrix, a library of 28 quiet loaders</title>
+
+    <meta name="description" content="28 hand-designed 5×5 dot-matrix loader animations. Standalone animated SVGs (~4 KB each) and a React component. No JS runtime, no GIFs, agent-themed patterns for AI loading states." />
+    <meta name="keywords" content="loaders, loading animations, dot matrix, SVG loaders, CSS loaders, AI agent loaders, React loaders, spinner, progress indicator" />
+    <meta name="author" content="icantcodefyi" />
+    <meta name="theme-color" content="#1c1b18" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href="https://dot-matrix-animations.vercel.app/" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dot-matrix-animations.vercel.app/" />
+    <meta property="og:title" content="dot/matrix, a library of 28 quiet loaders" />
+    <meta property="og:description" content="28 hand-designed 5×5 dot-matrix loader animations. Standalone animated SVGs (~4 KB each) and a React component. Agent-themed patterns for AI loading states." />
+    <meta property="og:image" content="https://dot-matrix-animations.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="dot/matrix, a small library of quiet loaders" />
+    <meta property="og:site_name" content="dot/matrix" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dot/matrix, a library of 28 quiet loaders" />
+    <meta name="twitter:description" content="28 hand-designed 5×5 dot-matrix loader animations. ~4 KB each, no JS runtime." />
+    <meta name="twitter:image" content="https://dot-matrix-animations.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="dot/matrix, a small library of quiet loaders" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "dot/matrix",
+      "description": "28 hand-designed 5×5 dot-matrix loader animations as standalone animated SVGs and a React component.",
+      "url": "https://dot-matrix-animations.vercel.app/",
+      "codeRepository": "https://github.com/icantcodefyi/dot-matrix-animations",
+      "programmingLanguage": ["TypeScript", "Python", "SVG", "CSS"],
+      "license": "https://opensource.org/licenses/MIT",
+      "author": {
+        "@type": "Person",
+        "name": "icantcodefyi",
+        "url": "https://github.com/icantcodefyi"
+      }
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,7 +59,7 @@
       :root {
         color-scheme: dark;
 
-        /* Tinted neutrals — slight warmth (hue 80) keeps it from feeling sterile */
+        /* Tinted neutrals, slight warmth (hue 80) keeps it from feeling sterile */
         --ink: oklch(0.965 0.005 80);
         --ink-2: oklch(0.86 0.006 80);
         --ink-3: oklch(0.66 0.008 80);
@@ -27,7 +72,7 @@
         --hairline: oklch(0.28 0.005 80);
         --hairline-2: oklch(0.36 0.006 80);
 
-        /* The single accent. Pale acid — used only for interaction state. */
+        /* The single accent. Pale acid, used only for interaction state. */
         --accent: oklch(0.92 0.16 100);
         --accent-ink: oklch(0.22 0.04 100);
 
@@ -133,6 +178,36 @@
       .topbar .meta span b {
         color: var(--ink);
         font-weight: 500;
+      }
+
+      .topbar .meta a.gh {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--ink-2);
+        text-decoration: none;
+        border-bottom: 1px solid var(--hairline);
+        padding-bottom: 1px;
+        transition: color 200ms var(--ease), border-color 200ms var(--ease);
+      }
+
+      .topbar .meta a.gh:hover,
+      .topbar .meta a.gh:focus-visible {
+        color: var(--accent);
+        border-color: var(--accent);
+        outline: none;
+      }
+
+      .topbar .meta a.gh::after {
+        content: "↗";
+        color: var(--ink-4);
+        font-size: 10px;
+        transition: color 200ms var(--ease);
+      }
+
+      .topbar .meta a.gh:hover::after,
+      .topbar .meta a.gh:focus-visible::after {
+        color: var(--accent);
       }
 
       /* ───────── hero ───────── */
@@ -276,7 +351,7 @@
       }
 
       .card .stage::after {
-        /* a single quiet hairline cross — unobtrusive register marks */
+        /* a single quiet hairline cross, unobtrusive register marks */
         content: "";
         position: absolute;
         inset: 12px;
@@ -495,6 +570,7 @@
           <span><b>28</b>&thinsp;loaders</span>
           <span><b>5×5</b>&thinsp;grid</span>
           <span><b>~4&thinsp;kb</b>&thinsp;each</span>
+          <a class="gh" href="https://github.com/icantcodefyi/dot-matrix-animations" target="_blank" rel="noopener noreferrer">github</a>
         </div>
       </header>
 
@@ -507,7 +583,7 @@
           Twenty‑eight dot‑matrix patterns, each animated from a single CSS
           keyframe and a per‑dot delay map. <strong>No noise sampling, no
           GIFs, no JavaScript runtime.</strong> Drop the SVG into a page and
-          it loops forever — about four kilobytes a piece.
+          it loops forever, about four kilobytes a piece.
         </p>
       </section>
 
@@ -529,14 +605,15 @@
         <p>
           Each loader is a self‑contained <code>&lt;svg&gt;</code> with an
           inline <code>&lt;style&gt;</code> block. Copy one out and paste it
-          anywhere — there are no external dependencies and no required
+          anywhere. There are no external dependencies and no required
           font. They respect <code>prefers-reduced-motion</code> and fall
           back to a calm static state.
         </p>
         <div class="colophon">
           <div class="row"><span>regen</span><span>python3 scripts/generate_animations.py</span></div>
           <div class="row"><span>source</span><span>./svg/icons/icon-NN.svg</span></div>
-          <div class="row"><span>license</span><span>MIT — use them anywhere</span></div>
+          <div class="row"><span>repo</span><span><a href="https://github.com/icantcodefyi/dot-matrix-animations" target="_blank" rel="noopener noreferrer">github.com/icantcodefyi/dot-matrix-animations</a></span></div>
+          <div class="row"><span>license</span><span>MIT. use anywhere</span></div>
         </div>
       </div>
     </div>
@@ -579,7 +656,7 @@
       grid.innerHTML = ICONS.map((icon, i) => {
         const idx = String(i + 1).padStart(2, "0");
         return `
-          <article class="card" role="listitem" tabindex="0" data-slug="${icon.slug}" aria-label="${icon.name} — click to copy SVG">
+          <article class="card" role="listitem" tabindex="0" data-slug="${icon.slug}" aria-label="${icon.name}, click to copy SVG">
             <span class="index">${idx}</span>
             <span class="copy"></span>
             <div class="stage">
@@ -599,7 +676,7 @@
 
       async function readSvg(slug) {
         // Prefer the inlined sidecar so file:// users (no http server) still
-        // get a working copy button — fetch() is blocked on file:// in Chrome.
+        // get a working copy button. fetch() is blocked on file:// in Chrome.
         if (INLINE_ICONS[slug]) return INLINE_ICONS[slug];
         const res = await fetch(`./svg/icons/${slug}.svg`);
         if (!res.ok) throw new Error(`fetch ${slug}: ${res.status}`);

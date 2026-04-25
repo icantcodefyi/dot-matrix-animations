@@ -1,0 +1,104 @@
+# Roadmap
+
+A working draft of where dot/matrix could go next. Two tracks: **more loaders**
+and **website improvements**. Tick items off, scratch ones you don't want, add
+your own. Nothing here is built yet.
+
+## Phase 1: more loaders (29-40)
+
+The current 28 cover rings, sweeps, sparkles, sequences, and the agent set.
+The gaps are: **multi-phase motion** (something that goes out and comes back),
+**physics-feeling motion** (deceleration, harmonic), **semantic states** (done,
+stopped, verified), and **noise/density** patterns. The 12 below address those.
+
+| #  | Name        | Concept                                                                                       | Why it's different from existing                       |
+|----|-------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------|
+| 29 | Glider      | Conway's 3-cell glider walks diagonally over 4 generations using staggered per-cell delays    | Recognizable cellular-automata reference, no overlap   |
+| 30 | Caret       | Typewriter caret blinks at center-bottom while a "typed" line of dots fills the row above it  | Composes two motions, very chat-app feel               |
+| 31 | Pendulum    | 5-dot row swings left/right with eased timing mimicking simple harmonic motion                | First loader with non-linear, physics-style motion     |
+| 32 | Magnet      | Outer dots drift inward to center, then eject back out                                        | Two-phase out-and-back motion the set is missing       |
+| 33 | Aperture    | Camera iris: single center dot expands radially in 3 steps, then contracts back               | Reverse-and-replay, evokes a real mechanical action    |
+| 34 | Static      | TV static / VHS noise. Per-dot delay + per-dot duration variance via two hashes               | Densest pattern in the set, distinct from Sparkle      |
+| 35 | Ladder      | 5 horizontal rungs light bottom-up, then top-down (oscillating)                               | Loading-bar feel without being a literal progress bar  |
+| 36 | Scatter     | Starburst from center: each dot's delay is its hashed angle, resolving into stillness         | Implies an "explosion then settle" semantic            |
+| 37 | Mesh        | Two perpendicular scan lines (one row, one column) cross at a moving intersection             | Two motions composed in one icon                       |
+| 38 | Verify      | A checkmark traces itself in 7 dots: (1,2)→(2,3)→(3,2)→(4,1) plus tail                        | Semantic "completed" state, useful as an end-of-loader |
+| 39 | Halt        | Small 3×3 square opens, then collapses to a single dot                                        | Matches "agent stopped / cancelled" semantic           |
+| 40 | Roulette    | Perimeter sweep that decelerates non-linearly, looks like it's "landing" on a final answer    | First loader that visibly resolves rather than loops   |
+
+### Implementation notes
+- All keep the existing `IconSpec` shape and `~4 KB` file budget.
+- 3 of these need new keyframes (`HARMONIC_KF`, `STATIC_KF`, `RESOLVE_KF`); the
+  rest reuse existing ones (`PULSE_KF`, `TRAIL_KF`, `BLOOM_KF`, `FILL_KF`).
+- Verify and Halt are "outcome" loaders, useful as one-shot animations after a
+  spinning loader resolves. Consider a new `iteration: "1"` IconSpec field so
+  they don't loop. (Tiny refactor.)
+- Build them in two batches of 5–6 so we can review pacing before committing.
+
+## Phase 2: website improvements
+
+Roughly in priority order. Quick wins first, big bets last.
+
+### Quick wins (a few hours each)
+- **Search / filter input** above the grid. Fuzzy filter by name. Type "ring"
+  to narrow to Pulse Rings, Ring Pulse, Listening. Pure client-side.
+- **Category tags** on each card: `progress / spinner / ambient / agent /
+  status`. Filter pills below the search input.
+- **"Pause all" toggle** in the topbar. Quiets the page for accessibility, for
+  screen recording, and for users who prefer to study one icon at a time.
+- **Keyboard nav**: `↑ ↓ ← →` to move between cards, `c` to copy the focused
+  one, `/` to focus the search input.
+- **Density toggle**: switch between the current 4-col grid and a denser
+  6 / 8-col compact view. Useful for browsing the full set fast.
+
+### Medium (half a day each)
+- **Live size + meta inspector**: hover or click reveals byte count, duration,
+  easing, and a copy-able snippet for `<DotMatrixIcon iconIndex={n} />`
+  alongside the raw SVG.
+- **Color recoloring picker**: a single accent picker at the top that re-tints
+  every loader. Requires a small refactor to make SVGs use `currentColor`
+  instead of hard-coded `#ffffff`.
+- **Speed scrubber**: a global `0.25× → 2×` slider that overrides
+  `animation-duration` via a CSS variable.
+- **Per-loader detail page**: `/icon-23` static HTML route with a large
+  preview, the SVG source in a code block, the React snippet, and a paragraph
+  about what the loader is for. Generated by the Python script. No build step.
+- **"Used in" gallery**: small section showing the loaders inline at typical
+  16, 24, 32, 48 px sizes so people can see how they hold up small.
+
+### Big bets
+- **Publish as an npm package**: `@icantcodefyi/dot-matrix-loaders`. Ships the
+  React component plus the raw SVG strings as importable constants. The TS
+  source is already 90% there.
+- **Loader playground**: a small editor where users tweak the delay function
+  and keyframe text, see the result live, and export the SVG. The "wow"
+  feature. Could be its own page at `/playground`.
+- **OG image per loader**: auto-generate a 1200×630 PNG for each individual
+  loader so social cards from `/icon-23` show that specific loader.
+- **Documentation site**: a `/docs` route with API reference, design notes
+  (why 5×5, why opacity-only, why Chebyshev distance for rings, etc.), and
+  a "design your own" guide.
+
+## Phase 3: SEO + distribution
+- Already shipped: meta description, Open Graph, Twitter card, JSON-LD,
+  favicon, apple-touch-icon, robots.txt, sitemap.xml, og-image.png.
+- **Next**: submit sitemap to Google Search Console.
+- **Optional**: write up the project on a personal site / dev.to / hashnode
+  with a focus on the per-dot delay technique. The post is the discoverability
+  hook, the site is the demo.
+- **Optional**: open-source registry submissions: uiverse.io, css-loaders.com,
+  awesome lists on GitHub (awesome-svg, awesome-css, etc.).
+
+## Phase 4: long-term
+- **More grid sizes**: optional 7×7 and 9×9 variants for a few patterns where
+  resolution actually adds something (Knight's Tour, Cipher, Static).
+- **Color variants**: ship a small, opinionated palette (mono, accent, dual)
+  so the site can demo a few aesthetic options without becoming a theme zoo.
+- **A 30-second "story mode"**: a single page that plays through every loader
+  in sequence with the name + use case as a caption. Good demo for a tweet.
+
+---
+
+Mark anything you want to skip with a strikethrough. Anything you want to
+prioritize, move to the top of its section. When you're ready, reply with
+"do Phase 1 batch one" or "build the search bar first" and I'll start there.

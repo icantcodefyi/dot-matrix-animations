@@ -54,19 +54,19 @@ CENTER = (GRID - 1) / 2  # 2.0 for 5x5
 
 
 def delay_chebyshev_rings(col: int, row: int) -> float:
-    """Pulse Rings — Chebyshev distance from center (0..2)."""
+    """Pulse Rings, Chebyshev distance from center (0..2)."""
     d = max(abs(col - CENTER), abs(row - CENTER))
     return d / 6.0  # 0, 1/6, 2/6
 
 
 def delay_manhattan_cross(col: int, row: int) -> float:
-    """Cross Expand — Manhattan distance from center (0..4)."""
+    """Cross Expand, Manhattan distance from center (0..4)."""
     d = abs(col - CENTER) + abs(row - CENTER)
     return d / 10.0  # 0..0.4
 
 
 def delay_diagonal(col: int, row: int) -> float:
-    """Diagonal scan — col+row index (0..8)."""
+    """Diagonal scan, col+row index (0..8)."""
     return (col + row) / 12.0  # 0..0.667
 
 
@@ -76,7 +76,7 @@ def delay_wave_horizontal(col: int, row: int) -> float:
 
 
 def delay_rain_columns(col: int, row: int) -> float:
-    """Rain — per-column random-feeling starts, then drop falls down."""
+    """Rain, per-column random-feeling starts, then drop falls down."""
     column_starts = [0.00, 0.55, 0.20, 0.75, 0.35]
     return (column_starts[col] + row * 0.07) % 1.0
 
@@ -129,7 +129,7 @@ def delay_sparkle(col: int, row: int) -> float:
     return ((h % 1000) / 1000.0)
 
 
-# ---------- new delay layouts (icons 10–18) ----------
+# ---------- new delay layouts (icons 10-18) ----------
 
 
 def delay_column_scan(col: int, row: int) -> float:
@@ -145,13 +145,13 @@ def delay_beacon(col: int, row: int) -> float:
 
 
 def delay_diamond(col: int, row: int) -> float:
-    """Diamond (rotated square) bloom — Manhattan rings from center."""
+    """Diamond (rotated square) bloom, Manhattan rings from center."""
     d = abs(col - CENTER) + abs(row - CENTER)
     return d / 12.0
 
 
 def delay_pyramid(col: int, row: int) -> float:
-    """Triangle grows from the bottom up — stepped pyramid 1, 1, 3, 3, 5."""
+    """Triangle grows from the bottom up, stepped pyramid 1, 1, 3, 3, 5."""
     half_width = row // 2  # 0,0,1,1,2 from top to bottom
     if abs(col - CENTER) > half_width:
         return -1.0
@@ -166,7 +166,7 @@ def delay_diagonal_bounce(col: int, row: int) -> float:
 
 
 def delay_breath(col: int, row: int) -> float:
-    """All dots breathe in unison — no per-dot offset."""
+    """All dots breathe in unison, no per-dot offset."""
     return 0.0
 
 
@@ -201,7 +201,7 @@ def delay_ring_pulse(col: int, row: int) -> float:
     return -1.0
 
 
-# ---------- new delay layouts (icons 19–28, agent-themed) ----------
+# ---------- new delay layouts (icons 19-28, agent-themed) ----------
 
 
 def _hash01(idx: int, salt: int = 1) -> float:
@@ -211,7 +211,7 @@ def _hash01(idx: int, salt: int = 1) -> float:
 
 
 def delay_thinking(col: int, row: int) -> float:
-    """Thinking — inner 3x3 cluster fires in a deterministic random order."""
+    """Thinking, inner 3x3 cluster fires in a deterministic random order."""
     if not (1 <= col <= 3 and 1 <= row <= 3):
         return -1.0
     idx = (row - 1) * 3 + (col - 1)
@@ -219,17 +219,17 @@ def delay_thinking(col: int, row: int) -> float:
 
 
 def delay_stream(col: int, row: int) -> float:
-    """Stream — left-to-right, top-to-bottom token emission."""
+    """Stream, left-to-right, top-to-bottom token emission."""
     return (row * GRID + col) / 28.0  # 0..0.857, leaves a small tail
 
 
 def delay_scan_line(col: int, row: int) -> float:
-    """Scan Line — entire row lights together, advances down the grid."""
+    """Scan Line, entire row lights together, advances down the grid."""
     return row / 6.0  # 0, 1/6, 2/6, 3/6, 4/6
 
 
 def delay_handshake(col: int, row: int) -> float:
-    """Handshake — two travelers move along the main diagonal to meet at center."""
+    """Handshake, two travelers move along the main diagonal to meet at center."""
     if col != row:
         return -1.0
     # Distance from each end to center → both ends fire first, center last.
@@ -248,18 +248,18 @@ KNIGHT_TOUR: List[Tuple[int, int]] = [
 
 
 def delay_knight(col: int, row: int) -> float:
-    """Knight's Tour — single bright dot follows a 25-step open tour."""
+    """Knight's Tour, single bright dot follows a 25-step open tour."""
     idx = KNIGHT_TOUR.index((col, row))
     return idx / (len(KNIGHT_TOUR) + 4)  # leaves a small tail before loop
 
 
 def delay_lattice(col: int, row: int) -> float:
-    """Lattice — checkerboard breathes in two opposing phases."""
+    """Lattice, checkerboard breathes in two opposing phases."""
     return 0.0 if (col + row) % 2 == 0 else 0.5
 
 
 def delay_cipher(col: int, row: int) -> float:
-    """Cipher — dots fire in four hash-bucketed waves, decryption-style."""
+    """Cipher, dots fire in four hash-bucketed waves, decryption-style."""
     idx = row * GRID + col
     h = ((idx * 1103515245 + 12345) ^ (idx * idx * 2654435761)) & 0xFFFFFFFF
     bucket = h % 4
@@ -267,7 +267,7 @@ def delay_cipher(col: int, row: int) -> float:
 
 
 def delay_listening(col: int, row: int) -> float:
-    """Listening — concentric rings collapse INWARD, edge first then center."""
+    """Listening, concentric rings collapse INWARD, edge first then center."""
     d = max(abs(col - CENTER), abs(row - CENTER))  # 0,1,2
     return (2 - d) / 6.0  # outer=0, mid=1/6, center=2/6
 
@@ -282,7 +282,7 @@ RELAY_PAIRS: List[Tuple[Tuple[int, int], Tuple[int, int]]] = [
 
 
 def delay_relay(col: int, row: int) -> float:
-    """Relay — 8 perimeter dots ping in antipodal pairs around the cycle."""
+    """Relay, 8 perimeter dots ping in antipodal pairs around the cycle."""
     for i, (a, b) in enumerate(RELAY_PAIRS):
         if (col, row) == a or (col, row) == b:
             return i / 4.0
@@ -290,7 +290,7 @@ def delay_relay(col: int, row: int) -> float:
 
 
 def delay_compile(col: int, row: int) -> float:
-    """Compile — each column fills bottom-up with a slight per-column stagger."""
+    """Compile, each column fills bottom-up with a slight per-column stagger."""
     col_offset = col * 0.04
     row_step = (GRID - 1 - row) * 0.10  # bottom row first
     return col_offset + row_step  # 0..0.56
@@ -306,7 +306,7 @@ PULSE_KF = """
 100% { opacity: 0; }
 """
 
-# Soft sustained breath — for waves.
+# Soft sustained breath, for waves.
 BREATH_KF = """
 0%   { opacity: 0.05; }
 20%  { opacity: 1; }
@@ -314,7 +314,7 @@ BREATH_KF = """
 100% { opacity: 0.05; }
 """
 
-# Heartbeat — lub-dub, then long rest.
+# Heartbeat, lub-dub, then long rest.
 HEART_KF = """
 0%   { opacity: 0.18; }
 6%   { opacity: 0.95; }
@@ -325,7 +325,7 @@ HEART_KF = """
 100% { opacity: 0.18; }
 """
 
-# Spinner trail — sharp on, smooth fade.
+# Spinner trail, sharp on, smooth fade.
 TRAIL_KF = """
 0%   { opacity: 0; }
 4%   { opacity: 1; }
@@ -333,7 +333,7 @@ TRAIL_KF = """
 100% { opacity: 0; }
 """
 
-# Rain drop — quick on, vertical fade.
+# Rain drop, quick on, vertical fade.
 RAIN_KF = """
 0%   { opacity: 0; }
 6%   { opacity: 1; }
@@ -341,7 +341,7 @@ RAIN_KF = """
 100% { opacity: 0; }
 """
 
-# Sparkle — tiny twinkle.
+# Sparkle, tiny twinkle.
 SPARKLE_KF = """
 0%   { opacity: 0.05; }
 40%  { opacity: 0.05; }
@@ -350,14 +350,14 @@ SPARKLE_KF = """
 100% { opacity: 0.05; }
 """
 
-# Slow, synchronized breath — used for the all-on ambient glow.
+# Slow, synchronized breath, used for the all-on ambient glow.
 SLOW_BREATH_KF = """
 0%   { opacity: 0.10; }
 50%  { opacity: 0.85; }
 100% { opacity: 0.10; }
 """
 
-# Beacon — long rest, single bright peak, slow fade.
+# Beacon, long rest, single bright peak, slow fade.
 BEACON_KF = """
 0%   { opacity: 0.12; }
 14%  { opacity: 1; }
@@ -365,7 +365,7 @@ BEACON_KF = """
 100% { opacity: 0.12; }
 """
 
-# Bloom — held bright then a slow release (used for diamond and pyramid).
+# Bloom, held bright then a slow release (used for diamond and pyramid).
 BLOOM_KF = """
 0%   { opacity: 0; }
 10%  { opacity: 1; }
@@ -373,7 +373,7 @@ BLOOM_KF = """
 100% { opacity: 0; }
 """
 
-# Ring breath — entire ring lights together, holds, fades.
+# Ring breath, entire ring lights together, holds, fades.
 RING_KF = """
 0%   { opacity: 0.10; }
 20%  { opacity: 1; }
@@ -381,7 +381,7 @@ RING_KF = """
 100% { opacity: 0.10; }
 """
 
-# Synapse — short sharp neuron-fire flash with quiet rest.
+# Synapse, short sharp neuron-fire flash with quiet rest.
 SYNAPSE_KF = """
 0%   { opacity: 0.05; }
 30%  { opacity: 0.05; }
@@ -390,7 +390,7 @@ SYNAPSE_KF = """
 100% { opacity: 0.05; }
 """
 
-# Lattice breath — slow opposing breath shared by half the grid.
+# Lattice breath, slow opposing breath shared by half the grid.
 LATTICE_KF = """
 0%   { opacity: 0.08; }
 30%  { opacity: 0.85; }
@@ -398,7 +398,7 @@ LATTICE_KF = """
 100% { opacity: 0.08; }
 """
 
-# Cipher flicker — rapid binary-style on/off, tighter than sparkle.
+# Cipher flicker, rapid binary-style on/off, tighter than sparkle.
 CIPHER_KF = """
 0%   { opacity: 0; }
 8%   { opacity: 1; }
@@ -408,7 +408,7 @@ CIPHER_KF = """
 100% { opacity: 0; }
 """
 
-# Fill — bright rise, holds for most of the cycle, releases together.
+# Fill, bright rise, holds for most of the cycle, releases together.
 FILL_KF = """
 0%   { opacity: 0.08; }
 14%  { opacity: 1; }
@@ -790,7 +790,7 @@ def render_icons_js(specs: Sequence[IconSpec]) -> str:
 
     payload = {spec.slug: render_icon_svg(spec) for spec in specs}
     return (
-        "// Auto-generated by scripts/generate_animations.py — do not edit by hand.\n"
+        "// Auto-generated by scripts/generate_animations.py, do not edit by hand.\n"
         "window.__DOT_MATRIX_ICONS = "
         + json.dumps(payload, ensure_ascii=False)
         + ";\n"
@@ -804,7 +804,7 @@ def main() -> None:
     for spec in ICONS:
         path = ICON_DIR / f"{spec.slug}.svg"
         path.write_text(render_icon_svg(spec), encoding="utf-8")
-        print(f"wrote {path.relative_to(REPO_ROOT)} — {spec.title}")
+        print(f"wrote {path.relative_to(REPO_ROOT)}, {spec.title}")
 
     SCENE_PATH.write_text(render_scene_svg(ICONS), encoding="utf-8")
     print(f"wrote {SCENE_PATH.relative_to(REPO_ROOT)}")

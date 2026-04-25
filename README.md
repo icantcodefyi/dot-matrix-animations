@@ -14,26 +14,26 @@ Both render the same set of patterns: **Pulse Rings**, **Spiral**, **Wave**,
 **Thinking**, **Stream**, **Scan Line**, **Handshake**, **Knight's Tour**,
 **Lattice**, **Cipher**, **Listening**, **Relay**, **Compile**.
 
-The last ten are agent-flavored — useful for AI/agent loading states,
+The last ten are agent-flavored, useful for AI/agent loading states,
 streaming output, decryption, peer handshakes, and build progress.
 
 ## Files
 
-- [`scripts/generate_animations.py`](./scripts/generate_animations.py) —
-  Python generator for the SVGs and the 3×3 scene.
-- [`src/dotMatrixPatterns.ts`](./src/dotMatrixPatterns.ts) — pattern specs
-  shared across the React side (mirrors the Python generator).
-- [`src/DotMatrixIcon.tsx`](./src/DotMatrixIcon.tsx) — single icon component.
-- [`src/DotMatrixScene.tsx`](./src/DotMatrixScene.tsx) — 3×3 scene component.
-- [`svg/icons/`](./svg/icons) — nine standalone animated icons.
-- [`svg/dot-matrix-scene.svg`](./svg/dot-matrix-scene.svg) — the 3×3 scene.
-- [`index.html`](./index.html) — open in any browser to view the set.
+- [`scripts/generate_animations.py`](./scripts/generate_animations.py)
+  is the Python generator for the SVGs and the 3×3 scene.
+- [`src/dotMatrixPatterns.ts`](./src/dotMatrixPatterns.ts) holds the pattern
+  specs shared across the React side (mirrors the Python generator).
+- [`src/DotMatrixIcon.tsx`](./src/DotMatrixIcon.tsx) is the single icon component.
+- [`src/DotMatrixScene.tsx`](./src/DotMatrixScene.tsx) is the 3×3 scene component.
+- [`svg/icons/`](./svg/icons) contains the standalone animated icons.
+- [`svg/dot-matrix-scene.svg`](./svg/dot-matrix-scene.svg) is the 3×3 scene.
+- [`index.html`](./index.html) opens in any browser to view the full set.
 
 ## How the animations work
 
 Each icon is a single CSS `@keyframes` definition (a brief opacity pulse,
 a heartbeat, a fade trail, etc.) applied to all 25 dots. Per-dot
-`animation-delay` values turn that one keyframe into a coordinated pattern —
+`animation-delay` values turn that one keyframe into a coordinated pattern:
 ring distances, spiral order, sine wave, etc.
 
 This keeps each SVG ≈4 KB, lets the browser run the animation natively at
@@ -55,7 +55,7 @@ export function Example() {
 }
 ```
 
-`DotMatrixIcon` props: `iconIndex` (0–27, wraps), `size`, `color`, `baseColor`,
+`DotMatrixIcon` props: `iconIndex` (0-27, wraps), `size`, `color`, `baseColor`,
 `autoPlay`, plus standard SVG props.
 
 ## Regenerate the SVGs

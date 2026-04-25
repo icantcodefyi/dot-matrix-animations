@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="dot/matrix — 28 quiet loaders">
+  <defs>
+    <radialGradient id="bgGlow" cx="78%" cy="-10%" r="80%">
+      <stop offset="0%" stop-color="#262522" stop-opacity="0.7" />
+      <stop offset="60%" stop-color="#1c1b18" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="bgGlow2" cx="-5%" cy="40%" r="90%">
+      <stop offset="0%" stop-color="#23221f" stop-opacity="0.6" />
+      <stop offset="60%" stop-color="#1c1b18" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#1c1b18" />
+  <rect width="1200" height="630" fill="url(#bgGlow)" />
+  <rect width="1200" height="630" fill="url(#bgGlow2)" />
+
+  <!-- top hairline + meta -->
+  <line x1="80" y1="100" x2="1120" y2="100" stroke="#3a3934" stroke-width="1" />
+  <text x="80" y="80" fill="#f5f5f3" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="22" font-weight="500" letter-spacing="0.5">
+    dot<tspan fill="#6a6863">/</tspan>matrix
+  </text>
+  <text x="1120" y="80" text-anchor="end" fill="#9a9892" font-family="ui-monospace, monospace" font-size="18" letter-spacing="1">
+    v0.1 · 2026
+  </text>
+
+  <!-- centered wordmark -->
+  <text x="80" y="320" fill="#f5f5f3" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" font-size="128" font-weight="500" letter-spacing="-3">
+    A small library
+  </text>
+  <text x="80" y="450" fill="#a8a69f" font-family="-apple-system, BlinkMacSystemFont, system-ui, sans-serif" font-size="128" font-weight="400" font-style="italic" letter-spacing="-3">
+    of <tspan fill="#f5f5f3" font-style="normal">quiet</tspan> loaders<tspan fill="#6a6863" font-style="normal">.</tspan>
+  </text>
+
+  <!-- right-side dot motif: 5x5 grid as visual anchor -->
+  <g transform="translate(880 200)" fill="#f5f5f3">
+    <!-- background dots -->
+    <g opacity="0.12">
+      <circle cx="0"   cy="0"   r="6" /><circle cx="50"  cy="0"   r="6" /><circle cx="100" cy="0"   r="6" /><circle cx="150" cy="0"   r="6" /><circle cx="200" cy="0"   r="6" />
+      <circle cx="0"   cy="50"  r="6" /><circle cx="50"  cy="50"  r="6" /><circle cx="100" cy="50"  r="6" /><circle cx="150" cy="50"  r="6" /><circle cx="200" cy="50"  r="6" />
+      <circle cx="0"   cy="100" r="6" /><circle cx="50"  cy="100" r="6" /><circle cx="100" cy="100" r="6" /><circle cx="150" cy="100" r="6" /><circle cx="200" cy="100" r="6" />
+      <circle cx="0"   cy="150" r="6" /><circle cx="50"  cy="150" r="6" /><circle cx="100" cy="150" r="6" /><circle cx="150" cy="150" r="6" /><circle cx="200" cy="150" r="6" />
+      <circle cx="0"   cy="200" r="6" /><circle cx="50"  cy="200" r="6" /><circle cx="100" cy="200" r="6" /><circle cx="150" cy="200" r="6" /><circle cx="200" cy="200" r="6" />
+    </g>
+    <!-- pulse rings frozen mid-animation -->
+    <circle cx="100" cy="100" r="8" opacity="1" />
+    <circle cx="50"  cy="100" r="7.5" opacity="0.85" />
+    <circle cx="150" cy="100" r="7.5" opacity="0.85" />
+    <circle cx="100" cy="50"  r="7.5" opacity="0.85" />
+    <circle cx="100" cy="150" r="7.5" opacity="0.85" />
+    <circle cx="0"   cy="100" r="7" opacity="0.45" />
+    <circle cx="200" cy="100" r="7" opacity="0.45" />
+    <circle cx="100" cy="0"   r="7" opacity="0.45" />
+    <circle cx="100" cy="200" r="7" opacity="0.45" />
+    <circle cx="50"  cy="50"  r="7" opacity="0.45" />
+    <circle cx="150" cy="50"  r="7" opacity="0.45" />
+    <circle cx="50"  cy="150" r="7" opacity="0.45" />
+    <circle cx="150" cy="150" r="7" opacity="0.45" />
+  </g>
+
+  <!-- bottom meta -->
+  <line x1="80" y1="540" x2="1120" y2="540" stroke="#3a3934" stroke-width="1" />
+  <text x="80" y="585" fill="#a8a69f" font-family="ui-monospace, monospace" font-size="20" letter-spacing="1.5">
+    28 LOADERS  ·  5×5 GRID  ·  ~4 KB EACH  ·  NO JS RUNTIME
+  </text>
+  <text x="1120" y="585" text-anchor="end" fill="#9a9892" font-family="ui-monospace, monospace" font-size="20" letter-spacing="1">
+    dot-matrix-animations.vercel.app
+  </text>
+</svg>
