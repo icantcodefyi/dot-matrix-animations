@@ -74,8 +74,12 @@ Roughly in priority order. Quick wins first, big bets last.
   a "design your own" guide.
 
 ## Phase 3: SEO + distribution
-- Already shipped: meta description, Open Graph, Twitter card, JSON-LD,
-  favicon, apple-touch-icon, robots.txt, sitemap.xml, og-image.png.
+- ✅ meta description, Open Graph, Twitter card, JSON-LD, favicon,
+  apple-touch-icon, robots.txt, og-image.png all preserved through the
+  TanStack Start migration (driven from `src/routes/__root.tsx`).
+- ✅ Sitemap regenerated with the 41 URLs (gallery + 40 detail pages).
+- ✅ Per-loader detail pages set their own `<title>` and OG description
+  via `head()` in the route definition.
 - **Next**: submit sitemap to Google Search Console.
 - **Optional**: write up the project on a personal site / dev.to / hashnode
   with a focus on the per-dot delay technique. The post is the discoverability
