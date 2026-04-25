@@ -153,6 +153,50 @@ const HALT_RING: ReadonlyArray<readonly [number, number]> = [
   [1, 3], [2, 3], [3, 3],
 ];
 
+// Eight rotational phases for a 3-cell needle pivoting at center (2,2).
+// Each phase is the (inner, outer) pair along one of N/NE/E/SE/S/SW/W/NW.
+const NEEDLE_PHASES: ReadonlyArray<ReadonlyArray<readonly [number, number]>> = [
+  [[2, 1], [2, 0]],
+  [[3, 1], [4, 0]],
+  [[3, 2], [4, 2]],
+  [[3, 3], [4, 4]],
+  [[2, 3], [2, 4]],
+  [[1, 3], [0, 4]],
+  [[1, 2], [0, 2]],
+  [[1, 1], [0, 0]],
+];
+
+const PLUS_CELLS: ReadonlyArray<readonly [number, number]> = [
+  [2, 0], [2, 1], [2, 3], [2, 4],
+  [0, 2], [1, 2], [3, 2], [4, 2],
+];
+const X_CELLS: ReadonlyArray<readonly [number, number]> = [
+  [0, 0], [1, 1], [3, 3], [4, 4],
+  [4, 0], [3, 1], [1, 3], [0, 4],
+];
+
+// Four L-shaped corner brackets, ordered clockwise from top-left.
+const CORNER_BRACKETS: ReadonlyArray<ReadonlyArray<readonly [number, number]>> = [
+  [[0, 0], [1, 0], [0, 1]],
+  [[3, 0], [4, 0], [4, 1]],
+  [[4, 3], [4, 4], [3, 4]],
+  [[0, 4], [1, 4], [0, 3]],
+];
+
+// Cardinal arms (two cells outward from center), ordered N→E→S→W.
+const COMPASS_ARMS: ReadonlyArray<ReadonlyArray<readonly [number, number]>> = [
+  [[2, 1], [2, 0]],
+  [[3, 2], [4, 2]],
+  [[2, 3], [2, 4]],
+  [[1, 2], [0, 2]],
+];
+
+// Comet: bright head with a long, soft fade. Distinct from TRAIL_KF —
+// the comet keeps a perceptible tail across most of the cycle so it
+// reads as motion blur rather than a flicker.
+const COMET_KF =
+  "0%{opacity:0;transform:scale(1);}4%{opacity:1;transform:scale(1.25);}28%{opacity:0.35;transform:scale(1);}78%{opacity:0.06;transform:scale(1);}100%{opacity:0;transform:scale(1);}";
+
 export const PATTERNS: ReadonlyArray<PatternSpec> = [
   {
     slug: "icon-01",
@@ -652,6 +696,139 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
       // ease-out-cubic: rapid at start, decelerating into the landing.
       return 1 - Math.pow(1 - t, 3);
     },
+  },
+  {
+    slug: "icon-41",
+    category: "spinner",
+    title: "Needle",
+    blurb: "A 3-cell needle pivots around the center through eight directions.",
+    durationMs: 2400,
+    easing: "linear",
+    keyframes: PULSE_KF,
+    delay: (col, row) => {
+      if (col === CENTER && row === CENTER) return 0;
+      for (let p = 0; p < NEEDLE_PHASES.length; p++) {
+        if (findIndex(NEEDLE_PHASES[p], col, row) >= 0) {
+          return p / NEEDLE_PHASES.length;
+        }
+      }
+      return -1;
+    },
+  },
+  {
+    slug: "icon-42",
+    category: "ambient",
+    title: "Plus X",
+    blurb: "A plus and an ex trade places on opposite halves of the cycle.",
+    durationMs: 2200,
+    easing: EASE_IN_OUT,
+    keyframes: FILL_KF,
+    delay: (col, row) => {
+      if (col === CENTER && row === CENTER) return 0;
+      if (findIndex(PLUS_CELLS, col, row) >= 0) return 0;
+      if (findIndex(X_CELLS, col, row) >= 0) return 0.5;
+      return -1;
+    },
+  },
+  {
+    slug: "icon-43",
+    category: "spinner",
+    title: "Brackets",
+    blurb: "Four corner brackets light in turn, sweeping clockwise.",
+    durationMs: 2000,
+    easing: EASE_OUT_QUART,
+    keyframes: PULSE_KF,
+    delay: (col, row) => {
+      for (let i = 0; i < CORNER_BRACKETS.length; i++) {
+        if (findIndex(CORNER_BRACKETS[i], col, row) >= 0) {
+          return i / CORNER_BRACKETS.length;
+        }
+      }
+      return -1;
+    },
+  },
+  {
+    slug: "icon-44",
+    category: "progress",
+    title: "Bar",
+    blurb: "A three-cell bar scans down the inner columns row by row.",
+    durationMs: 1800,
+    easing: EASE_OUT_QUART,
+    keyframes: PULSE_KF,
+    delay: (col, row) => {
+      if (col < 1 || col > 3) return -1;
+      return row / 6;
+    },
+  },
+  {
+    slug: "icon-45",
+    category: "ambient",
+    title: "Inner Twinkle",
+    blurb: "The inner 3×3 cluster twinkles on its own deterministic loop.",
+    durationMs: 2400,
+    easing: EASE_IN_OUT,
+    keyframes: SPARKLE_KF,
+    delay: (col, row) => {
+      if (col < 1 || col > 3 || row < 1 || row > 3) return -1;
+      const idx = (row - 1) * 3 + (col - 1);
+      return hash01(idx, 11);
+    },
+  },
+  {
+    slug: "icon-46",
+    category: "spinner",
+    title: "Comet",
+    blurb: "A bright head sweeps the perimeter trailing a long, soft tail.",
+    durationMs: 2200,
+    easing: "linear",
+    keyframes: COMET_KF,
+    delay: (col, row) => {
+      const idx = findIndex(EDGE_ORDER, col, row);
+      return idx < 0 ? -1 : idx / EDGE_ORDER.length;
+    },
+  },
+  {
+    slug: "icon-47",
+    category: "spinner",
+    title: "Quartet",
+    blurb: "Four runners trace a quadrant each, locked in lockstep around the ring.",
+    durationMs: 1600,
+    easing: "linear",
+    keyframes: TRAIL_KF,
+    delay: (col, row) => {
+      const idx = findIndex(EDGE_ORDER, col, row);
+      if (idx < 0) return -1;
+      const quarter = EDGE_ORDER.length / 4;
+      return (idx % quarter) / quarter;
+    },
+  },
+  {
+    slug: "icon-48",
+    category: "spinner",
+    title: "Compass",
+    blurb: "Cardinal arms pulse in turn — north, east, south, west.",
+    durationMs: 2000,
+    easing: EASE_OUT_QUART,
+    keyframes: PULSE_KF,
+    delay: (col, row) => {
+      if (col === CENTER && row === CENTER) return 0;
+      for (let i = 0; i < COMPASS_ARMS.length; i++) {
+        if (findIndex(COMPASS_ARMS[i], col, row) >= 0) {
+          return i / COMPASS_ARMS.length;
+        }
+      }
+      return -1;
+    },
+  },
+  {
+    slug: "icon-49",
+    category: "progress",
+    title: "Dock",
+    blurb: "The bottom row fills left-to-right like a typewriter loading bar.",
+    durationMs: 2000,
+    easing: EASE_OUT_QUART,
+    keyframes: FILL_KF,
+    delay: (col, row) => (row === GRID - 1 ? col / 6 : -1),
   },
 ];
 
