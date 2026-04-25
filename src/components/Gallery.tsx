@@ -8,10 +8,12 @@ interface GalleryProps {
   items: ReadonlyArray<{ pattern: PatternSpec; iconIndex: number }>;
   density: Density;
   autoPlay: boolean;
+  accentColor: string;
+  speed: number;
 }
 
 export const Gallery = forwardRef<HTMLDivElement, GalleryProps>(function Gallery(
-  { items, density, autoPlay },
+  { items, density, autoPlay, accentColor, speed },
   ref,
 ) {
   if (items.length === 0) {
@@ -27,6 +29,7 @@ export const Gallery = forwardRef<HTMLDivElement, GalleryProps>(function Gallery
       className={`grid is-${density}`}
       role="list"
       aria-label="dot-matrix loader gallery"
+      style={{ color: accentColor }}
     >
       {items.map(({ pattern, iconIndex }, position) => (
         <GalleryCard
@@ -35,6 +38,7 @@ export const Gallery = forwardRef<HTMLDivElement, GalleryProps>(function Gallery
           iconIndex={iconIndex}
           cardIndex={position}
           autoPlay={autoPlay}
+          speed={speed}
         />
       ))}
     </div>

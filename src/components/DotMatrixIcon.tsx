@@ -23,18 +23,22 @@ export function getDotMatrixPattern(iconIndex: number): PatternSpec {
 export interface DotMatrixIconProps extends Omit<SVGProps<SVGSVGElement>, "color"> {
   iconIndex: number;
   size?: number;
+  /** Defaults to currentColor so a parent can recolor by setting CSS color. */
   color?: string;
   baseColor?: string;
   /** When true, the animation runs; when false, dots stay in their resting state. */
   autoPlay?: boolean;
+  /** Multiplier applied to durationMs and per-cell delays. 1 = native speed, 2 = 2× faster. */
+  speedMultiplier?: number;
 }
 
 export function DotMatrixIcon({
   iconIndex,
   size = 56,
-  color = "#ffffff",
+  color = "currentColor",
   baseColor,
   autoPlay = true,
+  speedMultiplier = 1,
   style,
   ...props
 }: DotMatrixIconProps) {
@@ -42,8 +46,10 @@ export function DotMatrixIcon({
   const rawId = useId();
   const id = `dm-${rawId.replace(/[:]/g, "")}-${pattern.slug}`;
   const iteration = pattern.iteration ?? "infinite";
+  const speed = speedMultiplier > 0 ? speedMultiplier : 1;
+  const scaledDuration = Math.round(pattern.durationMs / speed);
   const animation = autoPlay
-    ? `${id}-kf ${pattern.durationMs}ms ${pattern.easing} ${iteration} both`
+    ? `${id}-kf ${scaledDuration}ms ${pattern.easing} ${iteration} both`
     : "none";
   const restOpacity = autoPlay ? 0 : 0.45;
 
@@ -74,13 +80,13 @@ export function DotMatrixIcon({
       );
       const delay = pattern.delay(col, row);
       if (delay < 0) continue;
-      const delayMs = Math.round(delay * pattern.durationMs);
+      const delayMs = Math.round((delay * pattern.durationMs) / speed);
       const dotClass = `${id}-d${row}${col}`;
       const factor = pattern.durationFactor?.(col, row) ?? 1;
       const durationOverride =
         factor === 1
           ? ""
-          : ` animation-duration: ${Math.round(pattern.durationMs * factor)}ms;`;
+          : ` animation-duration: ${Math.round((pattern.durationMs * factor) / speed)}ms;`;
       cellRules.push(
         `.${dotClass} { animation-delay: ${delayMs}ms;${durationOverride} }`,
       );

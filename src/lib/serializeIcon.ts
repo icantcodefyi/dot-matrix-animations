@@ -15,6 +15,13 @@ import {
  * button on a card produces a file that matches the on-disk SVG byte-
  * for-byte (modulo whitespace).
  */
+/**
+ * Renders an animated 5×5 SVG to a self-contained string.
+ *
+ * Default `color` is "#ffffff" — a hard-coded color makes the copied SVG
+ * self-sufficient (no host stylesheet needed). Pass a different color to
+ * match the gallery's accent picker; pass "currentColor" to inherit.
+ */
 export function serializeIconSvg(iconIndex: number, color = "#ffffff"): string {
   const pattern = PATTERNS[iconIndex];
   if (!pattern) throw new Error(`unknown icon index ${iconIndex}`);

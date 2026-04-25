@@ -11,6 +11,8 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+const DEFAULT_ACCENT = "#ffffff";
+
 function Home() {
   const [query, setQuery] = useState("");
   const [activeCategories, setActiveCategories] = useState<ReadonlySet<Category>>(
@@ -18,6 +20,8 @@ function Home() {
   );
   const [density, setDensity] = useState<Density>("comfortable");
   const [paused, setPaused] = useState(false);
+  const [accentColor, setAccentColor] = useState(DEFAULT_ACCENT);
+  const [speed, setSpeed] = useState(1);
 
   const filtered = useMemo(
     () => filterPatterns(PATTERNS, { query, activeCategories }),
@@ -120,6 +124,11 @@ function Home() {
         paused={paused}
         onPausedChange={setPaused}
         resultCount={filtered.length}
+        accentColor={accentColor}
+        defaultAccentColor={DEFAULT_ACCENT}
+        onAccentColorChange={setAccentColor}
+        speed={speed}
+        onSpeedChange={setSpeed}
       />
 
       <Gallery
@@ -127,6 +136,8 @@ function Home() {
         items={filtered}
         density={density}
         autoPlay={!paused}
+        accentColor={accentColor}
+        speed={speed}
       />
 
       <div className="section-head">

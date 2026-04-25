@@ -14,7 +14,14 @@ interface ToolbarProps {
   paused: boolean;
   onPausedChange: (paused: boolean) => void;
   resultCount: number;
+  accentColor: string;
+  defaultAccentColor: string;
+  onAccentColorChange: (color: string) => void;
+  speed: number;
+  onSpeedChange: (speed: number) => void;
 }
+
+const SPEED_PRESETS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2];
 
 export function Toolbar({
   query,
@@ -28,7 +35,15 @@ export function Toolbar({
   paused,
   onPausedChange,
   resultCount,
+  accentColor,
+  defaultAccentColor,
+  onAccentColorChange,
+  speed,
+  onSpeedChange,
 }: ToolbarProps) {
+  const speedLabel = `${speed.toFixed(2).replace(/\.?0+$/, "")}×`;
+  const isCustomColor =
+    accentColor.toLowerCase() !== defaultAccentColor.toLowerCase();
   const allActive = activeCategories.size === 0;
 
   return (
@@ -111,6 +126,53 @@ export function Toolbar({
         <span className="result-count" aria-live="polite">
           {resultCount} {resultCount === 1 ? "loader" : "loaders"}
         </span>
+      </div>
+
+      <div className="tune-row">
+        <label className="color-picker">
+          <span className="tune-label">tint</span>
+          <span
+            className="color-swatch"
+            aria-hidden="true"
+            style={{ background: accentColor }}
+          />
+          <input
+            type="color"
+            value={accentColor}
+            onChange={(e) => onAccentColorChange(e.target.value)}
+            aria-label="Loader tint color"
+          />
+          {isCustomColor ? (
+            <button
+              type="button"
+              className="reset-link"
+              onClick={() => onAccentColorChange(defaultAccentColor)}
+              title="reset to default tint"
+            >
+              reset
+            </button>
+          ) : null}
+        </label>
+
+        <label className="speed-scrubber">
+          <span className="tune-label">speed</span>
+          <input
+            type="range"
+            min={0.25}
+            max={2}
+            step={0.05}
+            list="speed-presets"
+            value={speed}
+            onChange={(e) => onSpeedChange(Number(e.target.value))}
+            aria-label="Animation speed"
+          />
+          <datalist id="speed-presets">
+            {SPEED_PRESETS.map((p) => (
+              <option key={p} value={p} />
+            ))}
+          </datalist>
+          <output className="speed-value">{speedLabel}</output>
+        </label>
       </div>
     </div>
   );

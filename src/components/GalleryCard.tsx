@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { DotMatrixIcon } from "~/components/DotMatrixIcon";
@@ -12,6 +13,7 @@ interface GalleryCardProps {
   /** Position in the filtered grid; used by keyboard nav. */
   cardIndex: number;
   autoPlay: boolean;
+  speed: number;
 }
 
 function fallbackCopy(text: string): boolean {
@@ -37,6 +39,7 @@ export function GalleryCard({
   iconIndex,
   cardIndex,
   autoPlay,
+  speed,
 }: GalleryCardProps) {
   const [state, setState] = useState<CopyState>("idle");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -99,8 +102,22 @@ export function GalleryCard({
       <span className="index">{indexLabel}</span>
       <span className="category-tag" aria-hidden="true">{pattern.category}</span>
       <span className="copy" aria-hidden="true" />
+      <Link
+        to="/icon/$slug"
+        params={{ slug: pattern.slug }}
+        className="details-link"
+        aria-label={`open ${pattern.title} details`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        details →
+      </Link>
       <div className="stage">
-        <DotMatrixIcon iconIndex={iconIndex} size={120} autoPlay={autoPlay} />
+        <DotMatrixIcon
+          iconIndex={iconIndex}
+          size={120}
+          autoPlay={autoPlay}
+          speedMultiplier={speed}
+        />
       </div>
       <div className="info">
         <span className="name">{pattern.title}</span>
