@@ -15,7 +15,7 @@ import math
 import os
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, List, Sequence, Tuple
+from typing import Callable, List, Optional, Sequence, Tuple
 
 
 GRID = 5
@@ -45,6 +45,8 @@ class IconSpec:
     easing: str = EASE_OUT_QUART
     iteration: str = "infinite"
     keyframes_name: str = "lit"
+    # Per-cell animation-duration multiplier (default 1). Used by Static.
+    duration_factor_fn: Optional[Callable[[int, int], float]] = None
 
 
 # ---------- delay layouts ----------
@@ -295,6 +297,123 @@ def delay_compile(col: int, row: int) -> float:
     return col_offset + row_step  # 0..0.56
 
 
+# ---------- new delay layouts (icons 29-40, Phase 1) ----------
+
+
+# Conway's glider, four phases walking SE. Per-cell delay = the earliest phase
+# the cell appears in, divided by the number of phases.
+GLIDER_PHASES: List[List[Tuple[int, int]]] = [
+    [(1, 0), (2, 1), (0, 2), (1, 2), (2, 2)],
+    [(0, 0), (2, 0), (1, 1), (2, 1), (1, 2)],
+    [(2, 0), (0, 1), (2, 1), (1, 2), (2, 2)],
+    [(1, 1), (2, 2), (3, 2), (1, 3), (2, 3)],
+]
+
+
+def delay_glider(col: int, row: int) -> float:
+    for phase, cells in enumerate(GLIDER_PHASES):
+        if (col, row) in cells:
+            return phase / len(GLIDER_PHASES)
+    return -1.0
+
+
+def delay_caret(col: int, row: int) -> float:
+    """Caret, row 3 types itself in left-to-right; (2,4) is the blinking caret."""
+    if row == 3:
+        return col / 6.0
+    if col == 2 and row == 4:
+        return 0.5
+    return -1.0
+
+
+def delay_pendulum(col: int, row: int) -> float:
+    """Pendulum, middle row swings with simple-harmonic timing."""
+    if row != 2:
+        return -1.0
+    p = (col - CENTER) / CENTER  # -1..1
+    t = math.asin(p) / (2 * math.pi)
+    return (t % 1 + 1) % 1
+
+
+def delay_magnet(col: int, row: int) -> float:
+    """Magnet, outer dots fire first and converge inward toward center."""
+    d = max(abs(col - CENTER), abs(row - CENTER))
+    return (2 - d) / 8.0
+
+
+def delay_aperture(col: int, row: int) -> float:
+    """Aperture, three concentric rings open from center."""
+    d = max(abs(col - CENTER), abs(row - CENTER))
+    return d / 6.0
+
+
+def delay_static(col: int, row: int) -> float:
+    """Static (TV noise), per-dot delay derived from the deterministic hash."""
+    return _hash01(row * GRID + col, salt=1)
+
+
+def duration_factor_static(col: int, row: int) -> float:
+    """Static, per-dot duration variance (0.55x..1.45x base)."""
+    return 0.55 + _hash01(row * GRID + col, salt=2) * 0.9
+
+
+def delay_ladder(col: int, row: int) -> float:
+    """Ladder, rows oscillate up and down via the two-peak HARMONIC_KF."""
+    return ((GRID - 1 - row) / 8.0 - 0.25 + 1) % 1
+
+
+def delay_scatter(col: int, row: int) -> float:
+    """Scatter, central explosion plus hash-noised settling for outer dots."""
+    if col == CENTER and row == CENTER:
+        return 0.0
+    idx = row * GRID + col
+    dist = math.hypot(col - CENTER, row - CENTER) / (math.sqrt(2) * CENTER)
+    return 0.05 + _hash01(idx, salt=5) * 0.4 + dist * 0.2
+
+
+def delay_mesh(col: int, row: int) -> float:
+    """Mesh, a row scan and a column scan crossing at a moving intersection."""
+    if row == CENTER:
+        return col / 8.0
+    if col == CENTER:
+        return 0.5 + row / 8.0
+    return -1.0
+
+
+VERIFY_PATH: List[Tuple[int, int]] = [
+    (0, 2), (1, 3), (2, 4), (3, 3), (4, 2), (4, 1), (4, 0),
+]
+
+
+def delay_verify(col: int, row: int) -> float:
+    """Verify, checkmark traces itself once. Pair with iteration='1'."""
+    if (col, row) not in VERIFY_PATH:
+        return -1.0
+    return VERIFY_PATH.index((col, row)) / len(VERIFY_PATH)
+
+
+HALT_RING: List[Tuple[int, int]] = [
+    (1, 1), (2, 1), (3, 1),
+    (1, 2),         (3, 2),
+    (1, 3), (2, 3), (3, 3),
+]
+
+
+def delay_halt(col: int, row: int) -> float:
+    """Halt, 3x3 outline opens together; center fades last. iteration='1'."""
+    if col == CENTER and row == CENTER:
+        return 0.5
+    return 0.0 if (col, row) in HALT_RING else -1.0
+
+
+def delay_roulette(col: int, row: int) -> float:
+    """Roulette, perimeter sweep with cubic ease-out so it 'lands'. iteration='1'."""
+    if (col, row) not in EDGE_ORDER:
+        return -1.0
+    t = EDGE_ORDER.index((col, row)) / len(EDGE_ORDER)
+    return 1 - (1 - t) ** 3
+
+
 # ---------- keyframes ----------
 
 # Standard "brief peak then rest" pulse.
@@ -413,6 +532,33 @@ FILL_KF = """
 14%  { opacity: 1; }
 72%  { opacity: 0.95; }
 100% { opacity: 0.08; }
+"""
+
+# Two-peak harmonic curve, used for pendulum / ladder oscillation.
+HARMONIC_KF = """
+0%   { opacity: 0.08; }
+25%  { opacity: 1; }
+50%  { opacity: 0.08; }
+75%  { opacity: 1; }
+100% { opacity: 0.08; }
+"""
+
+# Brief sharp flash, paired with per-cell delay+duration variance for VHS noise.
+STATIC_KF = """
+0%   { opacity: 0.05; }
+45%  { opacity: 0.05; }
+50%  { opacity: 1; }
+55%  { opacity: 0.05; }
+100% { opacity: 0.05; }
+"""
+
+# One-shot resolve, decays to a moderate steady state. Pair with iteration "1".
+RESOLVE_KF = """
+0%   { opacity: 0; }
+5%   { opacity: 1; }
+30%  { opacity: 0.05; }
+80%  { opacity: 0.05; }
+100% { opacity: 0.6; }
 """
 
 
@@ -671,6 +817,118 @@ ICONS: List[IconSpec] = [
         duration_ms=2400,
         easing=EASE_IN_OUT,
     ),
+    IconSpec(
+        slug="icon-29",
+        title="Glider",
+        blurb="A Conway glider walks diagonally over four generations.",
+        keyframes_css=TRAIL_KF,
+        delay_fn=delay_glider,
+        duration_ms=2400,
+        easing="linear",
+    ),
+    IconSpec(
+        slug="icon-30",
+        title="Caret",
+        blurb="A typewriter caret blinks while a row of dots types itself in.",
+        keyframes_css=BEACON_KF,
+        delay_fn=delay_caret,
+        duration_ms=2200,
+        easing=EASE_OUT_QUART,
+    ),
+    IconSpec(
+        slug="icon-31",
+        title="Pendulum",
+        blurb="A row swings left and right with simple-harmonic timing.",
+        keyframes_css=HARMONIC_KF,
+        delay_fn=delay_pendulum,
+        duration_ms=2400,
+        easing="linear",
+    ),
+    IconSpec(
+        slug="icon-32",
+        title="Magnet",
+        blurb="Outer dots drift inward to the core, then release outward.",
+        keyframes_css=BLOOM_KF,
+        delay_fn=delay_magnet,
+        duration_ms=2400,
+        easing=EASE_IN_OUT,
+    ),
+    IconSpec(
+        slug="icon-33",
+        title="Aperture",
+        blurb="A camera iris opens in three rings, then closes back to the center.",
+        keyframes_css=BLOOM_KF,
+        delay_fn=delay_aperture,
+        duration_ms=2400,
+        easing=EASE_IN_OUT,
+    ),
+    IconSpec(
+        slug="icon-34",
+        title="Static",
+        blurb="VHS noise — every dot flickers on its own delay and duration.",
+        keyframes_css=STATIC_KF,
+        delay_fn=delay_static,
+        duration_ms=1400,
+        easing="linear",
+        duration_factor_fn=duration_factor_static,
+    ),
+    IconSpec(
+        slug="icon-35",
+        title="Ladder",
+        blurb="Five horizontal rungs light bottom-up, then top-down.",
+        keyframes_css=HARMONIC_KF,
+        delay_fn=delay_ladder,
+        duration_ms=2400,
+        easing="linear",
+    ),
+    IconSpec(
+        slug="icon-36",
+        title="Scatter",
+        blurb="A starburst from the center settles into stillness.",
+        keyframes_css=TRAIL_KF,
+        delay_fn=delay_scatter,
+        duration_ms=2200,
+        easing=EASE_OUT_QUART,
+    ),
+    IconSpec(
+        slug="icon-37",
+        title="Mesh",
+        blurb="A row scan and a column scan cross at a moving intersection.",
+        keyframes_css=PULSE_KF,
+        delay_fn=delay_mesh,
+        duration_ms=2400,
+        easing="linear",
+    ),
+    IconSpec(
+        slug="icon-38",
+        title="Verify",
+        blurb="A checkmark traces itself once and stays lit. One-shot.",
+        keyframes_css=RESOLVE_KF,
+        delay_fn=delay_verify,
+        duration_ms=1400,
+        easing=EASE_OUT_QUART,
+        iteration="1",
+    ),
+    IconSpec(
+        slug="icon-39",
+        title="Halt",
+        blurb="A 3×3 square opens, then collapses to a single center dot. One-shot.",
+        keyframes_css=FILL_KF,
+        delay_fn=delay_halt,
+        duration_ms=1600,
+        easing=EASE_IN_OUT,
+        iteration="1",
+    ),
+    IconSpec(
+        slug="icon-40",
+        title="Roulette",
+        blurb="A perimeter sweep decelerates and lands on a final answer.",
+        keyframes_css=RESOLVE_KF,
+        delay_fn=delay_roulette,
+        duration_ms=2600,
+        easing="linear",
+        iteration="1",
+    ),
 ]
 
 
@@ -712,8 +970,13 @@ def render_icon_inner(spec: IconSpec, prefix: str = "") -> Tuple[str, str]:
                 # No animation for this dot (loading spinner inner dots).
                 continue
             delay_ms = int(round(delay * spec.duration_ms))
+            extras = ""
+            if spec.duration_factor_fn is not None:
+                factor = spec.duration_factor_fn(col, row)
+                if factor != 1.0:
+                    extras = f" animation-duration: {int(round(spec.duration_ms * factor))}ms;"
             style_lines.append(
-                f".{prefix}d{row}{col} {{ animation-delay: {delay_ms}ms; }}"
+                f".{prefix}d{row}{col} {{ animation-delay: {delay_ms}ms;{extras} }}"
             )
             lit_dots.append(
                 f'<circle class="{cls_lit} {prefix}d{row}{col}" '

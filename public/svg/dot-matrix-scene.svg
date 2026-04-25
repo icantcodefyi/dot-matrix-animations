@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 700" role="img" aria-label="Dot Matrix Scene">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 980" role="img" aria-label="Dot Matrix Scene">
   <title>Dot Matrix Scene</title>
-  <desc>28 deliberate dot-matrix animations laid out on a grid.</desc>
+  <desc>40 deliberate dot-matrix animations laid out on a grid.</desc>
   <style>
     .tile { fill: #0a0a0a; stroke: #1a1a1a; stroke-width: 1; }
     .i0_bg { fill: #f5f5f5; opacity: 0.07; }
@@ -760,8 +760,286 @@
     .i27_d42 { animation-delay: 192ms; }
     .i27_d43 { animation-delay: 288ms; }
     .i27_d44 { animation-delay: 384ms; }
+    .i28_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i28_lit { fill: #ffffff; opacity: 0; animation: i28_kf 2400ms linear infinite both; }
+    @keyframes i28_kf {0%   { opacity: 0; }
+4%   { opacity: 1; }
+26%  { opacity: 0.08; }
+100% { opacity: 0; }}
+    @media (prefers-reduced-motion: reduce) { .i28_lit { animation: none; opacity: 0.45; } }
+    .i28_d00 { animation-delay: 600ms; }
+    .i28_d01 { animation-delay: 0ms; }
+    .i28_d02 { animation-delay: 600ms; }
+    .i28_d10 { animation-delay: 1200ms; }
+    .i28_d11 { animation-delay: 600ms; }
+    .i28_d12 { animation-delay: 0ms; }
+    .i28_d20 { animation-delay: 0ms; }
+    .i28_d21 { animation-delay: 0ms; }
+    .i28_d22 { animation-delay: 0ms; }
+    .i28_d23 { animation-delay: 1800ms; }
+    .i28_d31 { animation-delay: 1800ms; }
+    .i28_d32 { animation-delay: 1800ms; }
+    .i29_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i29_lit { fill: #ffffff; opacity: 0; animation: i29_kf 2200ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
+    @keyframes i29_kf {0%   { opacity: 0.12; }
+14%  { opacity: 1; }
+40%  { opacity: 0.12; }
+100% { opacity: 0.12; }}
+    @media (prefers-reduced-motion: reduce) { .i29_lit { animation: none; opacity: 0.45; } }
+    .i29_d30 { animation-delay: 0ms; }
+    .i29_d31 { animation-delay: 367ms; }
+    .i29_d32 { animation-delay: 733ms; }
+    .i29_d33 { animation-delay: 1100ms; }
+    .i29_d34 { animation-delay: 1467ms; }
+    .i29_d42 { animation-delay: 1100ms; }
+    .i30_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i30_lit { fill: #ffffff; opacity: 0; animation: i30_kf 2400ms linear infinite both; }
+    @keyframes i30_kf {0%   { opacity: 0.08; }
+25%  { opacity: 1; }
+50%  { opacity: 0.08; }
+75%  { opacity: 1; }
+100% { opacity: 0.08; }}
+    @media (prefers-reduced-motion: reduce) { .i30_lit { animation: none; opacity: 0.45; } }
+    .i30_d20 { animation-delay: 1800ms; }
+    .i30_d21 { animation-delay: 2200ms; }
+    .i30_d22 { animation-delay: 0ms; }
+    .i30_d23 { animation-delay: 200ms; }
+    .i30_d24 { animation-delay: 600ms; }
+    .i31_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i31_lit { fill: #ffffff; opacity: 0; animation: i31_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
+    @keyframes i31_kf {0%   { opacity: 0; }
+10%  { opacity: 1; }
+55%  { opacity: 0.85; }
+100% { opacity: 0; }}
+    @media (prefers-reduced-motion: reduce) { .i31_lit { animation: none; opacity: 0.45; } }
+    .i31_d00 { animation-delay: 0ms; }
+    .i31_d01 { animation-delay: 0ms; }
+    .i31_d02 { animation-delay: 0ms; }
+    .i31_d03 { animation-delay: 0ms; }
+    .i31_d04 { animation-delay: 0ms; }
+    .i31_d10 { animation-delay: 0ms; }
+    .i31_d11 { animation-delay: 300ms; }
+    .i31_d12 { animation-delay: 300ms; }
+    .i31_d13 { animation-delay: 300ms; }
+    .i31_d14 { animation-delay: 0ms; }
+    .i31_d20 { animation-delay: 0ms; }
+    .i31_d21 { animation-delay: 300ms; }
+    .i31_d22 { animation-delay: 600ms; }
+    .i31_d23 { animation-delay: 300ms; }
+    .i31_d24 { animation-delay: 0ms; }
+    .i31_d30 { animation-delay: 0ms; }
+    .i31_d31 { animation-delay: 300ms; }
+    .i31_d32 { animation-delay: 300ms; }
+    .i31_d33 { animation-delay: 300ms; }
+    .i31_d34 { animation-delay: 0ms; }
+    .i31_d40 { animation-delay: 0ms; }
+    .i31_d41 { animation-delay: 0ms; }
+    .i31_d42 { animation-delay: 0ms; }
+    .i31_d43 { animation-delay: 0ms; }
+    .i31_d44 { animation-delay: 0ms; }
+    .i32_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i32_lit { fill: #ffffff; opacity: 0; animation: i32_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
+    @keyframes i32_kf {0%   { opacity: 0; }
+10%  { opacity: 1; }
+55%  { opacity: 0.85; }
+100% { opacity: 0; }}
+    @media (prefers-reduced-motion: reduce) { .i32_lit { animation: none; opacity: 0.45; } }
+    .i32_d00 { animation-delay: 800ms; }
+    .i32_d01 { animation-delay: 800ms; }
+    .i32_d02 { animation-delay: 800ms; }
+    .i32_d03 { animation-delay: 800ms; }
+    .i32_d04 { animation-delay: 800ms; }
+    .i32_d10 { animation-delay: 800ms; }
+    .i32_d11 { animation-delay: 400ms; }
+    .i32_d12 { animation-delay: 400ms; }
+    .i32_d13 { animation-delay: 400ms; }
+    .i32_d14 { animation-delay: 800ms; }
+    .i32_d20 { animation-delay: 800ms; }
+    .i32_d21 { animation-delay: 400ms; }
+    .i32_d22 { animation-delay: 0ms; }
+    .i32_d23 { animation-delay: 400ms; }
+    .i32_d24 { animation-delay: 800ms; }
+    .i32_d30 { animation-delay: 800ms; }
+    .i32_d31 { animation-delay: 400ms; }
+    .i32_d32 { animation-delay: 400ms; }
+    .i32_d33 { animation-delay: 400ms; }
+    .i32_d34 { animation-delay: 800ms; }
+    .i32_d40 { animation-delay: 800ms; }
+    .i32_d41 { animation-delay: 800ms; }
+    .i32_d42 { animation-delay: 800ms; }
+    .i32_d43 { animation-delay: 800ms; }
+    .i32_d44 { animation-delay: 800ms; }
+    .i33_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i33_lit { fill: #ffffff; opacity: 0; animation: i33_kf 1400ms linear infinite both; }
+    @keyframes i33_kf {0%   { opacity: 0.05; }
+45%  { opacity: 0.05; }
+50%  { opacity: 1; }
+55%  { opacity: 0.05; }
+100% { opacity: 0.05; }}
+    @media (prefers-reduced-motion: reduce) { .i33_lit { animation: none; opacity: 0.45; } }
+    .i33_d00 { animation-delay: 550ms; animation-duration: 1760ms; }
+    .i33_d01 { animation-delay: 267ms; animation-duration: 2025ms; }
+    .i33_d02 { animation-delay: 827ms; animation-duration: 2025ms; }
+    .i33_d03 { animation-delay: 713ms; animation-duration: 1846ms; }
+    .i33_d04 { animation-delay: 746ms; animation-duration: 1261ms; }
+    .i33_d10 { animation-delay: 1124ms; animation-duration: 1637ms; }
+    .i33_d11 { animation-delay: 1348ms; animation-duration: 1909ms; }
+    .i33_d12 { animation-delay: 304ms; animation-duration: 1649ms; }
+    .i33_d13 { animation-delay: 561ms; animation-duration: 914ms; }
+    .i33_d14 { animation-delay: 357ms; animation-duration: 1088ms; }
+    .i33_d20 { animation-delay: 155ms; animation-duration: 1491ms; }
+    .i33_d21 { animation-delay: 365ms; animation-duration: 1957ms; }
+    .i33_d22 { animation-delay: 354ms; animation-duration: 1796ms; }
+    .i33_d23 { animation-delay: 1292ms; animation-duration: 901ms; }
+    .i33_d24 { animation-delay: 1393ms; animation-duration: 1566ms; }
+    .i33_d30 { animation-delay: 976ms; animation-duration: 1196ms; }
+    .i33_d31 { animation-delay: 595ms; animation-duration: 964ms; }
+    .i33_d32 { animation-delay: 144ms; animation-duration: 1521ms; }
+    .i33_d33 { animation-delay: 883ms; animation-duration: 1501ms; }
+    .i33_d34 { animation-delay: 1329ms; animation-duration: 1382ms; }
+    .i33_d40 { animation-delay: 1306ms; animation-duration: 1090ms; }
+    .i33_d41 { animation-delay: 979ms; animation-duration: 1224ms; }
+    .i33_d42 { animation-delay: 699ms; animation-duration: 1294ms; }
+    .i33_d43 { animation-delay: 617ms; animation-duration: 1670ms; }
+    .i33_d44 { animation-delay: 1144ms; animation-duration: 1085ms; }
+    .i34_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i34_lit { fill: #ffffff; opacity: 0; animation: i34_kf 2400ms linear infinite both; }
+    @keyframes i34_kf {0%   { opacity: 0.08; }
+25%  { opacity: 1; }
+50%  { opacity: 0.08; }
+75%  { opacity: 1; }
+100% { opacity: 0.08; }}
+    @media (prefers-reduced-motion: reduce) { .i34_lit { animation: none; opacity: 0.45; } }
+    .i34_d00 { animation-delay: 600ms; }
+    .i34_d01 { animation-delay: 600ms; }
+    .i34_d02 { animation-delay: 600ms; }
+    .i34_d03 { animation-delay: 600ms; }
+    .i34_d04 { animation-delay: 600ms; }
+    .i34_d10 { animation-delay: 300ms; }
+    .i34_d11 { animation-delay: 300ms; }
+    .i34_d12 { animation-delay: 300ms; }
+    .i34_d13 { animation-delay: 300ms; }
+    .i34_d14 { animation-delay: 300ms; }
+    .i34_d20 { animation-delay: 0ms; }
+    .i34_d21 { animation-delay: 0ms; }
+    .i34_d22 { animation-delay: 0ms; }
+    .i34_d23 { animation-delay: 0ms; }
+    .i34_d24 { animation-delay: 0ms; }
+    .i34_d30 { animation-delay: 2100ms; }
+    .i34_d31 { animation-delay: 2100ms; }
+    .i34_d32 { animation-delay: 2100ms; }
+    .i34_d33 { animation-delay: 2100ms; }
+    .i34_d34 { animation-delay: 2100ms; }
+    .i34_d40 { animation-delay: 1800ms; }
+    .i34_d41 { animation-delay: 1800ms; }
+    .i34_d42 { animation-delay: 1800ms; }
+    .i34_d43 { animation-delay: 1800ms; }
+    .i34_d44 { animation-delay: 1800ms; }
+    .i35_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i35_lit { fill: #ffffff; opacity: 0; animation: i35_kf 2200ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
+    @keyframes i35_kf {0%   { opacity: 0; }
+4%   { opacity: 1; }
+26%  { opacity: 0.08; }
+100% { opacity: 0; }}
+    @media (prefers-reduced-motion: reduce) { .i35_lit { animation: none; opacity: 0.45; } }
+    .i35_d00 { animation-delay: 1399ms; }
+    .i35_d01 { animation-delay: 686ms; }
+    .i35_d02 { animation-delay: 550ms; }
+    .i35_d03 { animation-delay: 1149ms; }
+    .i35_d04 { animation-delay: 1016ms; }
+    .i35_d10 { animation-delay: 908ms; }
+    .i35_d11 { animation-delay: 1089ms; }
+    .i35_d12 { animation-delay: 1087ms; }
+    .i35_d13 { animation-delay: 940ms; }
+    .i35_d14 { animation-delay: 1305ms; }
+    .i35_d20 { animation-delay: 945ms; }
+    .i35_d21 { animation-delay: 1104ms; }
+    .i35_d22 { animation-delay: 0ms; }
+    .i35_d23 { animation-delay: 314ms; }
+    .i35_d24 { animation-delay: 758ms; }
+    .i35_d30 { animation-delay: 1004ms; }
+    .i35_d31 { animation-delay: 827ms; }
+    .i35_d32 { animation-delay: 838ms; }
+    .i35_d33 { animation-delay: 656ms; }
+    .i35_d34 { animation-delay: 726ms; }
+    .i35_d40 { animation-delay: 825ms; }
+    .i35_d41 { animation-delay: 950ms; }
+    .i35_d42 { animation-delay: 1209ms; }
+    .i35_d43 { animation-delay: 1180ms; }
+    .i35_d44 { animation-delay: 1118ms; }
+    .i36_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i36_lit { fill: #ffffff; opacity: 0; animation: i36_kf 2400ms linear infinite both; }
+    @keyframes i36_kf {0%   { opacity: 0; }
+8%   { opacity: 1; }
+36%  { opacity: 0.05; }
+100% { opacity: 0; }}
+    @media (prefers-reduced-motion: reduce) { .i36_lit { animation: none; opacity: 0.45; } }
+    .i36_d02 { animation-delay: 1200ms; }
+    .i36_d12 { animation-delay: 1500ms; }
+    .i36_d20 { animation-delay: 0ms; }
+    .i36_d21 { animation-delay: 300ms; }
+    .i36_d22 { animation-delay: 600ms; }
+    .i36_d23 { animation-delay: 900ms; }
+    .i36_d24 { animation-delay: 1200ms; }
+    .i36_d32 { animation-delay: 2100ms; }
+    .i36_d42 { animation-delay: 2400ms; }
+    .i37_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i37_lit { fill: #ffffff; opacity: 0; animation: i37_kf 1400ms cubic-bezier(0.25, 1, 0.5, 1) 1 both; }
+    @keyframes i37_kf {0%   { opacity: 0; }
+5%   { opacity: 1; }
+30%  { opacity: 0.05; }
+80%  { opacity: 0.05; }
+100% { opacity: 0.6; }}
+    @media (prefers-reduced-motion: reduce) { .i37_lit { animation: none; opacity: 0.45; } }
+    .i37_d04 { animation-delay: 1200ms; }
+    .i37_d14 { animation-delay: 1000ms; }
+    .i37_d20 { animation-delay: 0ms; }
+    .i37_d24 { animation-delay: 800ms; }
+    .i37_d31 { animation-delay: 200ms; }
+    .i37_d33 { animation-delay: 600ms; }
+    .i37_d42 { animation-delay: 400ms; }
+    .i38_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i38_lit { fill: #ffffff; opacity: 0; animation: i38_kf 1600ms cubic-bezier(0.65, 0, 0.35, 1) 1 both; }
+    @keyframes i38_kf {0%   { opacity: 0.08; }
+14%  { opacity: 1; }
+72%  { opacity: 0.95; }
+100% { opacity: 0.08; }}
+    @media (prefers-reduced-motion: reduce) { .i38_lit { animation: none; opacity: 0.45; } }
+    .i38_d11 { animation-delay: 0ms; }
+    .i38_d12 { animation-delay: 0ms; }
+    .i38_d13 { animation-delay: 0ms; }
+    .i38_d21 { animation-delay: 0ms; }
+    .i38_d22 { animation-delay: 800ms; }
+    .i38_d23 { animation-delay: 0ms; }
+    .i38_d31 { animation-delay: 0ms; }
+    .i38_d32 { animation-delay: 0ms; }
+    .i38_d33 { animation-delay: 0ms; }
+    .i39_bg { fill: #f5f5f5; opacity: 0.07; }
+    .i39_lit { fill: #ffffff; opacity: 0; animation: i39_kf 2600ms linear 1 both; }
+    @keyframes i39_kf {0%   { opacity: 0; }
+5%   { opacity: 1; }
+30%  { opacity: 0.05; }
+80%  { opacity: 0.05; }
+100% { opacity: 0.6; }}
+    @media (prefers-reduced-motion: reduce) { .i39_lit { animation: none; opacity: 0.45; } }
+    .i39_d00 { animation-delay: 0ms; }
+    .i39_d01 { animation-delay: 458ms; }
+    .i39_d02 { animation-delay: 858ms; }
+    .i39_d03 { animation-delay: 1205ms; }
+    .i39_d04 { animation-delay: 1503ms; }
+    .i39_d10 { animation-delay: 2599ms; }
+    .i39_d14 { animation-delay: 1755ms; }
+    .i39_d20 { animation-delay: 2595ms; }
+    .i39_d24 { animation-delay: 1965ms; }
+    .i39_d30 { animation-delay: 2583ms; }
+    .i39_d34 { animation-delay: 2137ms; }
+    .i39_d40 { animation-delay: 2559ms; }
+    .i39_d41 { animation-delay: 2521ms; }
+    .i39_d42 { animation-delay: 2463ms; }
+    .i39_d43 { animation-delay: 2382ms; }
+    .i39_d44 { animation-delay: 2275ms; }
   </style>
-  <rect width="210" height="700" fill="#050505" />
+  <rect width="210" height="980" fill="#050505" />
   <rect class="tile" x="0.5" y="0.5" width="69.0" height="69.0" rx="10" />
   <g transform="translate(7.00 7.00)">
     <circle class="i0_bg" cx="6.00" cy="6.00" r="2.4" />
@@ -2100,5 +2378,530 @@
   <circle class="i27_lit i27_d42" cx="28.00" cy="50.00" r="3.1" />
   <circle class="i27_lit i27_d43" cx="39.00" cy="50.00" r="3.1" />
   <circle class="i27_lit i27_d44" cx="50.00" cy="50.00" r="3.1" />
+  </g>
+  <rect class="tile" x="70.5" y="630.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(77.00 637.00)">
+    <circle class="i28_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i28_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i28_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i28_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i28_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i28_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i28_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i28_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i28_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i28_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i28_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i28_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i28_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i28_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i28_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i28_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i28_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i28_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i28_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i28_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i28_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i28_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i28_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i28_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i28_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i28_lit i28_d00" cx="6.00" cy="6.00" r="3.1" />
+  <circle class="i28_lit i28_d01" cx="17.00" cy="6.00" r="3.1" />
+  <circle class="i28_lit i28_d02" cx="28.00" cy="6.00" r="3.1" />
+  <circle class="i28_lit i28_d10" cx="6.00" cy="17.00" r="3.1" />
+  <circle class="i28_lit i28_d11" cx="17.00" cy="17.00" r="3.1" />
+  <circle class="i28_lit i28_d12" cx="28.00" cy="17.00" r="3.1" />
+  <circle class="i28_lit i28_d20" cx="6.00" cy="28.00" r="3.1" />
+  <circle class="i28_lit i28_d21" cx="17.00" cy="28.00" r="3.1" />
+  <circle class="i28_lit i28_d22" cx="28.00" cy="28.00" r="3.1" />
+  <circle class="i28_lit i28_d23" cx="39.00" cy="28.00" r="3.1" />
+  <circle class="i28_lit i28_d31" cx="17.00" cy="39.00" r="3.1" />
+  <circle class="i28_lit i28_d32" cx="28.00" cy="39.00" r="3.1" />
+  </g>
+  <rect class="tile" x="140.5" y="630.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(147.00 637.00)">
+    <circle class="i29_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i29_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i29_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i29_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i29_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i29_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i29_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i29_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i29_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i29_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i29_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i29_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i29_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i29_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i29_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i29_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i29_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i29_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i29_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i29_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i29_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i29_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i29_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i29_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i29_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i29_lit i29_d30" cx="6.00" cy="39.00" r="3.1" />
+  <circle class="i29_lit i29_d31" cx="17.00" cy="39.00" r="3.1" />
+  <circle class="i29_lit i29_d32" cx="28.00" cy="39.00" r="3.1" />
+  <circle class="i29_lit i29_d33" cx="39.00" cy="39.00" r="3.1" />
+  <circle class="i29_lit i29_d34" cx="50.00" cy="39.00" r="3.1" />
+  <circle class="i29_lit i29_d42" cx="28.00" cy="50.00" r="3.1" />
+  </g>
+  <rect class="tile" x="0.5" y="700.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(7.00 707.00)">
+    <circle class="i30_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i30_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i30_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i30_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i30_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i30_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i30_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i30_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i30_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i30_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i30_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i30_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i30_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i30_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i30_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i30_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i30_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i30_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i30_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i30_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i30_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i30_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i30_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i30_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i30_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i30_lit i30_d20" cx="6.00" cy="28.00" r="3.1" />
+  <circle class="i30_lit i30_d21" cx="17.00" cy="28.00" r="3.1" />
+  <circle class="i30_lit i30_d22" cx="28.00" cy="28.00" r="3.1" />
+  <circle class="i30_lit i30_d23" cx="39.00" cy="28.00" r="3.1" />
+  <circle class="i30_lit i30_d24" cx="50.00" cy="28.00" r="3.1" />
+  </g>
+  <rect class="tile" x="70.5" y="700.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(77.00 707.00)">
+    <circle class="i31_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i31_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i31_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i31_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i31_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i31_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i31_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i31_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i31_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i31_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i31_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i31_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i31_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i31_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i31_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i31_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i31_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i31_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i31_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i31_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i31_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i31_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i31_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i31_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i31_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i31_lit i31_d00" cx="6.00" cy="6.00" r="3.1" />
+  <circle class="i31_lit i31_d01" cx="17.00" cy="6.00" r="3.1" />
+  <circle class="i31_lit i31_d02" cx="28.00" cy="6.00" r="3.1" />
+  <circle class="i31_lit i31_d03" cx="39.00" cy="6.00" r="3.1" />
+  <circle class="i31_lit i31_d04" cx="50.00" cy="6.00" r="3.1" />
+  <circle class="i31_lit i31_d10" cx="6.00" cy="17.00" r="3.1" />
+  <circle class="i31_lit i31_d11" cx="17.00" cy="17.00" r="3.1" />
+  <circle class="i31_lit i31_d12" cx="28.00" cy="17.00" r="3.1" />
+  <circle class="i31_lit i31_d13" cx="39.00" cy="17.00" r="3.1" />
+  <circle class="i31_lit i31_d14" cx="50.00" cy="17.00" r="3.1" />
+  <circle class="i31_lit i31_d20" cx="6.00" cy="28.00" r="3.1" />
+  <circle class="i31_lit i31_d21" cx="17.00" cy="28.00" r="3.1" />
+  <circle class="i31_lit i31_d22" cx="28.00" cy="28.00" r="3.1" />
+  <circle class="i31_lit i31_d23" cx="39.00" cy="28.00" r="3.1" />
+  <circle class="i31_lit i31_d24" cx="50.00" cy="28.00" r="3.1" />
+  <circle class="i31_lit i31_d30" cx="6.00" cy="39.00" r="3.1" />
+  <circle class="i31_lit i31_d31" cx="17.00" cy="39.00" r="3.1" />
+  <circle class="i31_lit i31_d32" cx="28.00" cy="39.00" r="3.1" />
+  <circle class="i31_lit i31_d33" cx="39.00" cy="39.00" r="3.1" />
+  <circle class="i31_lit i31_d34" cx="50.00" cy="39.00" r="3.1" />
+  <circle class="i31_lit i31_d40" cx="6.00" cy="50.00" r="3.1" />
+  <circle class="i31_lit i31_d41" cx="17.00" cy="50.00" r="3.1" />
+  <circle class="i31_lit i31_d42" cx="28.00" cy="50.00" r="3.1" />
+  <circle class="i31_lit i31_d43" cx="39.00" cy="50.00" r="3.1" />
+  <circle class="i31_lit i31_d44" cx="50.00" cy="50.00" r="3.1" />
+  </g>
+  <rect class="tile" x="140.5" y="700.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(147.00 707.00)">
+    <circle class="i32_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i32_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i32_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i32_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i32_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i32_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i32_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i32_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i32_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i32_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i32_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i32_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i32_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i32_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i32_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i32_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i32_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i32_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i32_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i32_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i32_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i32_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i32_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i32_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i32_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i32_lit i32_d00" cx="6.00" cy="6.00" r="3.1" />
+  <circle class="i32_lit i32_d01" cx="17.00" cy="6.00" r="3.1" />
+  <circle class="i32_lit i32_d02" cx="28.00" cy="6.00" r="3.1" />
+  <circle class="i32_lit i32_d03" cx="39.00" cy="6.00" r="3.1" />
+  <circle class="i32_lit i32_d04" cx="50.00" cy="6.00" r="3.1" />
+  <circle class="i32_lit i32_d10" cx="6.00" cy="17.00" r="3.1" />
+  <circle class="i32_lit i32_d11" cx="17.00" cy="17.00" r="3.1" />
+  <circle class="i32_lit i32_d12" cx="28.00" cy="17.00" r="3.1" />
+  <circle class="i32_lit i32_d13" cx="39.00" cy="17.00" r="3.1" />
+  <circle class="i32_lit i32_d14" cx="50.00" cy="17.00" r="3.1" />
+  <circle class="i32_lit i32_d20" cx="6.00" cy="28.00" r="3.1" />
+  <circle class="i32_lit i32_d21" cx="17.00" cy="28.00" r="3.1" />
+  <circle class="i32_lit i32_d22" cx="28.00" cy="28.00" r="3.1" />
+  <circle class="i32_lit i32_d23" cx="39.00" cy="28.00" r="3.1" />
+  <circle class="i32_lit i32_d24" cx="50.00" cy="28.00" r="3.1" />
+  <circle class="i32_lit i32_d30" cx="6.00" cy="39.00" r="3.1" />
+  <circle class="i32_lit i32_d31" cx="17.00" cy="39.00" r="3.1" />
+  <circle class="i32_lit i32_d32" cx="28.00" cy="39.00" r="3.1" />
+  <circle class="i32_lit i32_d33" cx="39.00" cy="39.00" r="3.1" />
+  <circle class="i32_lit i32_d34" cx="50.00" cy="39.00" r="3.1" />
+  <circle class="i32_lit i32_d40" cx="6.00" cy="50.00" r="3.1" />
+  <circle class="i32_lit i32_d41" cx="17.00" cy="50.00" r="3.1" />
+  <circle class="i32_lit i32_d42" cx="28.00" cy="50.00" r="3.1" />
+  <circle class="i32_lit i32_d43" cx="39.00" cy="50.00" r="3.1" />
+  <circle class="i32_lit i32_d44" cx="50.00" cy="50.00" r="3.1" />
+  </g>
+  <rect class="tile" x="0.5" y="770.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(7.00 777.00)">
+    <circle class="i33_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i33_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i33_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i33_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i33_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i33_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i33_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i33_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i33_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i33_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i33_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i33_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i33_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i33_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i33_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i33_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i33_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i33_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i33_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i33_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i33_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i33_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i33_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i33_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i33_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i33_lit i33_d00" cx="6.00" cy="6.00" r="3.1" />
+  <circle class="i33_lit i33_d01" cx="17.00" cy="6.00" r="3.1" />
+  <circle class="i33_lit i33_d02" cx="28.00" cy="6.00" r="3.1" />
+  <circle class="i33_lit i33_d03" cx="39.00" cy="6.00" r="3.1" />
+  <circle class="i33_lit i33_d04" cx="50.00" cy="6.00" r="3.1" />
+  <circle class="i33_lit i33_d10" cx="6.00" cy="17.00" r="3.1" />
+  <circle class="i33_lit i33_d11" cx="17.00" cy="17.00" r="3.1" />
+  <circle class="i33_lit i33_d12" cx="28.00" cy="17.00" r="3.1" />
+  <circle class="i33_lit i33_d13" cx="39.00" cy="17.00" r="3.1" />
+  <circle class="i33_lit i33_d14" cx="50.00" cy="17.00" r="3.1" />
+  <circle class="i33_lit i33_d20" cx="6.00" cy="28.00" r="3.1" />
+  <circle class="i33_lit i33_d21" cx="17.00" cy="28.00" r="3.1" />
+  <circle class="i33_lit i33_d22" cx="28.00" cy="28.00" r="3.1" />
+  <circle class="i33_lit i33_d23" cx="39.00" cy="28.00" r="3.1" />
+  <circle class="i33_lit i33_d24" cx="50.00" cy="28.00" r="3.1" />
+  <circle class="i33_lit i33_d30" cx="6.00" cy="39.00" r="3.1" />
+  <circle class="i33_lit i33_d31" cx="17.00" cy="39.00" r="3.1" />
+  <circle class="i33_lit i33_d32" cx="28.00" cy="39.00" r="3.1" />
+  <circle class="i33_lit i33_d33" cx="39.00" cy="39.00" r="3.1" />
+  <circle class="i33_lit i33_d34" cx="50.00" cy="39.00" r="3.1" />
+  <circle class="i33_lit i33_d40" cx="6.00" cy="50.00" r="3.1" />
+  <circle class="i33_lit i33_d41" cx="17.00" cy="50.00" r="3.1" />
+  <circle class="i33_lit i33_d42" cx="28.00" cy="50.00" r="3.1" />
+  <circle class="i33_lit i33_d43" cx="39.00" cy="50.00" r="3.1" />
+  <circle class="i33_lit i33_d44" cx="50.00" cy="50.00" r="3.1" />
+  </g>
+  <rect class="tile" x="70.5" y="770.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(77.00 777.00)">
+    <circle class="i34_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i34_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i34_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i34_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i34_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i34_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i34_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i34_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i34_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i34_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i34_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i34_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i34_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i34_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i34_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i34_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i34_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i34_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i34_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i34_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i34_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i34_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i34_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i34_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i34_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i34_lit i34_d00" cx="6.00" cy="6.00" r="3.1" />
+  <circle class="i34_lit i34_d01" cx="17.00" cy="6.00" r="3.1" />
+  <circle class="i34_lit i34_d02" cx="28.00" cy="6.00" r="3.1" />
+  <circle class="i34_lit i34_d03" cx="39.00" cy="6.00" r="3.1" />
+  <circle class="i34_lit i34_d04" cx="50.00" cy="6.00" r="3.1" />
+  <circle class="i34_lit i34_d10" cx="6.00" cy="17.00" r="3.1" />
+  <circle class="i34_lit i34_d11" cx="17.00" cy="17.00" r="3.1" />
+  <circle class="i34_lit i34_d12" cx="28.00" cy="17.00" r="3.1" />
+  <circle class="i34_lit i34_d13" cx="39.00" cy="17.00" r="3.1" />
+  <circle class="i34_lit i34_d14" cx="50.00" cy="17.00" r="3.1" />
+  <circle class="i34_lit i34_d20" cx="6.00" cy="28.00" r="3.1" />
+  <circle class="i34_lit i34_d21" cx="17.00" cy="28.00" r="3.1" />
+  <circle class="i34_lit i34_d22" cx="28.00" cy="28.00" r="3.1" />
+  <circle class="i34_lit i34_d23" cx="39.00" cy="28.00" r="3.1" />
+  <circle class="i34_lit i34_d24" cx="50.00" cy="28.00" r="3.1" />
+  <circle class="i34_lit i34_d30" cx="6.00" cy="39.00" r="3.1" />
+  <circle class="i34_lit i34_d31" cx="17.00" cy="39.00" r="3.1" />
+  <circle class="i34_lit i34_d32" cx="28.00" cy="39.00" r="3.1" />
+  <circle class="i34_lit i34_d33" cx="39.00" cy="39.00" r="3.1" />
+  <circle class="i34_lit i34_d34" cx="50.00" cy="39.00" r="3.1" />
+  <circle class="i34_lit i34_d40" cx="6.00" cy="50.00" r="3.1" />
+  <circle class="i34_lit i34_d41" cx="17.00" cy="50.00" r="3.1" />
+  <circle class="i34_lit i34_d42" cx="28.00" cy="50.00" r="3.1" />
+  <circle class="i34_lit i34_d43" cx="39.00" cy="50.00" r="3.1" />
+  <circle class="i34_lit i34_d44" cx="50.00" cy="50.00" r="3.1" />
+  </g>
+  <rect class="tile" x="140.5" y="770.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(147.00 777.00)">
+    <circle class="i35_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i35_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i35_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i35_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i35_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i35_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i35_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i35_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i35_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i35_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i35_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i35_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i35_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i35_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i35_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i35_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i35_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i35_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i35_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i35_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i35_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i35_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i35_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i35_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i35_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i35_lit i35_d00" cx="6.00" cy="6.00" r="3.1" />
+  <circle class="i35_lit i35_d01" cx="17.00" cy="6.00" r="3.1" />
+  <circle class="i35_lit i35_d02" cx="28.00" cy="6.00" r="3.1" />
+  <circle class="i35_lit i35_d03" cx="39.00" cy="6.00" r="3.1" />
+  <circle class="i35_lit i35_d04" cx="50.00" cy="6.00" r="3.1" />
+  <circle class="i35_lit i35_d10" cx="6.00" cy="17.00" r="3.1" />
+  <circle class="i35_lit i35_d11" cx="17.00" cy="17.00" r="3.1" />
+  <circle class="i35_lit i35_d12" cx="28.00" cy="17.00" r="3.1" />
+  <circle class="i35_lit i35_d13" cx="39.00" cy="17.00" r="3.1" />
+  <circle class="i35_lit i35_d14" cx="50.00" cy="17.00" r="3.1" />
+  <circle class="i35_lit i35_d20" cx="6.00" cy="28.00" r="3.1" />
+  <circle class="i35_lit i35_d21" cx="17.00" cy="28.00" r="3.1" />
+  <circle class="i35_lit i35_d22" cx="28.00" cy="28.00" r="3.1" />
+  <circle class="i35_lit i35_d23" cx="39.00" cy="28.00" r="3.1" />
+  <circle class="i35_lit i35_d24" cx="50.00" cy="28.00" r="3.1" />
+  <circle class="i35_lit i35_d30" cx="6.00" cy="39.00" r="3.1" />
+  <circle class="i35_lit i35_d31" cx="17.00" cy="39.00" r="3.1" />
+  <circle class="i35_lit i35_d32" cx="28.00" cy="39.00" r="3.1" />
+  <circle class="i35_lit i35_d33" cx="39.00" cy="39.00" r="3.1" />
+  <circle class="i35_lit i35_d34" cx="50.00" cy="39.00" r="3.1" />
+  <circle class="i35_lit i35_d40" cx="6.00" cy="50.00" r="3.1" />
+  <circle class="i35_lit i35_d41" cx="17.00" cy="50.00" r="3.1" />
+  <circle class="i35_lit i35_d42" cx="28.00" cy="50.00" r="3.1" />
+  <circle class="i35_lit i35_d43" cx="39.00" cy="50.00" r="3.1" />
+  <circle class="i35_lit i35_d44" cx="50.00" cy="50.00" r="3.1" />
+  </g>
+  <rect class="tile" x="0.5" y="840.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(7.00 847.00)">
+    <circle class="i36_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i36_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i36_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i36_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i36_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i36_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i36_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i36_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i36_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i36_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i36_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i36_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i36_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i36_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i36_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i36_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i36_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i36_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i36_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i36_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i36_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i36_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i36_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i36_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i36_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i36_lit i36_d02" cx="28.00" cy="6.00" r="3.1" />
+  <circle class="i36_lit i36_d12" cx="28.00" cy="17.00" r="3.1" />
+  <circle class="i36_lit i36_d20" cx="6.00" cy="28.00" r="3.1" />
+  <circle class="i36_lit i36_d21" cx="17.00" cy="28.00" r="3.1" />
+  <circle class="i36_lit i36_d22" cx="28.00" cy="28.00" r="3.1" />
+  <circle class="i36_lit i36_d23" cx="39.00" cy="28.00" r="3.1" />
+  <circle class="i36_lit i36_d24" cx="50.00" cy="28.00" r="3.1" />
+  <circle class="i36_lit i36_d32" cx="28.00" cy="39.00" r="3.1" />
+  <circle class="i36_lit i36_d42" cx="28.00" cy="50.00" r="3.1" />
+  </g>
+  <rect class="tile" x="70.5" y="840.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(77.00 847.00)">
+    <circle class="i37_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i37_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i37_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i37_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i37_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i37_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i37_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i37_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i37_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i37_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i37_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i37_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i37_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i37_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i37_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i37_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i37_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i37_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i37_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i37_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i37_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i37_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i37_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i37_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i37_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i37_lit i37_d04" cx="50.00" cy="6.00" r="3.1" />
+  <circle class="i37_lit i37_d14" cx="50.00" cy="17.00" r="3.1" />
+  <circle class="i37_lit i37_d20" cx="6.00" cy="28.00" r="3.1" />
+  <circle class="i37_lit i37_d24" cx="50.00" cy="28.00" r="3.1" />
+  <circle class="i37_lit i37_d31" cx="17.00" cy="39.00" r="3.1" />
+  <circle class="i37_lit i37_d33" cx="39.00" cy="39.00" r="3.1" />
+  <circle class="i37_lit i37_d42" cx="28.00" cy="50.00" r="3.1" />
+  </g>
+  <rect class="tile" x="140.5" y="840.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(147.00 847.00)">
+    <circle class="i38_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i38_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i38_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i38_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i38_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i38_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i38_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i38_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i38_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i38_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i38_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i38_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i38_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i38_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i38_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i38_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i38_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i38_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i38_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i38_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i38_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i38_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i38_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i38_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i38_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i38_lit i38_d11" cx="17.00" cy="17.00" r="3.1" />
+  <circle class="i38_lit i38_d12" cx="28.00" cy="17.00" r="3.1" />
+  <circle class="i38_lit i38_d13" cx="39.00" cy="17.00" r="3.1" />
+  <circle class="i38_lit i38_d21" cx="17.00" cy="28.00" r="3.1" />
+  <circle class="i38_lit i38_d22" cx="28.00" cy="28.00" r="3.1" />
+  <circle class="i38_lit i38_d23" cx="39.00" cy="28.00" r="3.1" />
+  <circle class="i38_lit i38_d31" cx="17.00" cy="39.00" r="3.1" />
+  <circle class="i38_lit i38_d32" cx="28.00" cy="39.00" r="3.1" />
+  <circle class="i38_lit i38_d33" cx="39.00" cy="39.00" r="3.1" />
+  </g>
+  <rect class="tile" x="0.5" y="910.5" width="69.0" height="69.0" rx="10" />
+  <g transform="translate(7.00 917.00)">
+    <circle class="i39_bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="i39_bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="i39_bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="i39_bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="i39_bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="i39_bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="i39_bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="i39_bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="i39_bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="i39_bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="i39_bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="i39_bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="i39_bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="i39_bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="i39_bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="i39_bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="i39_bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="i39_bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="i39_bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="i39_bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="i39_bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="i39_bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="i39_bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="i39_bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="i39_bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="i39_lit i39_d00" cx="6.00" cy="6.00" r="3.1" />
+  <circle class="i39_lit i39_d01" cx="17.00" cy="6.00" r="3.1" />
+  <circle class="i39_lit i39_d02" cx="28.00" cy="6.00" r="3.1" />
+  <circle class="i39_lit i39_d03" cx="39.00" cy="6.00" r="3.1" />
+  <circle class="i39_lit i39_d04" cx="50.00" cy="6.00" r="3.1" />
+  <circle class="i39_lit i39_d10" cx="6.00" cy="17.00" r="3.1" />
+  <circle class="i39_lit i39_d14" cx="50.00" cy="17.00" r="3.1" />
+  <circle class="i39_lit i39_d20" cx="6.00" cy="28.00" r="3.1" />
+  <circle class="i39_lit i39_d24" cx="50.00" cy="28.00" r="3.1" />
+  <circle class="i39_lit i39_d30" cx="6.00" cy="39.00" r="3.1" />
+  <circle class="i39_lit i39_d34" cx="50.00" cy="39.00" r="3.1" />
+  <circle class="i39_lit i39_d40" cx="6.00" cy="50.00" r="3.1" />
+  <circle class="i39_lit i39_d41" cx="17.00" cy="50.00" r="3.1" />
+  <circle class="i39_lit i39_d42" cx="28.00" cy="50.00" r="3.1" />
+  <circle class="i39_lit i39_d43" cx="39.00" cy="50.00" r="3.1" />
+  <circle class="i39_lit i39_d44" cx="50.00" cy="50.00" r="3.1" />
   </g>
 </svg>

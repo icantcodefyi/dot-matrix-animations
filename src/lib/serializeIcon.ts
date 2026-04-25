@@ -21,8 +21,9 @@ export function serializeIconSvg(iconIndex: number, color = "#ffffff"): string {
 
   const id = pattern.slug;
   const bgRules: string[] = [];
-  const litRules: string[] = [];
+  const cellRules: string[] = [];
   const dots: string[] = [];
+  const iteration = pattern.iteration ?? "infinite";
 
   for (let row = 0; row < GRID; row++) {
     for (let col = 0; col < GRID; col++) {
@@ -34,7 +35,14 @@ export function serializeIconSvg(iconIndex: number, color = "#ffffff"): string {
       if (delay < 0) continue;
       const delayMs = Math.round(delay * pattern.durationMs);
       const cls = `d${row}${col}`;
-      litRules.push(`.${cls}{animation-delay:${delayMs}ms;}`);
+      const factor = pattern.durationFactor?.(col, row) ?? 1;
+      const durationOverride =
+        factor === 1
+          ? ""
+          : `animation-duration:${Math.round(pattern.durationMs * factor)}ms;`;
+      cellRules.push(
+        `.${cls}{animation-delay:${delayMs}ms;${durationOverride}}`,
+      );
       dots.push(
         `<circle class="lit ${cls}" cx="${cx}" cy="${cy}" r="${DOT_R_LIT}"/>`,
       );
@@ -43,10 +51,10 @@ export function serializeIconSvg(iconIndex: number, color = "#ffffff"): string {
 
   const css = [
     `.bg{fill:${color};opacity:0.07;}`,
-    `.lit{fill:${color};opacity:0;animation:${id}-kf ${pattern.durationMs}ms ${pattern.easing} infinite both;}`,
+    `.lit{fill:${color};opacity:0;animation:${id}-kf ${pattern.durationMs}ms ${pattern.easing} ${iteration} both;}`,
     `@keyframes ${id}-kf {${pattern.keyframes}}`,
     `@media (prefers-reduced-motion: reduce){.lit{animation:none;opacity:0.45;}}`,
-    ...litRules,
+    ...cellRules,
   ].join("");
 
   return [

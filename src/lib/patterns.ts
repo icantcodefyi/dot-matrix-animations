@@ -11,6 +11,7 @@ export const DOT_R_LIT = 3.1;
 const CENTER = (GRID - 1) / 2;
 
 export type DelayFn = (col: number, row: number) => number;
+export type DurationFactorFn = (col: number, row: number) => number;
 
 export interface PatternSpec {
   slug: string;
@@ -20,6 +21,10 @@ export interface PatternSpec {
   easing: string;
   keyframes: string;
   delay: DelayFn;
+  /** "infinite" (default) for loaders; "1" for one-shot outcome icons (Verify, Halt). */
+  iteration?: "infinite" | "1";
+  /** Per-cell multiplier applied to durationMs. Used by Static for noisy variance. */
+  durationFactor?: DurationFactorFn;
 }
 
 const EASE_OUT_QUART = "cubic-bezier(0.25, 1, 0.5, 1)";
@@ -54,6 +59,18 @@ const CIPHER_KF =
   "0%{opacity:0;}8%{opacity:1;}22%{opacity:0.05;}46%{opacity:0.85;}58%{opacity:0.05;}100%{opacity:0;}";
 const FILL_KF =
   "0%{opacity:0.08;}14%{opacity:1;}72%{opacity:0.95;}100%{opacity:0.08;}";
+// Two-peak harmonic curve. Each cell flashes twice per cycle, used for
+// pendulum-style swings and ladder oscillations.
+const HARMONIC_KF =
+  "0%{opacity:0.08;}25%{opacity:1;}50%{opacity:0.08;}75%{opacity:1;}100%{opacity:0.08;}";
+// Brief, sharp flash. Combined with per-cell delay+durationFactor it
+// reads as VHS noise.
+const STATIC_KF =
+  "0%{opacity:0.05;}45%{opacity:0.05;}50%{opacity:1;}55%{opacity:0.05;}100%{opacity:0.05;}";
+// One-shot resolve: bright flash, decays, settles to a moderate steady state.
+// Paired with iteration "1" so each touched cell ends "lit but quiet".
+const RESOLVE_KF =
+  "0%{opacity:0;}5%{opacity:1;}30%{opacity:0.05;}80%{opacity:0.05;}100%{opacity:0.6;}";
 
 const SPIRAL_ORDER: ReadonlyArray<readonly [number, number]> = [
   [2, 2], [2, 1], [3, 1], [3, 2], [3, 3], [2, 3], [1, 3], [1, 2], [1, 1],
@@ -97,6 +114,27 @@ const hash01 = (idx: number, salt = 1): number => {
     ((idx * 2654435761) ^ (idx * idx * 40503) ^ (salt * 374761393)) >>> 0;
   return (h % 1000) / 1000;
 };
+
+// Conway's glider, four phases walking SE. Each phase lists the cells alive
+// during that frame; per-cell delay = the earliest phase the cell appears in.
+const GLIDER_PHASES: ReadonlyArray<ReadonlyArray<readonly [number, number]>> = [
+  [[1, 0], [2, 1], [0, 2], [1, 2], [2, 2]],
+  [[0, 0], [2, 0], [1, 1], [2, 1], [1, 2]],
+  [[2, 0], [0, 1], [2, 1], [1, 2], [2, 2]],
+  [[1, 1], [2, 2], [3, 2], [1, 3], [2, 3]],
+];
+
+// Checkmark path for Verify: short downstroke into the V, then up the long stroke.
+const VERIFY_PATH: ReadonlyArray<readonly [number, number]> = [
+  [0, 2], [1, 3], [2, 4], [3, 3], [4, 2], [4, 1], [4, 0],
+];
+
+// 3x3 square that opens then collapses for Halt. Center fades last.
+const HALT_RING: ReadonlyArray<readonly [number, number]> = [
+  [1, 1], [2, 1], [3, 1],
+  [1, 2],         [3, 2],
+  [1, 3], [2, 3], [3, 3],
+];
 
 export const PATTERNS: ReadonlyArray<PatternSpec> = [
   {
@@ -403,6 +441,160 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
     easing: EASE_IN_OUT,
     keyframes: FILL_KF,
     delay: (col, row) => col * 0.04 + (GRID - 1 - row) * 0.1,
+  },
+  {
+    slug: "icon-29",
+    title: "Glider",
+    blurb: "A Conway glider walks diagonally over four generations.",
+    durationMs: 2400,
+    easing: "linear",
+    keyframes: TRAIL_KF,
+    delay: (col, row) => {
+      for (let phase = 0; phase < GLIDER_PHASES.length; phase++) {
+        if (findIndex(GLIDER_PHASES[phase], col, row) >= 0) {
+          return phase / GLIDER_PHASES.length;
+        }
+      }
+      return -1;
+    },
+  },
+  {
+    slug: "icon-30",
+    title: "Caret",
+    blurb: "A typewriter caret blinks while a row of dots types itself in.",
+    durationMs: 2200,
+    easing: EASE_OUT_QUART,
+    keyframes: BEACON_KF,
+    delay: (col, row) => {
+      if (row === 3) return col / 6;
+      if (col === 2 && row === 4) return 0.5;
+      return -1;
+    },
+  },
+  {
+    slug: "icon-31",
+    title: "Pendulum",
+    blurb: "A row swings left and right with simple-harmonic timing.",
+    durationMs: 2400,
+    easing: "linear",
+    keyframes: HARMONIC_KF,
+    delay: (col, row) => {
+      if (row !== 2) return -1;
+      const p = (col - CENTER) / CENTER; // -1..1
+      const t = Math.asin(p) / (2 * Math.PI);
+      return ((t % 1) + 1) % 1;
+    },
+  },
+  {
+    slug: "icon-32",
+    title: "Magnet",
+    blurb: "Outer dots drift inward to the core, then release outward.",
+    durationMs: 2400,
+    easing: EASE_IN_OUT,
+    keyframes: BLOOM_KF,
+    delay: (col, row) => {
+      const d = Math.max(Math.abs(col - CENTER), Math.abs(row - CENTER));
+      return (2 - d) / 8;
+    },
+  },
+  {
+    slug: "icon-33",
+    title: "Aperture",
+    blurb: "A camera iris opens in three rings, then closes back to the center.",
+    durationMs: 2400,
+    easing: EASE_IN_OUT,
+    keyframes: BLOOM_KF,
+    delay: (col, row) =>
+      Math.max(Math.abs(col - CENTER), Math.abs(row - CENTER)) / 6,
+  },
+  {
+    slug: "icon-34",
+    title: "Static",
+    blurb: "VHS noise — every dot flickers on its own delay and duration.",
+    durationMs: 1400,
+    easing: "linear",
+    keyframes: STATIC_KF,
+    delay: (col, row) => hash01(row * GRID + col, 1),
+    durationFactor: (col, row) => 0.55 + hash01(row * GRID + col, 2) * 0.9,
+  },
+  {
+    slug: "icon-35",
+    title: "Ladder",
+    blurb: "Five horizontal rungs light bottom-up, then top-down.",
+    durationMs: 2400,
+    easing: "linear",
+    keyframes: HARMONIC_KF,
+    delay: (_col, row) => (((GRID - 1 - row) / 8 - 0.25) + 1) % 1,
+  },
+  {
+    slug: "icon-36",
+    title: "Scatter",
+    blurb: "A starburst from the center settles into stillness.",
+    durationMs: 2200,
+    easing: EASE_OUT_QUART,
+    keyframes: TRAIL_KF,
+    delay: (col, row) => {
+      if (col === CENTER && row === CENTER) return 0;
+      const idx = row * GRID + col;
+      const dist =
+        Math.hypot(col - CENTER, row - CENTER) / (Math.SQRT2 * CENTER);
+      return 0.05 + hash01(idx, 5) * 0.4 + dist * 0.2;
+    },
+  },
+  {
+    slug: "icon-37",
+    title: "Mesh",
+    blurb: "A row scan and a column scan cross at a moving intersection.",
+    durationMs: 2400,
+    easing: "linear",
+    keyframes: PULSE_KF,
+    delay: (col, row) => {
+      if (row === CENTER) return col / 8;
+      if (col === CENTER) return 0.5 + row / 8;
+      return -1;
+    },
+  },
+  {
+    slug: "icon-38",
+    title: "Verify",
+    blurb: "A checkmark traces itself once and stays lit. One-shot.",
+    durationMs: 1400,
+    easing: EASE_OUT_QUART,
+    keyframes: RESOLVE_KF,
+    iteration: "1",
+    delay: (col, row) => {
+      const idx = findIndex(VERIFY_PATH, col, row);
+      return idx < 0 ? -1 : idx / VERIFY_PATH.length;
+    },
+  },
+  {
+    slug: "icon-39",
+    title: "Halt",
+    blurb: "A 3×3 square opens, then collapses to a single center dot. One-shot.",
+    durationMs: 1600,
+    easing: EASE_IN_OUT,
+    keyframes: FILL_KF,
+    iteration: "1",
+    delay: (col, row) => {
+      if (col === CENTER && row === CENTER) return 0.5;
+      return findIndex(HALT_RING, col, row) >= 0 ? 0 : -1;
+    },
+  },
+  {
+    slug: "icon-40",
+    title: "Roulette",
+    blurb: "A perimeter sweep decelerates and lands on a final answer.",
+    durationMs: 2600,
+    easing: "linear",
+    keyframes: RESOLVE_KF,
+    iteration: "1",
+    delay: (col, row) => {
+      const idx = findIndex(EDGE_ORDER, col, row);
+      if (idx < 0) return -1;
+      const t = idx / EDGE_ORDER.length;
+      // ease-out-cubic: rapid at start, decelerating into the landing.
+      return 1 - Math.pow(1 - t, 3);
+    },
   },
 ];
 

@@ -4,7 +4,7 @@ A working draft of where dot/matrix could go next. Two tracks: **more loaders**
 and **website improvements**. Tick items off, scratch ones you don't want, add
 your own. Nothing here is built yet.
 
-## Phase 1: more loaders (29-40)
+## Phase 1: more loaders (29-40) — ✅ shipped
 
 The current 28 cover rings, sweeps, sparkles, sequences, and the agent set.
 The gaps are: **multi-phase motion** (something that goes out and comes back),

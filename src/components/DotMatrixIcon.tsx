@@ -41,8 +41,9 @@ export function DotMatrixIcon({
   const pattern = getDotMatrixPattern(iconIndex);
   const rawId = useId();
   const id = `dm-${rawId.replace(/[:]/g, "")}-${pattern.slug}`;
+  const iteration = pattern.iteration ?? "infinite";
   const animation = autoPlay
-    ? `${id}-kf ${pattern.durationMs}ms ${pattern.easing} infinite both`
+    ? `${id}-kf ${pattern.durationMs}ms ${pattern.easing} ${iteration} both`
     : "none";
   const restOpacity = autoPlay ? 0 : 0.45;
 
@@ -57,7 +58,7 @@ export function DotMatrixIcon({
 
   const dots: React.ReactNode[] = [];
   const litDots: React.ReactNode[] = [];
-  const delayRules: string[] = [];
+  const cellRules: string[] = [];
 
   for (let row = 0; row < GRID; row++) {
     for (let col = 0; col < GRID; col++) {
@@ -75,7 +76,14 @@ export function DotMatrixIcon({
       if (delay < 0) continue;
       const delayMs = Math.round(delay * pattern.durationMs);
       const dotClass = `${id}-d${row}${col}`;
-      delayRules.push(`.${dotClass} { animation-delay: ${delayMs}ms; }`);
+      const factor = pattern.durationFactor?.(col, row) ?? 1;
+      const durationOverride =
+        factor === 1
+          ? ""
+          : ` animation-duration: ${Math.round(pattern.durationMs * factor)}ms;`;
+      cellRules.push(
+        `.${dotClass} { animation-delay: ${delayMs}ms;${durationOverride} }`,
+      );
       litDots.push(
         <circle
           key={`lit-${row}-${col}`}
@@ -100,7 +108,7 @@ export function DotMatrixIcon({
     >
       <title>{pattern.title}</title>
       <desc>{pattern.blurb}</desc>
-      <style>{styleSheet + delayRules.join("\n")}</style>
+      <style>{styleSheet + cellRules.join("\n")}</style>
       {dots}
       {litDots}
     </svg>
