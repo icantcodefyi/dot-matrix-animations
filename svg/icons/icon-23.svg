@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" role="img" aria-label="Knight's Tour">
+  <title>Knight's Tour</title>
+  <desc>A single dot traces every cell with knight moves.</desc>
+  <style>
+    .bg { fill: #f5f5f5; opacity: 0.07; }
+    .lit { fill: #ffffff; opacity: 0; animation: kf 3200ms linear infinite both; }
+    @keyframes kf {0%   { opacity: 0; }
+4%   { opacity: 1; }
+26%  { opacity: 0.08; }
+100% { opacity: 0; }}
+    @media (prefers-reduced-motion: reduce) { .lit { animation: none; opacity: 0.45; } }
+    .d00 { animation-delay: 0ms; }
+    .d01 { animation-delay: 2538ms; }
+    .d02 { animation-delay: 1986ms; }
+    .d03 { animation-delay: 1434ms; }
+    .d04 { animation-delay: 221ms; }
+    .d10 { animation-delay: 1876ms; }
+    .d11 { animation-delay: 1324ms; }
+    .d12 { animation-delay: 110ms; }
+    .d13 { animation-delay: 883ms; }
+    .d14 { animation-delay: 2097ms; }
+    .d20 { animation-delay: 2648ms; }
+    .d21 { animation-delay: 772ms; }
+    .d22 { animation-delay: 2428ms; }
+    .d23 { animation-delay: 331ms; }
+    .d24 { animation-delay: 1545ms; }
+    .d30 { animation-delay: 1214ms; }
+    .d31 { animation-delay: 1766ms; }
+    .d32 { animation-delay: 552ms; }
+    .d33 { animation-delay: 2207ms; }
+    .d34 { animation-delay: 993ms; }
+    .d40 { animation-delay: 662ms; }
+    .d41 { animation-delay: 2317ms; }
+    .d42 { animation-delay: 1103ms; }
+    .d43 { animation-delay: 1655ms; }
+    .d44 { animation-delay: 441ms; }
+  </style>
+  <circle class="bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="lit d00" cx="6.00" cy="6.00" r="3.1" />
+  <circle class="lit d01" cx="17.00" cy="6.00" r="3.1" />
+  <circle class="lit d02" cx="28.00" cy="6.00" r="3.1" />
+  <circle class="lit d03" cx="39.00" cy="6.00" r="3.1" />
+  <circle class="lit d04" cx="50.00" cy="6.00" r="3.1" />
+  <circle class="lit d10" cx="6.00" cy="17.00" r="3.1" />
+  <circle class="lit d11" cx="17.00" cy="17.00" r="3.1" />
+  <circle class="lit d12" cx="28.00" cy="17.00" r="3.1" />
+  <circle class="lit d13" cx="39.00" cy="17.00" r="3.1" />
+  <circle class="lit d14" cx="50.00" cy="17.00" r="3.1" />
+  <circle class="lit d20" cx="6.00" cy="28.00" r="3.1" />
+  <circle class="lit d21" cx="17.00" cy="28.00" r="3.1" />
+  <circle class="lit d22" cx="28.00" cy="28.00" r="3.1" />
+  <circle class="lit d23" cx="39.00" cy="28.00" r="3.1" />
+  <circle class="lit d24" cx="50.00" cy="28.00" r="3.1" />
+  <circle class="lit d30" cx="6.00" cy="39.00" r="3.1" />
+  <circle class="lit d31" cx="17.00" cy="39.00" r="3.1" />
+  <circle class="lit d32" cx="28.00" cy="39.00" r="3.1" />
+  <circle class="lit d33" cx="39.00" cy="39.00" r="3.1" />
+  <circle class="lit d34" cx="50.00" cy="39.00" r="3.1" />
+  <circle class="lit d40" cx="6.00" cy="50.00" r="3.1" />
+  <circle class="lit d41" cx="17.00" cy="50.00" r="3.1" />
+  <circle class="lit d42" cx="28.00" cy="50.00" r="3.1" />
+  <circle class="lit d43" cx="39.00" cy="50.00" r="3.1" />
+  <circle class="lit d44" cx="50.00" cy="50.00" r="3.1" />
+</svg>

@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>dot/matrix — a library of 28 quiet loaders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+
+        /* Tinted neutrals — slight warmth (hue 80) keeps it from feeling sterile */
+        --ink: oklch(0.965 0.005 80);
+        --ink-2: oklch(0.86 0.006 80);
+        --ink-3: oklch(0.66 0.008 80);
+        --ink-4: oklch(0.46 0.008 80);
+        --ink-5: oklch(0.34 0.008 80);
+
+        --bg: oklch(0.155 0.004 80);
+        --bg-2: oklch(0.185 0.004 80);
+        --stage: oklch(0.13 0.004 80);
+        --hairline: oklch(0.28 0.005 80);
+        --hairline-2: oklch(0.36 0.006 80);
+
+        /* The single accent. Pale acid — used only for interaction state. */
+        --accent: oklch(0.92 0.16 100);
+        --accent-ink: oklch(0.22 0.04 100);
+
+        --space-2: 4px;
+        --space-3: 8px;
+        --space-4: 12px;
+        --space-5: 16px;
+        --space-6: 24px;
+        --space-7: 32px;
+        --space-8: 48px;
+        --space-9: 72px;
+        --space-10: 112px;
+
+        --display: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+        --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+        --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+        --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+      }
+
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        background:
+          radial-gradient(1100px 540px at 80% -10%, oklch(0.22 0.01 80 / 0.5), transparent 60%),
+          radial-gradient(900px 700px at 0% 30%, oklch(0.2 0.01 80 / 0.4), transparent 60%),
+          var(--bg);
+        color: var(--ink);
+        font-family: var(--display);
+        font-feature-settings: "ss01", "ss02", "cv11";
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        line-height: 1.5;
+      }
+
+      ::selection {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      /* ───────── shell ───────── */
+
+      .shell {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: clamp(28px, 4vw, 56px) clamp(20px, 4vw, 48px) 96px;
+      }
+
+      /* ───────── topbar ───────── */
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-6);
+        padding-bottom: var(--space-7);
+        border-bottom: 1px solid var(--hairline);
+      }
+
+      .wordmark {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 2px;
+        font-family: var(--mono);
+        font-size: 14px;
+        letter-spacing: 0;
+        color: var(--ink);
+      }
+
+      .wordmark .slash {
+        color: var(--ink-4);
+        margin: 0 2px;
+      }
+
+      .wordmark .v {
+        color: var(--ink-4);
+        margin-left: 10px;
+        font-size: 12px;
+      }
+
+      .topbar .meta {
+        display: inline-flex;
+        gap: var(--space-6);
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-3);
+      }
+
+      .topbar .meta span b {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      /* ───────── hero ───────── */
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-7);
+        padding: clamp(48px, 9vw, 112px) 0 clamp(40px, 7vw, 96px);
+        border-bottom: 1px solid var(--hairline);
+      }
+
+      @media (min-width: 880px) {
+        .hero {
+          grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+          align-items: end;
+        }
+      }
+
+      .hero h1 {
+        margin: 0;
+        font-family: var(--display);
+        font-weight: 500;
+        font-size: clamp(2.6rem, 7vw, 5.4rem);
+        line-height: 0.96;
+        letter-spacing: -0.035em;
+        color: var(--ink);
+      }
+
+      .hero h1 em {
+        font-family: var(--display);
+        font-style: italic;
+        font-weight: 400;
+        color: var(--ink-2);
+      }
+
+      .hero h1 .punct {
+        color: var(--ink-4);
+        font-style: normal;
+      }
+
+      .hero .lede {
+        margin: 0;
+        max-width: 46ch;
+        color: var(--ink-3);
+        font-size: clamp(0.98rem, 1.1vw, 1.05rem);
+        line-height: 1.55;
+      }
+
+      .hero .lede strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      /* ───────── section title ───────── */
+
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--space-6);
+        padding: var(--space-9) 0 var(--space-6);
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-family: var(--mono);
+        font-weight: 400;
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+      }
+
+      .section-head h2::before {
+        content: "§ ";
+        color: var(--ink-5);
+      }
+
+      .section-head .legend {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-5);
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-4);
+      }
+
+      .legend kbd {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: var(--bg-2);
+        border: 1px solid var(--hairline);
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-2);
+      }
+
+      /* ───────── grid ───────── */
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1px;
+        background: var(--hairline);
+        border: 1px solid var(--hairline);
+      }
+
+      /* ───────── card ───────── */
+
+      .card {
+        position: relative;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        background: var(--bg);
+        cursor: pointer;
+        transition:
+          background 240ms var(--ease);
+        outline: none;
+      }
+
+      .card:hover,
+      .card:focus-visible {
+        background: var(--bg-2);
+      }
+
+      .card:focus-visible {
+        box-shadow: inset 0 0 0 1px var(--accent);
+      }
+
+      .card .stage {
+        position: relative;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        background: var(--stage);
+        border-bottom: 1px solid var(--hairline);
+        overflow: hidden;
+      }
+
+      .card .stage::after {
+        /* a single quiet hairline cross — unobtrusive register marks */
+        content: "";
+        position: absolute;
+        inset: 12px;
+        background-image:
+          linear-gradient(to right, transparent calc(50% - 0.5px), oklch(0.22 0.004 80) 50%, transparent calc(50% + 0.5px)),
+          linear-gradient(to bottom, transparent calc(50% - 0.5px), oklch(0.22 0.004 80) 50%, transparent calc(50% + 0.5px));
+        mask-image: radial-gradient(circle at center, transparent 18px, black 19px, black calc(100% - 24px), transparent calc(100% - 8px));
+        -webkit-mask-image: radial-gradient(circle at center, transparent 18px, black 19px, black calc(100% - 24px), transparent calc(100% - 8px));
+        opacity: 0.55;
+        pointer-events: none;
+      }
+
+      .card .stage img {
+        width: 64%;
+        height: 64%;
+        display: block;
+        position: relative;
+      }
+
+      .card .info {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: baseline;
+        gap: var(--space-4);
+        padding: 14px 16px 16px;
+      }
+
+      .card .name {
+        font-family: var(--display);
+        font-weight: 500;
+        font-size: 14.5px;
+        line-height: 1.2;
+        color: var(--ink);
+        letter-spacing: -0.005em;
+      }
+
+      .card .slug {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-4);
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+      }
+
+      .card .blurb {
+        grid-column: 1 / -1;
+        margin-top: 4px;
+        font-family: var(--display);
+        font-size: 12.5px;
+        color: var(--ink-3);
+        line-height: 1.45;
+      }
+
+      .card .index {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--ink-5);
+        letter-spacing: 0.04em;
+        z-index: 2;
+      }
+
+      .card .copy {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 22px;
+        padding: 0 8px;
+        border-radius: 4px;
+        background: transparent;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--ink-3);
+        letter-spacing: 0.04em;
+        opacity: 0;
+        transform: translateY(-2px);
+        transition:
+          opacity 200ms var(--ease),
+          transform 200ms var(--ease),
+          color 200ms var(--ease),
+          background 200ms var(--ease);
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .card:hover .copy,
+      .card:focus-visible .copy {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .card.is-copied .copy {
+        opacity: 1;
+        transform: translateY(0);
+        color: var(--accent-ink);
+        background: var(--accent);
+      }
+
+      .card.is-copied .stage {
+        background: oklch(0.18 0.06 100);
+      }
+
+      .card .copy::before {
+        content: "↗";
+        font-size: 11px;
+      }
+
+      .card.is-copied .copy::before {
+        content: "✓";
+      }
+
+      .card.is-copied .copy::after {
+        content: "copied";
+      }
+
+      .card.is-error .copy {
+        opacity: 1;
+        transform: translateY(0);
+        color: oklch(0.96 0.02 30);
+        background: oklch(0.42 0.16 30);
+      }
+
+      .card.is-error .copy::before {
+        content: "!";
+      }
+
+      .card.is-error .copy::after {
+        content: "copy failed";
+      }
+
+      .card:not(.is-copied):not(.is-error) .copy::after {
+        content: "copy svg";
+      }
+
+      /* ───────── footer ───────── */
+
+      .footer {
+        margin-top: var(--space-9);
+        padding-top: var(--space-7);
+        border-top: 1px solid var(--hairline);
+        display: grid;
+        gap: var(--space-5);
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      @media (min-width: 720px) {
+        .footer {
+          grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+          align-items: start;
+        }
+      }
+
+      .footer p {
+        margin: 0;
+        max-width: 56ch;
+        color: var(--ink-3);
+        font-size: 13.5px;
+        line-height: 1.6;
+      }
+
+      .footer code {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: var(--bg-2);
+        border: 1px solid var(--hairline);
+        color: var(--ink-2);
+      }
+
+      .colophon {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--ink-4);
+        line-height: 1.7;
+      }
+
+      .colophon .row {
+        display: grid;
+        grid-template-columns: 84px 1fr;
+        gap: var(--space-5);
+      }
+
+      .colophon .row span:first-child {
+        color: var(--ink-5);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .colophon .row span:last-child {
+        color: var(--ink-2);
+      }
+
+      /* ───────── reduced motion ───────── */
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="wordmark" href="#">
+          <span>dot</span><span class="slash">/</span><span>matrix</span>
+          <span class="v">v0.1 · 2026</span>
+        </a>
+        <div class="meta">
+          <span><b>28</b>&thinsp;loaders</span>
+          <span><b>5×5</b>&thinsp;grid</span>
+          <span><b>~4&thinsp;kb</b>&thinsp;each</span>
+        </div>
+      </header>
+
+      <section class="hero">
+        <h1>
+          A small library<br />
+          of <em>quiet</em> loaders<span class="punct">.</span>
+        </h1>
+        <p class="lede">
+          Twenty‑eight dot‑matrix patterns, each animated from a single CSS
+          keyframe and a per‑dot delay map. <strong>No noise sampling, no
+          GIFs, no JavaScript runtime.</strong> Drop the SVG into a page and
+          it loops forever — about four kilobytes a piece.
+        </p>
+      </section>
+
+      <div class="section-head">
+        <h2>The set</h2>
+        <span class="legend">
+          <span>click a tile to copy its SVG</span>
+          <kbd>↗</kbd>
+        </span>
+      </div>
+
+      <div class="grid" id="grid" role="list"></div>
+
+      <div class="section-head">
+        <h2>Notes</h2>
+      </div>
+
+      <div class="footer">
+        <p>
+          Each loader is a self‑contained <code>&lt;svg&gt;</code> with an
+          inline <code>&lt;style&gt;</code> block. Copy one out and paste it
+          anywhere — there are no external dependencies and no required
+          font. They respect <code>prefers-reduced-motion</code> and fall
+          back to a calm static state.
+        </p>
+        <div class="colophon">
+          <div class="row"><span>regen</span><span>python3 scripts/generate_animations.py</span></div>
+          <div class="row"><span>source</span><span>./svg/icons/icon-NN.svg</span></div>
+          <div class="row"><span>license</span><span>MIT — use them anywhere</span></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./svg/icons.js"></script>
+    <script>
+      const ICONS = [
+        { slug: "icon-01", name: "Pulse Rings", blurb: "Concentric rings expand from the center." },
+        { slug: "icon-02", name: "Spiral", blurb: "A bright trace winds outward from the center." },
+        { slug: "icon-03", name: "Wave", blurb: "A breathing sine wave drifts left to right." },
+        { slug: "icon-04", name: "Cross Expand", blurb: "A plus shape blooms outward in Manhattan steps." },
+        { slug: "icon-05", name: "Rain", blurb: "Independent drops fall, column by column." },
+        { slug: "icon-06", name: "Heartbeat", blurb: "Lub‑dub pulse with a soft radial echo." },
+        { slug: "icon-07", name: "Loading", blurb: "A trailing spinner sweeps the outer ring." },
+        { slug: "icon-08", name: "Diagonal Scan", blurb: "A diagonal stripe sweeps corner to corner." },
+        { slug: "icon-09", name: "Sparkle", blurb: "Independent dots twinkle on a deterministic loop." },
+        { slug: "icon-10", name: "Column Scan", blurb: "A vertical bar sweeps left to right." },
+        { slug: "icon-11", name: "Beacon", blurb: "A single center dot pulses on a quiet field." },
+        { slug: "icon-12", name: "Diamond", blurb: "A diamond blooms outward from the center." },
+        { slug: "icon-13", name: "Pyramid", blurb: "A stepped triangle grows from the bottom up." },
+        { slug: "icon-14", name: "Bounce", blurb: "A bright dot travels along the diagonal." },
+        { slug: "icon-15", name: "Breath", blurb: "The whole field breathes in and out together." },
+        { slug: "icon-16", name: "Orbit", blurb: "A single dot circles the perimeter." },
+        { slug: "icon-17", name: "Twin Orbit", blurb: "Two dots circle the perimeter in tandem." },
+        { slug: "icon-18", name: "Ring Pulse", blurb: "The outer ring lights as one and fades." },
+        { slug: "icon-19", name: "Thinking", blurb: "Inner cluster fires like neurons while the field rests." },
+        { slug: "icon-20", name: "Stream", blurb: "Tokens emit in reading order, top‑left to bottom‑right." },
+        { slug: "icon-21", name: "Scan Line", blurb: "A full row sweeps top to bottom like a CRT raster." },
+        { slug: "icon-22", name: "Handshake", blurb: "Two travelers meet at the center along the diagonal." },
+        { slug: "icon-23", name: "Knight's Tour", blurb: "A single dot traces every cell with knight moves." },
+        { slug: "icon-24", name: "Lattice", blurb: "A checkerboard breathes in two opposing phases." },
+        { slug: "icon-25", name: "Cipher", blurb: "Decryption flashes ripple through the grid in waves." },
+        { slug: "icon-26", name: "Listening", blurb: "Concentric rings collapse inward toward the center." },
+        { slug: "icon-27", name: "Relay", blurb: "Antipodal pairs ping around the perimeter." },
+        { slug: "icon-28", name: "Compile", blurb: "Each column fills bottom‑up, then releases as one." },
+      ];
+
+      const grid = document.getElementById("grid");
+
+      grid.innerHTML = ICONS.map((icon, i) => {
+        const idx = String(i + 1).padStart(2, "0");
+        return `
+          <article class="card" role="listitem" tabindex="0" data-slug="${icon.slug}" aria-label="${icon.name} — click to copy SVG">
+            <span class="index">${idx}</span>
+            <span class="copy"></span>
+            <div class="stage">
+              <img src="./svg/icons/${icon.slug}.svg" alt="${icon.name} animation" loading="lazy" />
+            </div>
+            <div class="info">
+              <span class="name">${icon.name}</span>
+              <span class="slug">${icon.slug}</span>
+              <span class="blurb">${icon.blurb}</span>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      const INLINE_ICONS =
+        (typeof window !== "undefined" && window.__DOT_MATRIX_ICONS) || {};
+
+      async function readSvg(slug) {
+        // Prefer the inlined sidecar so file:// users (no http server) still
+        // get a working copy button — fetch() is blocked on file:// in Chrome.
+        if (INLINE_ICONS[slug]) return INLINE_ICONS[slug];
+        const res = await fetch(`./svg/icons/${slug}.svg`);
+        if (!res.ok) throw new Error(`fetch ${slug}: ${res.status}`);
+        return res.text();
+      }
+
+      function fallbackCopy(text) {
+        // Older browsers / restricted contexts: synthesize a textarea + execCommand.
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        let ok = false;
+        try { ok = document.execCommand("copy"); } catch (_) { /* ignore */ }
+        document.body.removeChild(ta);
+        return ok;
+      }
+
+      async function copyIconSvg(card) {
+        const slug = card.dataset.slug;
+        // Optimistic state so the user sees instant feedback on click.
+        card.classList.remove("is-error");
+        card.classList.add("is-copied");
+        clearTimeout(card._copyTimer);
+
+        let copied = false;
+        try {
+          const text = await readSvg(slug);
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+            copied = true;
+          } else {
+            copied = fallbackCopy(text);
+          }
+        } catch (err) {
+          console.warn("Copy failed:", err);
+          try {
+            const text = await readSvg(slug);
+            copied = fallbackCopy(text);
+          } catch (_) {
+            copied = false;
+          }
+        }
+
+        if (!copied) {
+          card.classList.remove("is-copied");
+          card.classList.add("is-error");
+          card._copyTimer = setTimeout(
+            () => card.classList.remove("is-error"),
+            1800
+          );
+          return;
+        }
+
+        card._copyTimer = setTimeout(
+          () => card.classList.remove("is-copied"),
+          1400
+        );
+      }
+
+      grid.addEventListener("click", (e) => {
+        const card = e.target.closest(".card");
+        if (card) copyIconSvg(card);
+      });
+
+      grid.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        const card = e.target.closest(".card");
+        if (card) {
+          e.preventDefault();
+          copyIconSvg(card);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" role="img" aria-label="Bounce">
+  <title>Bounce</title>
+  <desc>A bright dot travels along the main diagonal.</desc>
+  <style>
+    .bg { fill: #f5f5f5; opacity: 0.07; }
+    .lit { fill: #ffffff; opacity: 0; animation: kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
+    @keyframes kf {0%   { opacity: 0; }
+4%   { opacity: 1; }
+26%  { opacity: 0.08; }
+100% { opacity: 0; }}
+    @media (prefers-reduced-motion: reduce) { .lit { animation: none; opacity: 0.45; } }
+    .d00 { animation-delay: 0ms; }
+    .d11 { animation-delay: 300ms; }
+    .d22 { animation-delay: 600ms; }
+    .d33 { animation-delay: 900ms; }
+    .d44 { animation-delay: 1200ms; }
+  </style>
+  <circle class="bg" cx="6.00" cy="6.00" r="2.4" />
+  <circle class="bg" cx="17.00" cy="6.00" r="2.4" />
+  <circle class="bg" cx="28.00" cy="6.00" r="2.4" />
+  <circle class="bg" cx="39.00" cy="6.00" r="2.4" />
+  <circle class="bg" cx="50.00" cy="6.00" r="2.4" />
+  <circle class="bg" cx="6.00" cy="17.00" r="2.4" />
+  <circle class="bg" cx="17.00" cy="17.00" r="2.4" />
+  <circle class="bg" cx="28.00" cy="17.00" r="2.4" />
+  <circle class="bg" cx="39.00" cy="17.00" r="2.4" />
+  <circle class="bg" cx="50.00" cy="17.00" r="2.4" />
+  <circle class="bg" cx="6.00" cy="28.00" r="2.4" />
+  <circle class="bg" cx="17.00" cy="28.00" r="2.4" />
+  <circle class="bg" cx="28.00" cy="28.00" r="2.4" />
+  <circle class="bg" cx="39.00" cy="28.00" r="2.4" />
+  <circle class="bg" cx="50.00" cy="28.00" r="2.4" />
+  <circle class="bg" cx="6.00" cy="39.00" r="2.4" />
+  <circle class="bg" cx="17.00" cy="39.00" r="2.4" />
+  <circle class="bg" cx="28.00" cy="39.00" r="2.4" />
+  <circle class="bg" cx="39.00" cy="39.00" r="2.4" />
+  <circle class="bg" cx="50.00" cy="39.00" r="2.4" />
+  <circle class="bg" cx="6.00" cy="50.00" r="2.4" />
+  <circle class="bg" cx="17.00" cy="50.00" r="2.4" />
+  <circle class="bg" cx="28.00" cy="50.00" r="2.4" />
+  <circle class="bg" cx="39.00" cy="50.00" r="2.4" />
+  <circle class="bg" cx="50.00" cy="50.00" r="2.4" />
+  <circle class="lit d00" cx="6.00" cy="6.00" r="3.1" />
+  <circle class="lit d11" cx="17.00" cy="17.00" r="3.1" />
+  <circle class="lit d22" cx="28.00" cy="28.00" r="3.1" />
+  <circle class="lit d33" cx="39.00" cy="39.00" r="3.1" />
+  <circle class="lit d44" cx="50.00" cy="50.00" r="3.1" />
+</svg>
