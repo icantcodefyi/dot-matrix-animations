@@ -1,0 +1,101 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+
+import { DotMatrixIcon } from "~/components/DotMatrixIcon";
+import type { PatternSpec } from "~/lib/patterns";
+import { serializeIconSvg } from "~/lib/serializeIcon";
+
+type CopyState = "idle" | "copied" | "error";
+
+interface GalleryCardProps {
+  pattern: PatternSpec;
+  iconIndex: number;
+}
+
+function fallbackCopy(text: string): boolean {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.setAttribute("readonly", "");
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  let ok = false;
+  try {
+    ok = document.execCommand("copy");
+  } catch {
+    ok = false;
+  }
+  document.body.removeChild(ta);
+  return ok;
+}
+
+export function GalleryCard({ pattern, iconIndex }: GalleryCardProps) {
+  const [state, setState] = useState<CopyState>("idle");
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(
+    () => () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    },
+    [],
+  );
+
+  const handleCopy = useCallback(async () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    const svg = serializeIconSvg(iconIndex);
+    let copied = false;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(svg);
+        copied = true;
+      } else {
+        copied = fallbackCopy(svg);
+      }
+    } catch {
+      copied = fallbackCopy(svg);
+    }
+    setState(copied ? "copied" : "error");
+    timerRef.current = setTimeout(
+      () => setState("idle"),
+      copied ? 1400 : 1800,
+    );
+  }, [iconIndex]);
+
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLElement>) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        void handleCopy();
+      }
+    },
+    [handleCopy],
+  );
+
+  const indexLabel = String(iconIndex + 1).padStart(2, "0");
+  const className = ["card", state === "copied" ? "is-copied" : "", state === "error" ? "is-error" : ""]
+    .filter(Boolean)
+    .join(" ");
+
+  return (
+    <article
+      className={className}
+      role="listitem"
+      tabIndex={0}
+      data-slug={pattern.slug}
+      aria-label={`${pattern.title}, click to copy SVG`}
+      onClick={() => void handleCopy()}
+      onKeyDown={onKeyDown}
+    >
+      <span className="index">{indexLabel}</span>
+      <span className="copy" aria-hidden="true" />
+      <div className="stage">
+        <DotMatrixIcon iconIndex={iconIndex} size={120} />
+      </div>
+      <div className="info">
+        <span className="name">{pattern.title}</span>
+        <span className="slug">{pattern.slug}</span>
+        <span className="blurb">{pattern.blurb}</span>
+      </div>
+    </article>
+  );
+}

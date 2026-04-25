@@ -1,14 +1,22 @@
 {
+  "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts"],
+  "exclude": ["node_modules", ".output", ".nitro", "scripts"],
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["DOM", "DOM.Iterable", "ES2024"],
+    "isolatedModules": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "lib": ["DOM", "ES2020"],
-    "noEmit": true
-  },
-  "include": ["src/**/*"]
+    "target": "ES2024",
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  }
 }

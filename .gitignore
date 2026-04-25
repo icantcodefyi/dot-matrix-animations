@@ -5,3 +5,11 @@ __pycache__/
 *.pyc
 .env
 .env.local
+
+# build artifacts
+.output/
+.nitro/
+dist/
+
+# tanstack-router auto-generated
+src/routeTree.gen.ts

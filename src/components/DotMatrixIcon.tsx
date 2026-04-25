@@ -8,7 +8,7 @@ import {
   VIEWBOX,
   dotPosition,
   type PatternSpec,
-} from "./dotMatrixPatterns";
+} from "~/lib/patterns";
 
 export const DOT_MATRIX_ICON_COUNT = PATTERNS.length;
 
