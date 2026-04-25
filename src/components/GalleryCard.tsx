@@ -100,29 +100,36 @@ export function GalleryCard({
       onKeyDown={onKeyDown}
     >
       <span className="index">{indexLabel}</span>
-      <span className="category-tag" aria-hidden="true">{pattern.category}</span>
       <span className="copy" aria-hidden="true" />
-      <Link
-        to="/icon/$slug"
-        params={{ slug: pattern.slug }}
-        className="details-link"
-        aria-label={`open ${pattern.title} details`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        details →
-      </Link>
       <div className="stage">
         <DotMatrixIcon
           iconIndex={iconIndex}
           size={120}
           autoPlay={autoPlay}
           speedMultiplier={speed}
+          forceLoop
         />
       </div>
       <div className="info">
-        <span className="name">{pattern.title}</span>
-        <span className="slug">{pattern.slug}</span>
+        <div className="info-head">
+          <span className="name">{pattern.title}</span>
+          <span className="slug">{pattern.slug}</span>
+        </div>
         <span className="blurb">{pattern.blurb}</span>
+        <div className="info-foot">
+          <span className="category-tag" aria-hidden="true">
+            {pattern.category}
+          </span>
+          <Link
+            to="/icon/$slug"
+            params={{ slug: pattern.slug }}
+            className="details-link"
+            aria-label={`open ${pattern.title} details`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            details →
+          </Link>
+        </div>
       </div>
     </article>
   );

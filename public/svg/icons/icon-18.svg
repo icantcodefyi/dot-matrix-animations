@@ -3,12 +3,12 @@
   <desc>The outer ring lights as one and slowly fades.</desc>
   <style>
     .bg { fill: #f5f5f5; opacity: 0.07; }
-    .lit { fill: #ffffff; opacity: 0; animation: kf 2000ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes kf {0%   { opacity: 0.10; }
-20%  { opacity: 1; }
-60%  { opacity: 0.20; }
-100% { opacity: 0.10; }}
-    @media (prefers-reduced-motion: reduce) { .lit { animation: none; opacity: 0.45; } }
+    .lit { fill: #ffffff; opacity: 0; animation: kf 2000ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes kf {0%   { opacity: 0.10; transform: scale(1); }
+20%  { opacity: 1; transform: scale(1.14); }
+60%  { opacity: 0.20; transform: scale(1); }
+100% { opacity: 0.10; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .lit { animation: none; opacity: 0.45; transform: none; } }
     .d00 { animation-delay: 0ms; }
     .d01 { animation-delay: 0ms; }
     .d02 { animation-delay: 0ms; }

@@ -68,13 +68,13 @@ function Home() {
           <span className="v">v0.2 · 2026</span>
         </a>
         <div className="meta">
-          <span>
+          <span className="meta-stat">
             <b>{PATTERNS.length}</b>&thinsp;loaders
           </span>
-          <span>
+          <span className="meta-stat">
             <b>5×5</b>&thinsp;grid
           </span>
-          <span>
+          <span className="meta-stat">
             <b>~4&thinsp;kb</b>&thinsp;each
           </span>
           <a

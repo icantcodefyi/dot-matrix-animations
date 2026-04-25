@@ -57,7 +57,7 @@ function IconDetail() {
 
       <section className="detail-hero">
         <div className="detail-stage">
-          <DotMatrixIcon iconIndex={iconIndex} size={280} />
+          <DotMatrixIcon iconIndex={iconIndex} size={280} forceLoop />
         </div>
         <div className="detail-meta">
           <div className="detail-eyebrow">
@@ -85,7 +85,7 @@ function IconDetail() {
         <div className="size-strip">
           {SAMPLE_SIZES.map((size) => (
             <figure key={size}>
-              <DotMatrixIcon iconIndex={iconIndex} size={size} />
+              <DotMatrixIcon iconIndex={iconIndex} size={size} forceLoop />
               <figcaption>{size}px</figcaption>
             </figure>
           ))}

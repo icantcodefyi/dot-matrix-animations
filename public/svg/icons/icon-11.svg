@@ -3,12 +3,12 @@
   <desc>A single center dot pulses while the field stays quiet.</desc>
   <style>
     .bg { fill: #f5f5f5; opacity: 0.07; }
-    .lit { fill: #ffffff; opacity: 0; animation: kf 1800ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; }
-    @keyframes kf {0%   { opacity: 0.12; }
-14%  { opacity: 1; }
-40%  { opacity: 0.12; }
-100% { opacity: 0.12; }}
-    @media (prefers-reduced-motion: reduce) { .lit { animation: none; opacity: 0.45; } }
+    .lit { fill: #ffffff; opacity: 0; animation: kf 1800ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes kf {0%   { opacity: 0.12; transform: scale(1); }
+14%  { opacity: 1; transform: scale(1.22); }
+40%  { opacity: 0.12; transform: scale(1); }
+100% { opacity: 0.12; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .lit { animation: none; opacity: 0.45; transform: none; } }
     .d22 { animation-delay: 0ms; }
   </style>
   <circle class="bg" cx="6.00" cy="6.00" r="2.4" />

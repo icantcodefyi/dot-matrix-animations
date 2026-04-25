@@ -3,12 +3,12 @@
   <desc>A checkerboard breathes in two opposing phases.</desc>
   <style>
     .bg { fill: #f5f5f5; opacity: 0.07; }
-    .lit { fill: #ffffff; opacity: 0; animation: kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
+    .lit { fill: #ffffff; opacity: 0; animation: kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
     @keyframes kf {0%   { opacity: 0.08; }
 30%  { opacity: 0.85; }
 60%  { opacity: 0.12; }
 100% { opacity: 0.08; }}
-    @media (prefers-reduced-motion: reduce) { .lit { animation: none; opacity: 0.45; } }
+    @media (prefers-reduced-motion: reduce) { .lit { animation: none; opacity: 0.45; transform: none; } }
     .d00 { animation-delay: 0ms; }
     .d01 { animation-delay: 1200ms; }
     .d02 { animation-delay: 0ms; }

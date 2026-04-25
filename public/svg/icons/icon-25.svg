@@ -3,14 +3,14 @@
   <desc>Decryption flashes ripple through the grid in waves.</desc>
   <style>
     .bg { fill: #f5f5f5; opacity: 0.07; }
-    .lit { fill: #ffffff; opacity: 0; animation: kf 1600ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
+    .lit { fill: #ffffff; opacity: 0; animation: kf 1600ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
     @keyframes kf {0%   { opacity: 0; }
 8%   { opacity: 1; }
 22%  { opacity: 0.05; }
 46%  { opacity: 0.85; }
 58%  { opacity: 0.05; }
 100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .lit { animation: none; opacity: 0.45; } }
+    @media (prefers-reduced-motion: reduce) { .lit { animation: none; opacity: 0.45; transform: none; } }
     .d00 { animation-delay: 400ms; }
     .d01 { animation-delay: 1200ms; }
     .d02 { animation-delay: 1200ms; }

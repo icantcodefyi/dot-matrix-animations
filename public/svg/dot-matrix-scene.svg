@@ -4,12 +4,12 @@
   <style>
     .tile { fill: #0a0a0a; stroke: #1a1a1a; stroke-width: 1; }
     .i0_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i0_lit { fill: #ffffff; opacity: 0; animation: i0_kf 2200ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; }
-    @keyframes i0_kf {0%   { opacity: 0; }
-8%   { opacity: 1; }
-36%  { opacity: 0.05; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i0_lit { animation: none; opacity: 0.45; } }
+    .i0_lit { fill: #ffffff; opacity: 0; animation: i0_kf 2200ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i0_kf {0%   { opacity: 0; transform: scale(1); }
+8%   { opacity: 1; transform: scale(1.18); }
+36%  { opacity: 0.05; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i0_lit { animation: none; opacity: 0.45; transform: none; } }
     .i0_d00 { animation-delay: 733ms; }
     .i0_d01 { animation-delay: 733ms; }
     .i0_d02 { animation-delay: 733ms; }
@@ -36,12 +36,12 @@
     .i0_d43 { animation-delay: 733ms; }
     .i0_d44 { animation-delay: 733ms; }
     .i1_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i1_lit { fill: #ffffff; opacity: 0; animation: i1_kf 2800ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes i1_kf {0%   { opacity: 0; }
-4%   { opacity: 1; }
-26%  { opacity: 0.08; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i1_lit { animation: none; opacity: 0.45; } }
+    .i1_lit { fill: #ffffff; opacity: 0; animation: i1_kf 2800ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i1_kf {0%   { opacity: 0; transform: scale(1); }
+4%   { opacity: 1; transform: scale(1.10); }
+26%  { opacity: 0.08; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i1_lit { animation: none; opacity: 0.45; transform: none; } }
     .i1_d00 { animation-delay: 2221ms; }
     .i1_d01 { animation-delay: 2317ms; }
     .i1_d02 { animation-delay: 869ms; }
@@ -68,12 +68,12 @@
     .i1_d43 { animation-delay: 1545ms; }
     .i1_d44 { animation-delay: 1448ms; }
     .i2_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i2_lit { fill: #ffffff; opacity: 0; animation: i2_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
-    @keyframes i2_kf {0%   { opacity: 0.05; }
-20%  { opacity: 1; }
-55%  { opacity: 0.18; }
-100% { opacity: 0.05; }}
-    @media (prefers-reduced-motion: reduce) { .i2_lit { animation: none; opacity: 0.45; } }
+    .i2_lit { fill: #ffffff; opacity: 0; animation: i2_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i2_kf {0%   { opacity: 0.05; transform: scale(1); }
+20%  { opacity: 1; transform: scale(1.08); }
+55%  { opacity: 0.18; transform: scale(1); }
+100% { opacity: 0.05; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i2_lit { animation: none; opacity: 0.45; transform: none; } }
     .i2_d00 { animation-delay: 0ms; }
     .i2_d01 { animation-delay: 480ms; }
     .i2_d02 { animation-delay: 960ms; }
@@ -100,12 +100,12 @@
     .i2_d43 { animation-delay: 1632ms; }
     .i2_d44 { animation-delay: 2112ms; }
     .i3_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i3_lit { fill: #ffffff; opacity: 0; animation: i3_kf 2200ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; }
-    @keyframes i3_kf {0%   { opacity: 0; }
-8%   { opacity: 1; }
-36%  { opacity: 0.05; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i3_lit { animation: none; opacity: 0.45; } }
+    .i3_lit { fill: #ffffff; opacity: 0; animation: i3_kf 2200ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i3_kf {0%   { opacity: 0; transform: scale(1); }
+8%   { opacity: 1; transform: scale(1.18); }
+36%  { opacity: 0.05; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i3_lit { animation: none; opacity: 0.45; transform: none; } }
     .i3_d00 { animation-delay: 880ms; }
     .i3_d01 { animation-delay: 660ms; }
     .i3_d02 { animation-delay: 440ms; }
@@ -132,12 +132,12 @@
     .i3_d43 { animation-delay: 660ms; }
     .i3_d44 { animation-delay: 880ms; }
     .i4_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i4_lit { fill: #ffffff; opacity: 0; animation: i4_kf 1800ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
+    .i4_lit { fill: #ffffff; opacity: 0; animation: i4_kf 1800ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
     @keyframes i4_kf {0%   { opacity: 0; }
 6%   { opacity: 1; }
 22%  { opacity: 0.10; }
 100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i4_lit { animation: none; opacity: 0.45; } }
+    @media (prefers-reduced-motion: reduce) { .i4_lit { animation: none; opacity: 0.45; transform: none; } }
     .i4_d00 { animation-delay: 0ms; }
     .i4_d01 { animation-delay: 990ms; }
     .i4_d02 { animation-delay: 360ms; }
@@ -164,15 +164,15 @@
     .i4_d43 { animation-delay: 54ms; }
     .i4_d44 { animation-delay: 1134ms; }
     .i5_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i5_lit { fill: #ffffff; opacity: 0; animation: i5_kf 1600ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes i5_kf {0%   { opacity: 0.18; }
-6%   { opacity: 0.95; }
-14%  { opacity: 0.30; }
-22%  { opacity: 1; }
-34%  { opacity: 0.20; }
-70%  { opacity: 0.18; }
-100% { opacity: 0.18; }}
-    @media (prefers-reduced-motion: reduce) { .i5_lit { animation: none; opacity: 0.45; } }
+    .i5_lit { fill: #ffffff; opacity: 0; animation: i5_kf 1600ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i5_kf {0%   { opacity: 0.18; transform: scale(1); }
+6%   { opacity: 0.95; transform: scale(1.10); }
+14%  { opacity: 0.30; transform: scale(1); }
+22%  { opacity: 1; transform: scale(1.18); }
+34%  { opacity: 0.20; transform: scale(1); }
+70%  { opacity: 0.18; transform: scale(1); }
+100% { opacity: 0.18; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i5_lit { animation: none; opacity: 0.45; transform: none; } }
     .i5_d00 { animation-delay: 68ms; }
     .i5_d01 { animation-delay: 54ms; }
     .i5_d02 { animation-delay: 48ms; }
@@ -199,12 +199,12 @@
     .i5_d43 { animation-delay: 54ms; }
     .i5_d44 { animation-delay: 68ms; }
     .i6_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i6_lit { fill: #ffffff; opacity: 0; animation: i6_kf 2000ms linear infinite both; }
-    @keyframes i6_kf {0%   { opacity: 0; }
-4%   { opacity: 1; }
-26%  { opacity: 0.08; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i6_lit { animation: none; opacity: 0.45; } }
+    .i6_lit { fill: #ffffff; opacity: 0; animation: i6_kf 2000ms linear infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i6_kf {0%   { opacity: 0; transform: scale(1); }
+4%   { opacity: 1; transform: scale(1.10); }
+26%  { opacity: 0.08; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i6_lit { animation: none; opacity: 0.45; transform: none; } }
     .i6_d00 { animation-delay: 0ms; }
     .i6_d01 { animation-delay: 125ms; }
     .i6_d02 { animation-delay: 250ms; }
@@ -222,12 +222,12 @@
     .i6_d43 { animation-delay: 1125ms; }
     .i6_d44 { animation-delay: 1000ms; }
     .i7_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i7_lit { fill: #ffffff; opacity: 0; animation: i7_kf 2200ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes i7_kf {0%   { opacity: 0; }
-8%   { opacity: 1; }
-36%  { opacity: 0.05; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i7_lit { animation: none; opacity: 0.45; } }
+    .i7_lit { fill: #ffffff; opacity: 0; animation: i7_kf 2200ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i7_kf {0%   { opacity: 0; transform: scale(1); }
+8%   { opacity: 1; transform: scale(1.18); }
+36%  { opacity: 0.05; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i7_lit { animation: none; opacity: 0.45; transform: none; } }
     .i7_d00 { animation-delay: 0ms; }
     .i7_d01 { animation-delay: 183ms; }
     .i7_d02 { animation-delay: 367ms; }
@@ -254,13 +254,13 @@
     .i7_d43 { animation-delay: 1283ms; }
     .i7_d44 { animation-delay: 1467ms; }
     .i8_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i8_lit { fill: #ffffff; opacity: 0; animation: i8_kf 2600ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
-    @keyframes i8_kf {0%   { opacity: 0.05; }
-40%  { opacity: 0.05; }
-50%  { opacity: 1; }
-60%  { opacity: 0.05; }
-100% { opacity: 0.05; }}
-    @media (prefers-reduced-motion: reduce) { .i8_lit { animation: none; opacity: 0.45; } }
+    .i8_lit { fill: #ffffff; opacity: 0; animation: i8_kf 2600ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i8_kf {0%   { opacity: 0.05; transform: scale(1); }
+40%  { opacity: 0.05; transform: scale(1); }
+50%  { opacity: 1; transform: scale(1.20); }
+60%  { opacity: 0.05; transform: scale(1); }
+100% { opacity: 0.05; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i8_lit { animation: none; opacity: 0.45; transform: none; } }
     .i8_d00 { animation-delay: 0ms; }
     .i8_d01 { animation-delay: 2283ms; }
     .i8_d02 { animation-delay: 1617ms; }
@@ -287,12 +287,12 @@
     .i8_d43 { animation-delay: 1310ms; }
     .i8_d44 { animation-delay: 1019ms; }
     .i9_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i9_lit { fill: #ffffff; opacity: 0; animation: i9_kf 2200ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes i9_kf {0%   { opacity: 0; }
-8%   { opacity: 1; }
-36%  { opacity: 0.05; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i9_lit { animation: none; opacity: 0.45; } }
+    .i9_lit { fill: #ffffff; opacity: 0; animation: i9_kf 2200ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i9_kf {0%   { opacity: 0; transform: scale(1); }
+8%   { opacity: 1; transform: scale(1.18); }
+36%  { opacity: 0.05; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i9_lit { animation: none; opacity: 0.45; transform: none; } }
     .i9_d00 { animation-delay: 0ms; }
     .i9_d01 { animation-delay: 367ms; }
     .i9_d02 { animation-delay: 733ms; }
@@ -319,20 +319,20 @@
     .i9_d43 { animation-delay: 1100ms; }
     .i9_d44 { animation-delay: 1467ms; }
     .i10_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i10_lit { fill: #ffffff; opacity: 0; animation: i10_kf 1800ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; }
-    @keyframes i10_kf {0%   { opacity: 0.12; }
-14%  { opacity: 1; }
-40%  { opacity: 0.12; }
-100% { opacity: 0.12; }}
-    @media (prefers-reduced-motion: reduce) { .i10_lit { animation: none; opacity: 0.45; } }
+    .i10_lit { fill: #ffffff; opacity: 0; animation: i10_kf 1800ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i10_kf {0%   { opacity: 0.12; transform: scale(1); }
+14%  { opacity: 1; transform: scale(1.22); }
+40%  { opacity: 0.12; transform: scale(1); }
+100% { opacity: 0.12; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i10_lit { animation: none; opacity: 0.45; transform: none; } }
     .i10_d22 { animation-delay: 0ms; }
     .i11_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i11_lit { fill: #ffffff; opacity: 0; animation: i11_kf 2200ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; }
-    @keyframes i11_kf {0%   { opacity: 0; }
-10%  { opacity: 1; }
-55%  { opacity: 0.85; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i11_lit { animation: none; opacity: 0.45; } }
+    .i11_lit { fill: #ffffff; opacity: 0; animation: i11_kf 2200ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i11_kf {0%   { opacity: 0; transform: scale(1); }
+10%  { opacity: 1; transform: scale(1.18); }
+55%  { opacity: 0.85; transform: scale(1.04); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i11_lit { animation: none; opacity: 0.45; transform: none; } }
     .i11_d00 { animation-delay: 733ms; }
     .i11_d01 { animation-delay: 550ms; }
     .i11_d02 { animation-delay: 367ms; }
@@ -359,12 +359,12 @@
     .i11_d43 { animation-delay: 550ms; }
     .i11_d44 { animation-delay: 733ms; }
     .i12_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i12_lit { fill: #ffffff; opacity: 0; animation: i12_kf 2400ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes i12_kf {0%   { opacity: 0; }
-10%  { opacity: 1; }
-55%  { opacity: 0.85; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i12_lit { animation: none; opacity: 0.45; } }
+    .i12_lit { fill: #ffffff; opacity: 0; animation: i12_kf 2400ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i12_kf {0%   { opacity: 0; transform: scale(1); }
+10%  { opacity: 1; transform: scale(1.18); }
+55%  { opacity: 0.85; transform: scale(1.04); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i12_lit { animation: none; opacity: 0.45; transform: none; } }
     .i12_d02 { animation-delay: 1200ms; }
     .i12_d12 { animation-delay: 900ms; }
     .i12_d21 { animation-delay: 600ms; }
@@ -379,23 +379,23 @@
     .i12_d43 { animation-delay: 0ms; }
     .i12_d44 { animation-delay: 0ms; }
     .i13_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i13_lit { fill: #ffffff; opacity: 0; animation: i13_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
-    @keyframes i13_kf {0%   { opacity: 0; }
-4%   { opacity: 1; }
-26%  { opacity: 0.08; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i13_lit { animation: none; opacity: 0.45; } }
+    .i13_lit { fill: #ffffff; opacity: 0; animation: i13_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i13_kf {0%   { opacity: 0; transform: scale(1); }
+4%   { opacity: 1; transform: scale(1.10); }
+26%  { opacity: 0.08; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i13_lit { animation: none; opacity: 0.45; transform: none; } }
     .i13_d00 { animation-delay: 0ms; }
     .i13_d11 { animation-delay: 300ms; }
     .i13_d22 { animation-delay: 600ms; }
     .i13_d33 { animation-delay: 900ms; }
     .i13_d44 { animation-delay: 1200ms; }
     .i14_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i14_lit { fill: #ffffff; opacity: 0; animation: i14_kf 2800ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
-    @keyframes i14_kf {0%   { opacity: 0.10; }
-50%  { opacity: 0.85; }
-100% { opacity: 0.10; }}
-    @media (prefers-reduced-motion: reduce) { .i14_lit { animation: none; opacity: 0.45; } }
+    .i14_lit { fill: #ffffff; opacity: 0; animation: i14_kf 2800ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i14_kf {0%   { opacity: 0.10; transform: scale(1); }
+50%  { opacity: 0.85; transform: scale(1.10); }
+100% { opacity: 0.10; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i14_lit { animation: none; opacity: 0.45; transform: none; } }
     .i14_d00 { animation-delay: 0ms; }
     .i14_d01 { animation-delay: 0ms; }
     .i14_d02 { animation-delay: 0ms; }
@@ -422,12 +422,12 @@
     .i14_d43 { animation-delay: 0ms; }
     .i14_d44 { animation-delay: 0ms; }
     .i15_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i15_lit { fill: #ffffff; opacity: 0; animation: i15_kf 2400ms linear infinite both; }
-    @keyframes i15_kf {0%   { opacity: 0; }
-4%   { opacity: 1; }
-26%  { opacity: 0.08; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i15_lit { animation: none; opacity: 0.45; } }
+    .i15_lit { fill: #ffffff; opacity: 0; animation: i15_kf 2400ms linear infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i15_kf {0%   { opacity: 0; transform: scale(1); }
+4%   { opacity: 1; transform: scale(1.10); }
+26%  { opacity: 0.08; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i15_lit { animation: none; opacity: 0.45; transform: none; } }
     .i15_d00 { animation-delay: 0ms; }
     .i15_d01 { animation-delay: 150ms; }
     .i15_d02 { animation-delay: 300ms; }
@@ -445,12 +445,12 @@
     .i15_d43 { animation-delay: 1350ms; }
     .i15_d44 { animation-delay: 1200ms; }
     .i16_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i16_lit { fill: #ffffff; opacity: 0; animation: i16_kf 1800ms linear infinite both; }
-    @keyframes i16_kf {0%   { opacity: 0; }
-4%   { opacity: 1; }
-26%  { opacity: 0.08; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i16_lit { animation: none; opacity: 0.45; } }
+    .i16_lit { fill: #ffffff; opacity: 0; animation: i16_kf 1800ms linear infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i16_kf {0%   { opacity: 0; transform: scale(1); }
+4%   { opacity: 1; transform: scale(1.10); }
+26%  { opacity: 0.08; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i16_lit { animation: none; opacity: 0.45; transform: none; } }
     .i16_d00 { animation-delay: 0ms; }
     .i16_d01 { animation-delay: 112ms; }
     .i16_d02 { animation-delay: 225ms; }
@@ -468,12 +468,12 @@
     .i16_d43 { animation-delay: 112ms; }
     .i16_d44 { animation-delay: 0ms; }
     .i17_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i17_lit { fill: #ffffff; opacity: 0; animation: i17_kf 2000ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes i17_kf {0%   { opacity: 0.10; }
-20%  { opacity: 1; }
-60%  { opacity: 0.20; }
-100% { opacity: 0.10; }}
-    @media (prefers-reduced-motion: reduce) { .i17_lit { animation: none; opacity: 0.45; } }
+    .i17_lit { fill: #ffffff; opacity: 0; animation: i17_kf 2000ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i17_kf {0%   { opacity: 0.10; transform: scale(1); }
+20%  { opacity: 1; transform: scale(1.14); }
+60%  { opacity: 0.20; transform: scale(1); }
+100% { opacity: 0.10; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i17_lit { animation: none; opacity: 0.45; transform: none; } }
     .i17_d00 { animation-delay: 0ms; }
     .i17_d01 { animation-delay: 0ms; }
     .i17_d02 { animation-delay: 0ms; }
@@ -491,13 +491,13 @@
     .i17_d43 { animation-delay: 0ms; }
     .i17_d44 { animation-delay: 0ms; }
     .i18_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i18_lit { fill: #ffffff; opacity: 0; animation: i18_kf 1800ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
-    @keyframes i18_kf {0%   { opacity: 0.05; }
-30%  { opacity: 0.05; }
-40%  { opacity: 1; }
-55%  { opacity: 0.10; }
-100% { opacity: 0.05; }}
-    @media (prefers-reduced-motion: reduce) { .i18_lit { animation: none; opacity: 0.45; } }
+    .i18_lit { fill: #ffffff; opacity: 0; animation: i18_kf 1800ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i18_kf {0%   { opacity: 0.05; transform: scale(1); }
+30%  { opacity: 0.05; transform: scale(1); }
+40%  { opacity: 1; transform: scale(1.14); }
+55%  { opacity: 0.10; transform: scale(1); }
+100% { opacity: 0.05; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i18_lit { animation: none; opacity: 0.45; transform: none; } }
     .i18_d11 { animation-delay: 1352ms; }
     .i18_d12 { animation-delay: 1197ms; }
     .i18_d13 { animation-delay: 823ms; }
@@ -508,12 +508,12 @@
     .i18_d32 { animation-delay: 1280ms; }
     .i18_d33 { animation-delay: 1366ms; }
     .i19_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i19_lit { fill: #ffffff; opacity: 0; animation: i19_kf 2400ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes i19_kf {0%   { opacity: 0; }
-4%   { opacity: 1; }
-26%  { opacity: 0.08; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i19_lit { animation: none; opacity: 0.45; } }
+    .i19_lit { fill: #ffffff; opacity: 0; animation: i19_kf 2400ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i19_kf {0%   { opacity: 0; transform: scale(1); }
+4%   { opacity: 1; transform: scale(1.10); }
+26%  { opacity: 0.08; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i19_lit { animation: none; opacity: 0.45; transform: none; } }
     .i19_d00 { animation-delay: 0ms; }
     .i19_d01 { animation-delay: 86ms; }
     .i19_d02 { animation-delay: 171ms; }
@@ -540,12 +540,12 @@
     .i19_d43 { animation-delay: 1971ms; }
     .i19_d44 { animation-delay: 2057ms; }
     .i20_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i20_lit { fill: #ffffff; opacity: 0; animation: i20_kf 2000ms linear infinite both; }
-    @keyframes i20_kf {0%   { opacity: 0; }
-8%   { opacity: 1; }
-36%  { opacity: 0.05; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i20_lit { animation: none; opacity: 0.45; } }
+    .i20_lit { fill: #ffffff; opacity: 0; animation: i20_kf 2000ms linear infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i20_kf {0%   { opacity: 0; transform: scale(1); }
+8%   { opacity: 1; transform: scale(1.18); }
+36%  { opacity: 0.05; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i20_lit { animation: none; opacity: 0.45; transform: none; } }
     .i20_d00 { animation-delay: 0ms; }
     .i20_d01 { animation-delay: 0ms; }
     .i20_d02 { animation-delay: 0ms; }
@@ -572,24 +572,24 @@
     .i20_d43 { animation-delay: 1333ms; }
     .i20_d44 { animation-delay: 1333ms; }
     .i21_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i21_lit { fill: #ffffff; opacity: 0; animation: i21_kf 2000ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes i21_kf {0%   { opacity: 0; }
-4%   { opacity: 1; }
-26%  { opacity: 0.08; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i21_lit { animation: none; opacity: 0.45; } }
+    .i21_lit { fill: #ffffff; opacity: 0; animation: i21_kf 2000ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i21_kf {0%   { opacity: 0; transform: scale(1); }
+4%   { opacity: 1; transform: scale(1.10); }
+26%  { opacity: 0.08; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i21_lit { animation: none; opacity: 0.45; transform: none; } }
     .i21_d00 { animation-delay: 0ms; }
     .i21_d11 { animation-delay: 333ms; }
     .i21_d22 { animation-delay: 667ms; }
     .i21_d33 { animation-delay: 333ms; }
     .i21_d44 { animation-delay: 0ms; }
     .i22_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i22_lit { fill: #ffffff; opacity: 0; animation: i22_kf 3200ms linear infinite both; }
-    @keyframes i22_kf {0%   { opacity: 0; }
-4%   { opacity: 1; }
-26%  { opacity: 0.08; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i22_lit { animation: none; opacity: 0.45; } }
+    .i22_lit { fill: #ffffff; opacity: 0; animation: i22_kf 3200ms linear infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i22_kf {0%   { opacity: 0; transform: scale(1); }
+4%   { opacity: 1; transform: scale(1.10); }
+26%  { opacity: 0.08; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i22_lit { animation: none; opacity: 0.45; transform: none; } }
     .i22_d00 { animation-delay: 0ms; }
     .i22_d01 { animation-delay: 2538ms; }
     .i22_d02 { animation-delay: 1986ms; }
@@ -616,12 +616,12 @@
     .i22_d43 { animation-delay: 1655ms; }
     .i22_d44 { animation-delay: 441ms; }
     .i23_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i23_lit { fill: #ffffff; opacity: 0; animation: i23_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
+    .i23_lit { fill: #ffffff; opacity: 0; animation: i23_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
     @keyframes i23_kf {0%   { opacity: 0.08; }
 30%  { opacity: 0.85; }
 60%  { opacity: 0.12; }
 100% { opacity: 0.08; }}
-    @media (prefers-reduced-motion: reduce) { .i23_lit { animation: none; opacity: 0.45; } }
+    @media (prefers-reduced-motion: reduce) { .i23_lit { animation: none; opacity: 0.45; transform: none; } }
     .i23_d00 { animation-delay: 0ms; }
     .i23_d01 { animation-delay: 1200ms; }
     .i23_d02 { animation-delay: 0ms; }
@@ -648,14 +648,14 @@
     .i23_d43 { animation-delay: 1200ms; }
     .i23_d44 { animation-delay: 0ms; }
     .i24_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i24_lit { fill: #ffffff; opacity: 0; animation: i24_kf 1600ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
+    .i24_lit { fill: #ffffff; opacity: 0; animation: i24_kf 1600ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
     @keyframes i24_kf {0%   { opacity: 0; }
 8%   { opacity: 1; }
 22%  { opacity: 0.05; }
 46%  { opacity: 0.85; }
 58%  { opacity: 0.05; }
 100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i24_lit { animation: none; opacity: 0.45; } }
+    @media (prefers-reduced-motion: reduce) { .i24_lit { animation: none; opacity: 0.45; transform: none; } }
     .i24_d00 { animation-delay: 400ms; }
     .i24_d01 { animation-delay: 1200ms; }
     .i24_d02 { animation-delay: 1200ms; }
@@ -682,12 +682,12 @@
     .i24_d43 { animation-delay: 400ms; }
     .i24_d44 { animation-delay: 400ms; }
     .i25_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i25_lit { fill: #ffffff; opacity: 0; animation: i25_kf 2200ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; }
-    @keyframes i25_kf {0%   { opacity: 0; }
-8%   { opacity: 1; }
-36%  { opacity: 0.05; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i25_lit { animation: none; opacity: 0.45; } }
+    .i25_lit { fill: #ffffff; opacity: 0; animation: i25_kf 2200ms cubic-bezier(0.16, 1, 0.3, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i25_kf {0%   { opacity: 0; transform: scale(1); }
+8%   { opacity: 1; transform: scale(1.18); }
+36%  { opacity: 0.05; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i25_lit { animation: none; opacity: 0.45; transform: none; } }
     .i25_d00 { animation-delay: 0ms; }
     .i25_d01 { animation-delay: 0ms; }
     .i25_d02 { animation-delay: 0ms; }
@@ -714,12 +714,12 @@
     .i25_d43 { animation-delay: 0ms; }
     .i25_d44 { animation-delay: 0ms; }
     .i26_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i26_lit { fill: #ffffff; opacity: 0; animation: i26_kf 1800ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes i26_kf {0%   { opacity: 0; }
-8%   { opacity: 1; }
-36%  { opacity: 0.05; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i26_lit { animation: none; opacity: 0.45; } }
+    .i26_lit { fill: #ffffff; opacity: 0; animation: i26_kf 1800ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i26_kf {0%   { opacity: 0; transform: scale(1); }
+8%   { opacity: 1; transform: scale(1.18); }
+36%  { opacity: 0.05; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i26_lit { animation: none; opacity: 0.45; transform: none; } }
     .i26_d00 { animation-delay: 0ms; }
     .i26_d02 { animation-delay: 900ms; }
     .i26_d04 { animation-delay: 450ms; }
@@ -729,12 +729,12 @@
     .i26_d42 { animation-delay: 900ms; }
     .i26_d44 { animation-delay: 0ms; }
     .i27_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i27_lit { fill: #ffffff; opacity: 0; animation: i27_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
-    @keyframes i27_kf {0%   { opacity: 0.08; }
-14%  { opacity: 1; }
-72%  { opacity: 0.95; }
-100% { opacity: 0.08; }}
-    @media (prefers-reduced-motion: reduce) { .i27_lit { animation: none; opacity: 0.45; } }
+    .i27_lit { fill: #ffffff; opacity: 0; animation: i27_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i27_kf {0%   { opacity: 0.08; transform: scale(1); }
+14%  { opacity: 1; transform: scale(1.08); }
+72%  { opacity: 0.95; transform: scale(1); }
+100% { opacity: 0.08; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i27_lit { animation: none; opacity: 0.45; transform: none; } }
     .i27_d00 { animation-delay: 960ms; }
     .i27_d01 { animation-delay: 1056ms; }
     .i27_d02 { animation-delay: 1152ms; }
@@ -761,12 +761,12 @@
     .i27_d43 { animation-delay: 288ms; }
     .i27_d44 { animation-delay: 384ms; }
     .i28_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i28_lit { fill: #ffffff; opacity: 0; animation: i28_kf 2400ms linear infinite both; }
-    @keyframes i28_kf {0%   { opacity: 0; }
-4%   { opacity: 1; }
-26%  { opacity: 0.08; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i28_lit { animation: none; opacity: 0.45; } }
+    .i28_lit { fill: #ffffff; opacity: 0; animation: i28_kf 2400ms linear infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i28_kf {0%   { opacity: 0; transform: scale(1); }
+4%   { opacity: 1; transform: scale(1.10); }
+26%  { opacity: 0.08; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i28_lit { animation: none; opacity: 0.45; transform: none; } }
     .i28_d00 { animation-delay: 600ms; }
     .i28_d01 { animation-delay: 0ms; }
     .i28_d02 { animation-delay: 600ms; }
@@ -780,12 +780,12 @@
     .i28_d31 { animation-delay: 1800ms; }
     .i28_d32 { animation-delay: 1800ms; }
     .i29_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i29_lit { fill: #ffffff; opacity: 0; animation: i29_kf 2200ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes i29_kf {0%   { opacity: 0.12; }
-14%  { opacity: 1; }
-40%  { opacity: 0.12; }
-100% { opacity: 0.12; }}
-    @media (prefers-reduced-motion: reduce) { .i29_lit { animation: none; opacity: 0.45; } }
+    .i29_lit { fill: #ffffff; opacity: 0; animation: i29_kf 2200ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i29_kf {0%   { opacity: 0.12; transform: scale(1); }
+14%  { opacity: 1; transform: scale(1.22); }
+40%  { opacity: 0.12; transform: scale(1); }
+100% { opacity: 0.12; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i29_lit { animation: none; opacity: 0.45; transform: none; } }
     .i29_d30 { animation-delay: 0ms; }
     .i29_d31 { animation-delay: 367ms; }
     .i29_d32 { animation-delay: 733ms; }
@@ -793,25 +793,25 @@
     .i29_d34 { animation-delay: 1467ms; }
     .i29_d42 { animation-delay: 1100ms; }
     .i30_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i30_lit { fill: #ffffff; opacity: 0; animation: i30_kf 2400ms linear infinite both; }
-    @keyframes i30_kf {0%   { opacity: 0.08; }
-25%  { opacity: 1; }
-50%  { opacity: 0.08; }
-75%  { opacity: 1; }
-100% { opacity: 0.08; }}
-    @media (prefers-reduced-motion: reduce) { .i30_lit { animation: none; opacity: 0.45; } }
+    .i30_lit { fill: #ffffff; opacity: 0; animation: i30_kf 2400ms linear infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i30_kf {0%   { opacity: 0.08; transform: scale(1); }
+25%  { opacity: 1; transform: scale(1.08); }
+50%  { opacity: 0.08; transform: scale(1); }
+75%  { opacity: 1; transform: scale(1.08); }
+100% { opacity: 0.08; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i30_lit { animation: none; opacity: 0.45; transform: none; } }
     .i30_d20 { animation-delay: 1800ms; }
     .i30_d21 { animation-delay: 2200ms; }
     .i30_d22 { animation-delay: 0ms; }
     .i30_d23 { animation-delay: 200ms; }
     .i30_d24 { animation-delay: 600ms; }
     .i31_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i31_lit { fill: #ffffff; opacity: 0; animation: i31_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
-    @keyframes i31_kf {0%   { opacity: 0; }
-10%  { opacity: 1; }
-55%  { opacity: 0.85; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i31_lit { animation: none; opacity: 0.45; } }
+    .i31_lit { fill: #ffffff; opacity: 0; animation: i31_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i31_kf {0%   { opacity: 0; transform: scale(1); }
+10%  { opacity: 1; transform: scale(1.18); }
+55%  { opacity: 0.85; transform: scale(1.04); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i31_lit { animation: none; opacity: 0.45; transform: none; } }
     .i31_d00 { animation-delay: 0ms; }
     .i31_d01 { animation-delay: 0ms; }
     .i31_d02 { animation-delay: 0ms; }
@@ -838,12 +838,12 @@
     .i31_d43 { animation-delay: 0ms; }
     .i31_d44 { animation-delay: 0ms; }
     .i32_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i32_lit { fill: #ffffff; opacity: 0; animation: i32_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; }
-    @keyframes i32_kf {0%   { opacity: 0; }
-10%  { opacity: 1; }
-55%  { opacity: 0.85; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i32_lit { animation: none; opacity: 0.45; } }
+    .i32_lit { fill: #ffffff; opacity: 0; animation: i32_kf 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i32_kf {0%   { opacity: 0; transform: scale(1); }
+10%  { opacity: 1; transform: scale(1.18); }
+55%  { opacity: 0.85; transform: scale(1.04); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i32_lit { animation: none; opacity: 0.45; transform: none; } }
     .i32_d00 { animation-delay: 800ms; }
     .i32_d01 { animation-delay: 800ms; }
     .i32_d02 { animation-delay: 800ms; }
@@ -870,13 +870,13 @@
     .i32_d43 { animation-delay: 800ms; }
     .i32_d44 { animation-delay: 800ms; }
     .i33_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i33_lit { fill: #ffffff; opacity: 0; animation: i33_kf 1400ms linear infinite both; }
+    .i33_lit { fill: #ffffff; opacity: 0; animation: i33_kf 1400ms linear infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
     @keyframes i33_kf {0%   { opacity: 0.05; }
 45%  { opacity: 0.05; }
 50%  { opacity: 1; }
 55%  { opacity: 0.05; }
 100% { opacity: 0.05; }}
-    @media (prefers-reduced-motion: reduce) { .i33_lit { animation: none; opacity: 0.45; } }
+    @media (prefers-reduced-motion: reduce) { .i33_lit { animation: none; opacity: 0.45; transform: none; } }
     .i33_d00 { animation-delay: 550ms; animation-duration: 1760ms; }
     .i33_d01 { animation-delay: 267ms; animation-duration: 2025ms; }
     .i33_d02 { animation-delay: 827ms; animation-duration: 2025ms; }
@@ -903,13 +903,13 @@
     .i33_d43 { animation-delay: 617ms; animation-duration: 1670ms; }
     .i33_d44 { animation-delay: 1144ms; animation-duration: 1085ms; }
     .i34_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i34_lit { fill: #ffffff; opacity: 0; animation: i34_kf 2400ms linear infinite both; }
-    @keyframes i34_kf {0%   { opacity: 0.08; }
-25%  { opacity: 1; }
-50%  { opacity: 0.08; }
-75%  { opacity: 1; }
-100% { opacity: 0.08; }}
-    @media (prefers-reduced-motion: reduce) { .i34_lit { animation: none; opacity: 0.45; } }
+    .i34_lit { fill: #ffffff; opacity: 0; animation: i34_kf 2400ms linear infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i34_kf {0%   { opacity: 0.08; transform: scale(1); }
+25%  { opacity: 1; transform: scale(1.08); }
+50%  { opacity: 0.08; transform: scale(1); }
+75%  { opacity: 1; transform: scale(1.08); }
+100% { opacity: 0.08; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i34_lit { animation: none; opacity: 0.45; transform: none; } }
     .i34_d00 { animation-delay: 600ms; }
     .i34_d01 { animation-delay: 600ms; }
     .i34_d02 { animation-delay: 600ms; }
@@ -936,12 +936,12 @@
     .i34_d43 { animation-delay: 1800ms; }
     .i34_d44 { animation-delay: 1800ms; }
     .i35_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i35_lit { fill: #ffffff; opacity: 0; animation: i35_kf 2200ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; }
-    @keyframes i35_kf {0%   { opacity: 0; }
-4%   { opacity: 1; }
-26%  { opacity: 0.08; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i35_lit { animation: none; opacity: 0.45; } }
+    .i35_lit { fill: #ffffff; opacity: 0; animation: i35_kf 2200ms cubic-bezier(0.25, 1, 0.5, 1) infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i35_kf {0%   { opacity: 0; transform: scale(1); }
+4%   { opacity: 1; transform: scale(1.10); }
+26%  { opacity: 0.08; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i35_lit { animation: none; opacity: 0.45; transform: none; } }
     .i35_d00 { animation-delay: 1399ms; }
     .i35_d01 { animation-delay: 686ms; }
     .i35_d02 { animation-delay: 550ms; }
@@ -968,12 +968,12 @@
     .i35_d43 { animation-delay: 1180ms; }
     .i35_d44 { animation-delay: 1118ms; }
     .i36_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i36_lit { fill: #ffffff; opacity: 0; animation: i36_kf 2400ms linear infinite both; }
-    @keyframes i36_kf {0%   { opacity: 0; }
-8%   { opacity: 1; }
-36%  { opacity: 0.05; }
-100% { opacity: 0; }}
-    @media (prefers-reduced-motion: reduce) { .i36_lit { animation: none; opacity: 0.45; } }
+    .i36_lit { fill: #ffffff; opacity: 0; animation: i36_kf 2400ms linear infinite both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i36_kf {0%   { opacity: 0; transform: scale(1); }
+8%   { opacity: 1; transform: scale(1.18); }
+36%  { opacity: 0.05; transform: scale(1); }
+100% { opacity: 0; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i36_lit { animation: none; opacity: 0.45; transform: none; } }
     .i36_d02 { animation-delay: 1200ms; }
     .i36_d12 { animation-delay: 1500ms; }
     .i36_d20 { animation-delay: 0ms; }
@@ -984,13 +984,13 @@
     .i36_d32 { animation-delay: 2100ms; }
     .i36_d42 { animation-delay: 2400ms; }
     .i37_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i37_lit { fill: #ffffff; opacity: 0; animation: i37_kf 1400ms cubic-bezier(0.25, 1, 0.5, 1) 1 both; }
-    @keyframes i37_kf {0%   { opacity: 0; }
-5%   { opacity: 1; }
-30%  { opacity: 0.05; }
-80%  { opacity: 0.05; }
-100% { opacity: 0.6; }}
-    @media (prefers-reduced-motion: reduce) { .i37_lit { animation: none; opacity: 0.45; } }
+    .i37_lit { fill: #ffffff; opacity: 0; animation: i37_kf 1400ms cubic-bezier(0.25, 1, 0.5, 1) 1 both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i37_kf {0%   { opacity: 0; transform: scale(1); }
+5%   { opacity: 1; transform: scale(1.20); }
+30%  { opacity: 0.05; transform: scale(1); }
+80%  { opacity: 0.05; transform: scale(1); }
+100% { opacity: 0.6; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i37_lit { animation: none; opacity: 0.45; transform: none; } }
     .i37_d04 { animation-delay: 1200ms; }
     .i37_d14 { animation-delay: 1000ms; }
     .i37_d20 { animation-delay: 0ms; }
@@ -999,12 +999,12 @@
     .i37_d33 { animation-delay: 600ms; }
     .i37_d42 { animation-delay: 400ms; }
     .i38_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i38_lit { fill: #ffffff; opacity: 0; animation: i38_kf 1600ms cubic-bezier(0.65, 0, 0.35, 1) 1 both; }
-    @keyframes i38_kf {0%   { opacity: 0.08; }
-14%  { opacity: 1; }
-72%  { opacity: 0.95; }
-100% { opacity: 0.08; }}
-    @media (prefers-reduced-motion: reduce) { .i38_lit { animation: none; opacity: 0.45; } }
+    .i38_lit { fill: #ffffff; opacity: 0; animation: i38_kf 1600ms cubic-bezier(0.65, 0, 0.35, 1) 1 both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i38_kf {0%   { opacity: 0.08; transform: scale(1); }
+14%  { opacity: 1; transform: scale(1.08); }
+72%  { opacity: 0.95; transform: scale(1); }
+100% { opacity: 0.08; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i38_lit { animation: none; opacity: 0.45; transform: none; } }
     .i38_d11 { animation-delay: 0ms; }
     .i38_d12 { animation-delay: 0ms; }
     .i38_d13 { animation-delay: 0ms; }
@@ -1015,13 +1015,13 @@
     .i38_d32 { animation-delay: 0ms; }
     .i38_d33 { animation-delay: 0ms; }
     .i39_bg { fill: #f5f5f5; opacity: 0.07; }
-    .i39_lit { fill: #ffffff; opacity: 0; animation: i39_kf 2600ms linear 1 both; }
-    @keyframes i39_kf {0%   { opacity: 0; }
-5%   { opacity: 1; }
-30%  { opacity: 0.05; }
-80%  { opacity: 0.05; }
-100% { opacity: 0.6; }}
-    @media (prefers-reduced-motion: reduce) { .i39_lit { animation: none; opacity: 0.45; } }
+    .i39_lit { fill: #ffffff; opacity: 0; animation: i39_kf 2600ms linear 1 both; transform-box: fill-box; transform-origin: center; will-change: opacity, transform; }
+    @keyframes i39_kf {0%   { opacity: 0; transform: scale(1); }
+5%   { opacity: 1; transform: scale(1.20); }
+30%  { opacity: 0.05; transform: scale(1); }
+80%  { opacity: 0.05; transform: scale(1); }
+100% { opacity: 0.6; transform: scale(1); }}
+    @media (prefers-reduced-motion: reduce) { .i39_lit { animation: none; opacity: 0.45; transform: none; } }
     .i39_d00 { animation-delay: 0ms; }
     .i39_d01 { animation-delay: 458ms; }
     .i39_d02 { animation-delay: 858ms; }

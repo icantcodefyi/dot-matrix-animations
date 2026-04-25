@@ -30,6 +30,8 @@ export interface DotMatrixIconProps extends Omit<SVGProps<SVGSVGElement>, "color
   autoPlay?: boolean;
   /** Multiplier applied to durationMs and per-cell delays. 1 = native speed, 2 = 2× faster. */
   speedMultiplier?: number;
+  /** Force the animation to loop, overriding any per-pattern iteration of "1". Used for previews. */
+  forceLoop?: boolean;
 }
 
 export function DotMatrixIcon({
@@ -39,13 +41,14 @@ export function DotMatrixIcon({
   baseColor,
   autoPlay = true,
   speedMultiplier = 1,
+  forceLoop = false,
   style,
   ...props
 }: DotMatrixIconProps) {
   const pattern = getDotMatrixPattern(iconIndex);
   const rawId = useId();
   const id = `dm-${rawId.replace(/[:]/g, "")}-${pattern.slug}`;
-  const iteration = pattern.iteration ?? "infinite";
+  const iteration = forceLoop ? "infinite" : pattern.iteration ?? "infinite";
   const speed = speedMultiplier > 0 ? speedMultiplier : 1;
   const scaledDuration = Math.round(pattern.durationMs / speed);
   const animation = autoPlay
