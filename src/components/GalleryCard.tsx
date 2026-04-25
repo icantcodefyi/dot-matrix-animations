@@ -9,6 +9,9 @@ type CopyState = "idle" | "copied" | "error";
 interface GalleryCardProps {
   pattern: PatternSpec;
   iconIndex: number;
+  /** Position in the filtered grid; used by keyboard nav. */
+  cardIndex: number;
+  autoPlay: boolean;
 }
 
 function fallbackCopy(text: string): boolean {
@@ -29,7 +32,12 @@ function fallbackCopy(text: string): boolean {
   return ok;
 }
 
-export function GalleryCard({ pattern, iconIndex }: GalleryCardProps) {
+export function GalleryCard({
+  pattern,
+  iconIndex,
+  cardIndex,
+  autoPlay,
+}: GalleryCardProps) {
   const [state, setState] = useState<CopyState>("idle");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -81,15 +89,18 @@ export function GalleryCard({ pattern, iconIndex }: GalleryCardProps) {
       className={className}
       role="listitem"
       tabIndex={0}
+      data-card-index={cardIndex}
       data-slug={pattern.slug}
-      aria-label={`${pattern.title}, click to copy SVG`}
+      data-category={pattern.category}
+      aria-label={`${pattern.title}, ${pattern.category}, click to copy SVG`}
       onClick={() => void handleCopy()}
       onKeyDown={onKeyDown}
     >
       <span className="index">{indexLabel}</span>
+      <span className="category-tag" aria-hidden="true">{pattern.category}</span>
       <span className="copy" aria-hidden="true" />
       <div className="stage">
-        <DotMatrixIcon iconIndex={iconIndex} size={120} />
+        <DotMatrixIcon iconIndex={iconIndex} size={120} autoPlay={autoPlay} />
       </div>
       <div className="info">
         <span className="name">{pattern.title}</span>

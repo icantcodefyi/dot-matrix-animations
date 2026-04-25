@@ -1,13 +1,59 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useCallback, useMemo, useRef, useState } from "react";
 
 import { Gallery } from "~/components/Gallery";
-import { PATTERNS } from "~/lib/patterns";
+import { Toolbar } from "~/components/Toolbar";
+import { filterPatterns, type Density } from "~/lib/galleryState";
+import { PATTERNS, type Category } from "~/lib/patterns";
+import { useGalleryKeyboard } from "~/lib/useGalleryKeyboard";
 
 export const Route = createFileRoute("/")({
   component: Home,
 });
 
 function Home() {
+  const [query, setQuery] = useState("");
+  const [activeCategories, setActiveCategories] = useState<ReadonlySet<Category>>(
+    () => new Set(),
+  );
+  const [density, setDensity] = useState<Density>("comfortable");
+  const [paused, setPaused] = useState(false);
+
+  const filtered = useMemo(
+    () => filterPatterns(PATTERNS, { query, activeCategories }),
+    [query, activeCategories],
+  );
+
+  const gridRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const triggerCopyOnFocused = useCallback(() => {
+    const focused = document.activeElement;
+    if (focused instanceof HTMLElement && focused.dataset.cardIndex) {
+      focused.click();
+    }
+  }, []);
+
+  useGalleryKeyboard({
+    gridRef,
+    searchInputRef,
+    onCopyFocused: triggerCopyOnFocused,
+  });
+
+  const toggleCategory = useCallback((category: Category) => {
+    setActiveCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(category)) next.delete(category);
+      else next.add(category);
+      return next;
+    });
+  }, []);
+
+  const clearCategories = useCallback(
+    () => setActiveCategories(new Set()),
+    [],
+  );
+
   return (
     <div className="shell">
       <header className="topbar">
@@ -15,7 +61,7 @@ function Home() {
           <span>dot</span>
           <span className="slash">/</span>
           <span>matrix</span>
-          <span className="v">v0.1 · 2026</span>
+          <span className="v">v0.2 · 2026</span>
         </a>
         <div className="meta">
           <span>
@@ -56,12 +102,32 @@ function Home() {
       <div className="section-head">
         <h2>The set</h2>
         <span className="legend">
-          <span>click a tile to copy its SVG</span>
-          <kbd>↗</kbd>
+          <span>
+            click a tile to copy its SVG, or focus and press <kbd>c</kbd>
+          </span>
         </span>
       </div>
 
-      <Gallery />
+      <Toolbar
+        query={query}
+        onQueryChange={setQuery}
+        searchInputRef={searchInputRef}
+        activeCategories={activeCategories}
+        onToggleCategory={toggleCategory}
+        onClearCategories={clearCategories}
+        density={density}
+        onDensityChange={setDensity}
+        paused={paused}
+        onPausedChange={setPaused}
+        resultCount={filtered.length}
+      />
+
+      <Gallery
+        ref={gridRef}
+        items={filtered}
+        density={density}
+        autoPlay={!paused}
+      />
 
       <div className="section-head">
         <h2>Notes</h2>

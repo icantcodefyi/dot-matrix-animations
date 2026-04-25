@@ -39,17 +39,14 @@ stopped, verified), and **noise/density** patterns. The 12 below address those.
 
 Roughly in priority order. Quick wins first, big bets last.
 
-### Quick wins (a few hours each)
-- **Search / filter input** above the grid. Fuzzy filter by name. Type "ring"
-  to narrow to Pulse Rings, Ring Pulse, Listening. Pure client-side.
-- **Category tags** on each card: `progress / spinner / ambient / agent /
-  status`. Filter pills below the search input.
-- **"Pause all" toggle** in the topbar. Quiets the page for accessibility, for
-  screen recording, and for users who prefer to study one icon at a time.
-- **Keyboard nav**: `↑ ↓ ← →` to move between cards, `c` to copy the focused
-  one, `/` to focus the search input.
-- **Density toggle**: switch between the current 4-col grid and a denser
-  6 / 8-col compact view. Useful for browsing the full set fast.
+### Quick wins — ✅ shipped
+- ✅ **Search / filter input** above the grid (substring match, client-side)
+- ✅ **Category tags** on each card with filter pills (`spinner`, `progress`,
+  `ambient`, `agent`, `status`).
+- ✅ **"Pause all" toggle** in the toolbar.
+- ✅ **Keyboard nav**: `↑ ↓ ← →` move between cards, `c` copies the focused
+  one, `/` focuses the search input, `Esc` blurs it.
+- ✅ **Density toggle**: comfortable (220 px min) vs compact (152 px min).
 
 ### Medium (half a day each)
 - **Live size + meta inspector**: hover or click reveals byte count, duration,

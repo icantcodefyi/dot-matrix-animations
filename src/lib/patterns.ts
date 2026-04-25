@@ -13,6 +13,21 @@ const CENTER = (GRID - 1) / 2;
 export type DelayFn = (col: number, row: number) => number;
 export type DurationFactorFn = (col: number, row: number) => number;
 
+export type Category =
+  | "progress"
+  | "spinner"
+  | "ambient"
+  | "agent"
+  | "status";
+
+export const CATEGORIES: ReadonlyArray<{ id: Category; label: string }> = [
+  { id: "spinner", label: "spinner" },
+  { id: "progress", label: "progress" },
+  { id: "ambient", label: "ambient" },
+  { id: "agent", label: "agent" },
+  { id: "status", label: "status" },
+];
+
 export interface PatternSpec {
   slug: string;
   title: string;
@@ -21,6 +36,8 @@ export interface PatternSpec {
   easing: string;
   keyframes: string;
   delay: DelayFn;
+  /** Filter category. */
+  category: Category;
   /** "infinite" (default) for loaders; "1" for one-shot outcome icons (Verify, Halt). */
   iteration?: "infinite" | "1";
   /** Per-cell multiplier applied to durationMs. Used by Static for noisy variance. */
@@ -139,6 +156,7 @@ const HALT_RING: ReadonlyArray<readonly [number, number]> = [
 export const PATTERNS: ReadonlyArray<PatternSpec> = [
   {
     slug: "icon-01",
+    category: "ambient",
     title: "Pulse Rings",
     blurb: "Concentric rings expand from the center.",
     durationMs: 2200,
@@ -149,6 +167,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-02",
+    category: "spinner",
     title: "Spiral",
     blurb: "A bright trace winds outward from the center.",
     durationMs: 2800,
@@ -161,6 +180,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-03",
+    category: "ambient",
     title: "Wave",
     blurb: "A breathing sine wave drifts left to right.",
     durationMs: 2400,
@@ -170,6 +190,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-04",
+    category: "ambient",
     title: "Cross Expand",
     blurb: "A plus shape blooms outward in Manhattan steps.",
     durationMs: 2200,
@@ -179,6 +200,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-05",
+    category: "ambient",
     title: "Rain",
     blurb: "Independent drops fall column by column.",
     durationMs: 1800,
@@ -191,6 +213,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-06",
+    category: "status",
     title: "Heartbeat",
     blurb: "Lub-dub pulse with a soft radial echo.",
     durationMs: 1600,
@@ -201,6 +224,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-07",
+    category: "spinner",
     title: "Loading",
     blurb: "A trailing spinner sweeps the outer ring.",
     durationMs: 2000,
@@ -213,6 +237,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-08",
+    category: "spinner",
     title: "Diagonal Scan",
     blurb: "A diagonal stripe sweeps from corner to corner.",
     durationMs: 2200,
@@ -222,6 +247,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-09",
+    category: "ambient",
     title: "Sparkle",
     blurb: "Independent dots twinkle on a deterministic loop.",
     durationMs: 2600,
@@ -235,6 +261,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-10",
+    category: "spinner",
     title: "Column Scan",
     blurb: "A vertical bar sweeps left to right, one column at a time.",
     durationMs: 2200,
@@ -244,6 +271,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-11",
+    category: "status",
     title: "Beacon",
     blurb: "A single center dot pulses on a quiet field.",
     durationMs: 1800,
@@ -253,6 +281,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-12",
+    category: "ambient",
     title: "Diamond",
     blurb: "A diamond blooms outward from the center.",
     durationMs: 2200,
@@ -262,6 +291,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-13",
+    category: "progress",
     title: "Pyramid",
     blurb: "A triangle grows from the bottom up, one row at a time.",
     durationMs: 2400,
@@ -275,6 +305,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-14",
+    category: "spinner",
     title: "Bounce",
     blurb: "A bright dot travels along the main diagonal.",
     durationMs: 2400,
@@ -284,6 +315,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-15",
+    category: "ambient",
     title: "Breath",
     blurb: "The whole field breathes in and out together.",
     durationMs: 2800,
@@ -293,6 +325,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-16",
+    category: "spinner",
     title: "Orbit",
     blurb: "A single dot circles the perimeter at a steady pace.",
     durationMs: 2400,
@@ -305,6 +338,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-17",
+    category: "spinner",
     title: "Twin Orbit",
     blurb: "Two dots circle the perimeter, each owning a half.",
     durationMs: 1800,
@@ -318,6 +352,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-18",
+    category: "ambient",
     title: "Ring Pulse",
     blurb: "The outer ring lights as one and slowly fades.",
     durationMs: 2000,
@@ -327,6 +362,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-19",
+    category: "agent",
     title: "Thinking",
     blurb: "Inner cluster fires like neurons while the field rests.",
     durationMs: 1800,
@@ -340,6 +376,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-20",
+    category: "agent",
     title: "Stream",
     blurb: "Tokens emit in reading order, top-left to bottom-right.",
     durationMs: 2400,
@@ -349,6 +386,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-21",
+    category: "spinner",
     title: "Scan Line",
     blurb: "A full row sweeps top to bottom like a CRT raster.",
     durationMs: 2000,
@@ -358,6 +396,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-22",
+    category: "agent",
     title: "Handshake",
     blurb: "Two travelers meet at the center along the diagonal.",
     durationMs: 2000,
@@ -371,6 +410,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-23",
+    category: "agent",
     title: "Knight's Tour",
     blurb: "A single dot traces every cell with knight moves.",
     durationMs: 3200,
@@ -383,6 +423,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-24",
+    category: "ambient",
     title: "Lattice",
     blurb: "A checkerboard breathes in two opposing phases.",
     durationMs: 2400,
@@ -392,6 +433,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-25",
+    category: "agent",
     title: "Cipher",
     blurb: "Decryption flashes ripple through the grid in waves.",
     durationMs: 1600,
@@ -406,6 +448,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-26",
+    category: "agent",
     title: "Listening",
     blurb: "Concentric rings collapse inward toward the center.",
     durationMs: 2200,
@@ -418,6 +461,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-27",
+    category: "agent",
     title: "Relay",
     blurb: "Antipodal pairs ping around the perimeter.",
     durationMs: 1800,
@@ -435,6 +479,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-28",
+    category: "progress",
     title: "Compile",
     blurb: "Each column fills bottom-up, then releases as one.",
     durationMs: 2400,
@@ -444,6 +489,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-29",
+    category: "ambient",
     title: "Glider",
     blurb: "A Conway glider walks diagonally over four generations.",
     durationMs: 2400,
@@ -460,6 +506,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-30",
+    category: "agent",
     title: "Caret",
     blurb: "A typewriter caret blinks while a row of dots types itself in.",
     durationMs: 2200,
@@ -473,6 +520,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-31",
+    category: "ambient",
     title: "Pendulum",
     blurb: "A row swings left and right with simple-harmonic timing.",
     durationMs: 2400,
@@ -487,6 +535,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-32",
+    category: "ambient",
     title: "Magnet",
     blurb: "Outer dots drift inward to the core, then release outward.",
     durationMs: 2400,
@@ -499,6 +548,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-33",
+    category: "progress",
     title: "Aperture",
     blurb: "A camera iris opens in three rings, then closes back to the center.",
     durationMs: 2400,
@@ -509,6 +559,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-34",
+    category: "ambient",
     title: "Static",
     blurb: "VHS noise — every dot flickers on its own delay and duration.",
     durationMs: 1400,
@@ -519,6 +570,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-35",
+    category: "progress",
     title: "Ladder",
     blurb: "Five horizontal rungs light bottom-up, then top-down.",
     durationMs: 2400,
@@ -528,6 +580,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-36",
+    category: "ambient",
     title: "Scatter",
     blurb: "A starburst from the center settles into stillness.",
     durationMs: 2200,
@@ -543,6 +596,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-37",
+    category: "spinner",
     title: "Mesh",
     blurb: "A row scan and a column scan cross at a moving intersection.",
     durationMs: 2400,
@@ -556,6 +610,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-38",
+    category: "status",
     title: "Verify",
     blurb: "A checkmark traces itself once and stays lit. One-shot.",
     durationMs: 1400,
@@ -569,6 +624,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-39",
+    category: "status",
     title: "Halt",
     blurb: "A 3×3 square opens, then collapses to a single center dot. One-shot.",
     durationMs: 1600,
@@ -582,6 +638,7 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
   },
   {
     slug: "icon-40",
+    category: "status",
     title: "Roulette",
     blurb: "A perimeter sweep decelerates and lands on a final answer.",
     durationMs: 2600,
