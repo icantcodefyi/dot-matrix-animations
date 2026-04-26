@@ -715,8 +715,8 @@ a {
 
 .card .stage svg {
   position: relative;
-  width: 64%;
-  height: 64%;
+  width: 48%;
+  height: 48%;
 }
 
 .card .info {

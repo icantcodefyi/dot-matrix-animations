@@ -7,19 +7,19 @@ import {
 import type { ReactNode } from "react";
 
 import appCss from "~/styles/app.css?url";
+import { PATTERNS } from "~/lib/patterns";
 
 const SITE_URL = "https://dot-matrix-animations.vercel.app/";
-const SITE_TITLE = "dot/matrix, a library of 28 quiet loaders";
-const SITE_DESCRIPTION =
-  "28 hand-designed 5×5 dot-matrix loader animations. Standalone animated SVGs (~4 KB each) and a React component. No JS runtime, no GIFs, agent-themed patterns for AI loading states.";
+const COUNT = PATTERNS.length;
+const SITE_TITLE = `dot/matrix, a library of ${COUNT} quiet loaders`;
+const SITE_DESCRIPTION = `${COUNT} hand-designed 5×5 dot-matrix loader animations. Standalone animated SVGs (~4 KB each) and a React component. No JS runtime, no GIFs, agent-themed patterns for AI loading states.`;
 const OG_IMAGE = `${SITE_URL}og-image.png`;
 
 const JSON_LD = {
   "@context": "https://schema.org",
   "@type": "SoftwareSourceCode",
   name: "dot/matrix",
-  description:
-    "28 hand-designed 5×5 dot-matrix loader animations as standalone animated SVGs and a React component.",
+  description: `${COUNT} hand-designed 5×5 dot-matrix loader animations as standalone animated SVGs and a React component.`,
   url: SITE_URL,
   codeRepository: "https://github.com/icantcodefyi/dot-matrix-animations",
   programmingLanguage: ["TypeScript", "Python", "SVG", "CSS"],
@@ -62,8 +62,7 @@ export const Route = createRootRoute({
       { name: "twitter:title", content: SITE_TITLE },
       {
         name: "twitter:description",
-        content:
-          "28 hand-designed 5×5 dot-matrix loader animations. ~4 KB each, no JS runtime.",
+        content: `${COUNT} hand-designed 5×5 dot-matrix loader animations. ~4 KB each, no JS runtime.`,
       },
       { name: "twitter:image", content: OG_IMAGE },
       {

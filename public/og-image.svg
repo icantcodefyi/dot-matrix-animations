@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="dot/matrix — 28 quiet loaders">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="dot/matrix — 60 quiet loaders">
   <defs>
     <radialGradient id="bgGlow" cx="78%" cy="-10%" r="80%">
       <stop offset="0%" stop-color="#262522" stop-opacity="0.7" />
@@ -60,7 +60,7 @@
   <!-- bottom meta -->
   <line x1="80" y1="540" x2="1120" y2="540" stroke="#3a3934" stroke-width="1" />
   <text x="80" y="585" fill="#a8a69f" font-family="ui-monospace, monospace" font-size="20" letter-spacing="1.5">
-    28 LOADERS  ·  5×5 GRID  ·  ~4 KB EACH  ·  NO JS RUNTIME
+    60 LOADERS  ·  5×5 GRID  ·  ~4 KB EACH  ·  NO JS RUNTIME
   </text>
   <text x="1120" y="585" text-anchor="end" fill="#9a9892" font-family="ui-monospace, monospace" font-size="20" letter-spacing="1">
     dot-matrix-animations.vercel.app

@@ -1,5 +1,6 @@
-// 28 hand-designed dot-matrix patterns. Mirrors scripts/generate_animations.py.
-// Keep this file and the Python generator in sync if either changes.
+// Hand-designed dot-matrix patterns — single source of truth for the React
+// component, the standalone SVGs, and the sitemap. Run `pnpm regen` after
+// editing to refresh public/svg/icons/* and public/sitemap.xml.
 
 export const GRID = 5;
 export const PAD = 6;
@@ -196,6 +197,40 @@ const COMPASS_ARMS: ReadonlyArray<ReadonlyArray<readonly [number, number]>> = [
 // reads as motion blur rather than a flicker.
 const COMET_KF =
   "0%{opacity:0;transform:scale(1);}4%{opacity:1;transform:scale(1.25);}28%{opacity:0.35;transform:scale(1);}78%{opacity:0.06;transform:scale(1);}100%{opacity:0;transform:scale(1);}";
+
+// Inner-ring 8 cells, ordered counter-clockwise from (1,1).
+const INNER_RING_CCW: ReadonlyArray<readonly [number, number]> = [
+  [1, 1], [1, 2], [1, 3], [2, 3], [3, 3], [3, 2], [3, 1], [2, 1],
+];
+
+// Hexagonal six-cell ring approximated on a 5x5: top, top-right, bottom-right,
+// bottom, bottom-left, top-left. Looks octagonal-ish but reads as a hex breath.
+const HEX_CELLS: ReadonlyArray<readonly [number, number]> = [
+  [2, 0], [4, 1], [4, 3], [2, 4], [0, 3], [0, 1],
+];
+
+// Boustrophedon snake path covering every cell in serpent order.
+const SNAKE_PATH: ReadonlyArray<readonly [number, number]> = (() => {
+  const out: Array<readonly [number, number]> = [];
+  for (let row = 0; row < GRID; row++) {
+    if (row % 2 === 0) {
+      for (let col = 0; col < GRID; col++) out.push([col, row]);
+    } else {
+      for (let col = GRID - 1; col >= 0; col--) out.push([col, row]);
+    }
+  }
+  return out;
+})();
+
+// Staircase from bottom-left to top-right, alternating right-step and up-step.
+const STAIRS_PATH: ReadonlyArray<readonly [number, number]> = [
+  [0, 4], [1, 4], [1, 3], [2, 3], [2, 2], [3, 2], [3, 1], [4, 1], [4, 0],
+];
+
+// Seven dots scattered like a constellation — visually balanced but irregular.
+const CONSTELLATION: ReadonlyArray<readonly [number, number]> = [
+  [0, 1], [1, 3], [2, 0], [2, 4], [3, 2], [4, 0], [4, 3],
+];
 
 export const PATTERNS: ReadonlyArray<PatternSpec> = [
   {
@@ -829,6 +864,154 @@ export const PATTERNS: ReadonlyArray<PatternSpec> = [
     easing: EASE_OUT_QUART,
     keyframes: FILL_KF,
     delay: (col, row) => (row === GRID - 1 ? col / 6 : -1),
+  },
+  {
+    slug: "icon-50",
+    category: "progress",
+    title: "Equalizer",
+    blurb: "Three inner columns rise and fall like an audio meter.",
+    durationMs: 1800,
+    easing: EASE_IN_OUT,
+    keyframes: FILL_KF,
+    delay: (col, row) => {
+      if (col < 1 || col > 3) return -1;
+      const phase = (col - 1) / 3;
+      const rise = (GRID - 1 - row) * 0.04;
+      return (phase + rise) % 1;
+    },
+    durationFactor: (col) => (col === 1 ? 0.85 : col === 3 ? 1.15 : 1),
+  },
+  {
+    slug: "icon-51",
+    category: "spinner",
+    title: "Vortex",
+    blurb: "Outer ring sweeps clockwise while the inner ring counter-rotates.",
+    durationMs: 2400,
+    easing: "linear",
+    keyframes: TRAIL_KF,
+    delay: (col, row) => {
+      if (col === CENTER && row === CENTER) return 0;
+      const outerIdx = findIndex(EDGE_ORDER, col, row);
+      if (outerIdx >= 0) return outerIdx / EDGE_ORDER.length;
+      const innerIdx = findIndex(INNER_RING_CCW, col, row);
+      if (innerIdx >= 0) return innerIdx / INNER_RING_CCW.length;
+      return -1;
+    },
+  },
+  {
+    slug: "icon-52",
+    category: "ambient",
+    title: "Echo",
+    blurb: "Three ring waves ripple out from the center in slow succession.",
+    durationMs: 2600,
+    easing: EASE_OUT_EXPO,
+    keyframes: RING_KF,
+    delay: (col, row) =>
+      Math.max(Math.abs(col - CENTER), Math.abs(row - CENTER)) / 3,
+  },
+  {
+    slug: "icon-53",
+    category: "progress",
+    title: "Boot",
+    blurb: "Rows fill in top-down and hold, like a system coming online.",
+    durationMs: 2400,
+    easing: EASE_OUT_QUART,
+    keyframes: FILL_KF,
+    delay: (_col, row) => row / 6,
+  },
+  {
+    slug: "icon-54",
+    category: "spinner",
+    title: "Marquee",
+    blurb: "A bright band scrolls across the middle row left to right.",
+    durationMs: 1800,
+    easing: "linear",
+    keyframes: TRAIL_KF,
+    delay: (col, row) => (row === CENTER ? col / 5 : -1),
+  },
+  {
+    slug: "icon-55",
+    category: "agent",
+    title: "Radar",
+    blurb: "A center beacon pulses while a single dot circles the perimeter.",
+    durationMs: 2200,
+    easing: "linear",
+    keyframes: TRAIL_KF,
+    delay: (col, row) => {
+      if (col === CENTER && row === CENTER) return 0;
+      const idx = findIndex(EDGE_ORDER, col, row);
+      return idx < 0 ? -1 : idx / EDGE_ORDER.length;
+    },
+  },
+  {
+    slug: "icon-56",
+    category: "ambient",
+    title: "Hex",
+    blurb: "A six-cell hexagonal ring breathes around a quiet center.",
+    durationMs: 2400,
+    easing: EASE_IN_OUT,
+    keyframes: RING_KF,
+    delay: (col, row) => {
+      if (col === CENTER && row === CENTER) return 0.5;
+      return findIndex(HEX_CELLS, col, row) >= 0 ? 0 : -1;
+    },
+  },
+  {
+    slug: "icon-57",
+    category: "agent",
+    title: "Snake",
+    blurb: "A bright dot winds through every cell in serpent order.",
+    durationMs: 3000,
+    easing: "linear",
+    keyframes: TRAIL_KF,
+    delay: (col, row) => {
+      const idx = findIndex(SNAKE_PATH, col, row);
+      return idx < 0 ? -1 : idx / (SNAKE_PATH.length + 4);
+    },
+  },
+  {
+    slug: "icon-58",
+    category: "progress",
+    title: "Stairs",
+    blurb: "A staircase climbs from the bottom-left corner to the top-right.",
+    durationMs: 2200,
+    easing: EASE_OUT_QUART,
+    keyframes: FILL_KF,
+    delay: (col, row) => {
+      const idx = findIndex(STAIRS_PATH, col, row);
+      return idx < 0 ? -1 : idx / STAIRS_PATH.length;
+    },
+  },
+  {
+    slug: "icon-59",
+    category: "ambient",
+    title: "Constellation",
+    blurb: "Seven scattered dots twinkle slowly in a fixed pattern.",
+    durationMs: 3000,
+    easing: EASE_IN_OUT,
+    keyframes: SPARKLE_KF,
+    delay: (col, row) => {
+      const idx = findIndex(CONSTELLATION, col, row);
+      if (idx < 0) return -1;
+      return hash01(idx, 13);
+    },
+  },
+  {
+    slug: "icon-60",
+    category: "spinner",
+    title: "Crosshair",
+    blurb: "A center target pulses while four cardinal arms rotate around it.",
+    durationMs: 2000,
+    easing: EASE_OUT_QUART,
+    keyframes: PULSE_KF,
+    delay: (col, row) => {
+      if (col === CENTER && row === CENTER) return 0;
+      if (col === CENTER && row === CENTER - 1) return 0;
+      if (col === CENTER + 1 && row === CENTER) return 0.25;
+      if (col === CENTER && row === CENTER + 1) return 0.5;
+      if (col === CENTER - 1 && row === CENTER) return 0.75;
+      return -1;
+    },
   },
 ];
 

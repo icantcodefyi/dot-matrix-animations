@@ -1,6 +1,6 @@
 # dot/matrix
 
-A small library of quiet 5×5 dot-matrix loader animations. Each one is a
+A small library of 60 quiet 5×5 dot-matrix loader animations. Each one is a
 hand-designed pattern, not per-frame brightness sampled from a video. They
 ship in two forms:
 
@@ -12,13 +12,11 @@ The showcase site is built with [TanStack Start](https://tanstack.com/start)
 
 ## Loaders
 
-The first 28 cover rings, sweeps, sparkles, sequences, and an agent set:
-**Pulse Rings**, **Spiral**, **Wave**, **Cross Expand**, **Rain**,
-**Heartbeat**, **Loading**, **Diagonal Scan**, **Sparkle**,
-**Column Scan**, **Beacon**, **Diamond**, **Pyramid**, **Bounce**,
-**Breath**, **Orbit**, **Twin Orbit**, **Ring Pulse**, **Thinking**,
-**Stream**, **Scan Line**, **Handshake**, **Knight's Tour**, **Lattice**,
-**Cipher**, **Listening**, **Relay**, **Compile**.
+60 patterns spanning rings, sweeps, sparkles, sequences, agent states,
+physics-feeling motion, semantic outcome icons, and a small audio / radar /
+equalizer set. The full list with categories and blurbs lives in
+[`src/lib/patterns.ts`](./src/lib/patterns.ts), which is the single source of
+truth for the React component, the standalone SVGs, and the sitemap.
 
 Roadmap items live in [`ROADMAP.md`](./ROADMAP.md).
 
@@ -56,25 +54,27 @@ import { DotMatrixIcon } from "~/components/DotMatrixIcon";
 ## Regenerate the SVGs
 
 ```bash
-pnpm regen        # alias for: python3 scripts/generate_animations.py
+pnpm regen        # alias for: tsx scripts/regen.ts
 ```
 
-If you change a pattern in [`src/lib/patterns.ts`](./src/lib/patterns.ts),
-mirror the change in [`scripts/generate_animations.py`](./scripts/generate_animations.py)
-(or vice versa) so the React and SVG outputs stay in sync.
+`scripts/regen.ts` imports `PATTERNS` directly from `src/lib/patterns.ts`,
+re-uses `serializeIconSvg` for the per-icon files, and re-emits the scene SVG
+plus `public/sitemap.xml`. There is no second generator to keep in sync —
+edit a pattern, run regen, ship.
 
 ## Project layout
 
 ```
 public/
   svg/icons/icon-NN.svg     standalone animated SVGs (~4 KB each)
-  svg/dot-matrix-scene.svg  3×3 scene grid
+  svg/dot-matrix-scene.svg  combined scene grid
+  sitemap.xml               regenerated alongside the SVGs
 src/
   routes/                   TanStack Start route files
   components/               DotMatrixIcon, DotMatrixScene, gallery UI
-  lib/patterns.ts           pattern specs (mirrored in the Python generator)
-  lib/serializeIcon.ts      runtime SVG-string renderer (used by copy button)
+  lib/patterns.ts           single source of truth for every loader
+  lib/serializeIcon.ts      runtime SVG-string renderer (copy button + regen)
   styles/app.css            global styles + design tokens
 scripts/
-  generate_animations.py    Python generator for the standalone SVGs
+  regen.ts                  TS regen — writes SVGs, scene, and sitemap
 ```

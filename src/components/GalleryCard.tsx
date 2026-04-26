@@ -104,7 +104,7 @@ export function GalleryCard({
       <div className="stage">
         <DotMatrixIcon
           iconIndex={iconIndex}
-          size={120}
+          size={88}
           autoPlay={autoPlay}
           speedMultiplier={speed}
           forceLoop
