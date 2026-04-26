@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -12,15 +13,48 @@ import {
   type PatternSpec,
 } from "../src/lib/patterns.ts";
 import { serializeIconSvg } from "../src/lib/serializeIcon.ts";
+import { serializeOgIconSvg } from "../src/lib/serializeOgSvg.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(here, "..");
 const iconDir = resolve(repoRoot, "public", "svg", "icons");
+const ogDir = resolve(repoRoot, "public", "og");
+const rootOgSvg = resolve(repoRoot, "public", "og-image.svg");
+const rootOgPng = resolve(repoRoot, "public", "og-image.png");
 const scenePath = resolve(repoRoot, "public", "svg", "dot-matrix-scene.svg");
 const sitemapPath = resolve(repoRoot, "public", "sitemap.xml");
 const SITE_URL = "https://dot-matrix-animations.vercel.app";
 
 mkdirSync(iconDir, { recursive: true });
+mkdirSync(ogDir, { recursive: true });
+
+const hasRsvg = (() => {
+  try {
+    execFileSync("rsvg-convert", ["--version"], { stdio: "ignore" });
+    return true;
+  } catch {
+    return false;
+  }
+})();
+if (!hasRsvg) {
+  console.warn(
+    "rsvg-convert not found on PATH — OG SVGs written but PNGs skipped.\n" +
+      "  install with: brew install librsvg",
+  );
+}
+
+function rasterize(svgPath: string, pngPath: string): void {
+  if (!hasRsvg) return;
+  execFileSync("rsvg-convert", [
+    "-w",
+    "1200",
+    "-h",
+    "630",
+    svgPath,
+    "-o",
+    pngPath,
+  ]);
+}
 
 for (let i = 0; i < PATTERNS.length; i++) {
   const pattern = PATTERNS[i];
@@ -28,6 +62,22 @@ for (let i = 0; i < PATTERNS.length; i++) {
   writeFileSync(file, serializeIconSvg(i) + "\n", "utf8");
   console.log(`wrote public/svg/icons/${pattern.slug}.svg  ${pattern.title}`);
 }
+
+// Per-icon OG images (SVG + PNG) for /icon/<slug> social previews.
+for (let i = 0; i < PATTERNS.length; i++) {
+  const pattern = PATTERNS[i];
+  const ogSvg = resolve(ogDir, `${pattern.slug}.svg`);
+  const ogPng = resolve(ogDir, `${pattern.slug}.png`);
+  writeFileSync(ogSvg, serializeOgIconSvg(i) + "\n", "utf8");
+  rasterize(ogSvg, ogPng);
+}
+console.log(
+  `wrote ${PATTERNS.length} OG images to public/og/${hasRsvg ? "" : " (svg only — install rsvg-convert for png)"}`,
+);
+
+// Root OG png is rendered from the hand-authored og-image.svg.
+rasterize(rootOgSvg, rootOgPng);
+if (hasRsvg) console.log(`wrote public/og-image.png  (root)`);
 
 const SCENE_COLS = 6;
 const tile = VIEWBOX + 14;

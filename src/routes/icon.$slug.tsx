@@ -5,6 +5,8 @@ import { DotMatrixIcon } from "~/components/DotMatrixIcon";
 import { PATTERNS } from "~/lib/patterns";
 import { serializeIconSvg } from "~/lib/serializeIcon";
 
+const SITE_URL = "https://dot-matrix-animations.vercel.app";
+
 export const Route = createFileRoute("/icon/$slug")({
   loader: ({ params }) => {
     const iconIndex = PATTERNS.findIndex((p) => p.slug === params.slug);
@@ -14,13 +16,29 @@ export const Route = createFileRoute("/icon/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) return {};
     const pattern = PATTERNS[loaderData.iconIndex];
+    const title = `${pattern.title} · dot/matrix`;
+    const url = `${SITE_URL}/icon/${pattern.slug}`;
+    const ogImage = `${SITE_URL}/og/${pattern.slug}.png`;
+    const alt = `${pattern.title} — ${pattern.blurb}`;
     return {
       meta: [
-        { title: `${pattern.title} · dot/matrix` },
+        { title },
         { name: "description", content: pattern.blurb },
-        { property: "og:title", content: `${pattern.title} · dot/matrix` },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+        { property: "og:title", content: title },
         { property: "og:description", content: pattern.blurb },
+        { property: "og:image", content: ogImage },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:alt", content: alt },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: pattern.blurb },
+        { name: "twitter:image", content: ogImage },
+        { name: "twitter:image:alt", content: alt },
       ],
+      links: [{ rel: "canonical", href: url }],
     };
   },
   notFoundComponent: () => (
