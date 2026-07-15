@@ -1,5 +1,7 @@
 # dot/matrix
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A small library of 60 quiet 5×5 dot-matrix loader animations. Each one is a
 hand-designed pattern, not per-frame brightness sampled from a video. They
 ship in two forms:
